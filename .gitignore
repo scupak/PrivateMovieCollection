@@ -42,3 +42,5 @@ DBSettings.txt
 *.mp4
 *.wav
 music/.DS_Store
+nbproject/project.properties
+*.properties
