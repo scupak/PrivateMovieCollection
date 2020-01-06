@@ -40,3 +40,5 @@ nbdist/
 DBSettings.txt
 *.mp3
 *.mp4
+*.wav
+music/.DS_Store
