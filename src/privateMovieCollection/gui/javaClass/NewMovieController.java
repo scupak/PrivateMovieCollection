@@ -4,21 +4,12 @@
  * and open the template in the editor.
  */
  /*Here the package that this class is in is defined*/
-package privateMovieCollection.gui;
+package privateMovieCollection.gui.javaClass;
 
 /*All the imports are defined here,the class needs to know witch other classes, packages or libraries it has acces to,
 this also defines how the class fits into the programs design structure.*/
-import java.awt.Frame;
-import java.awt.FileDialog;
-import java.io.File;
 import java.net.URL;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,9 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javax.swing.JOptionPane;
-
 /**
  * FXML Controller class
  *
@@ -39,11 +27,34 @@ import javax.swing.JOptionPane;
  * create and add new songs to the app
  */
 public class NewMovieController implements Initializable {
+    
+    @FXML
+    private Label CategoryLabel;
+    @FXML
+    private Label TimeLabel;
+    @FXML
+    private Label fileLabel;
+    @FXML
+    private TextField movieTitelTextField;
+    @FXML
+    private TextField releaseTextField;
+    @FXML
+    private Button Cancel;
+    @FXML
+    private Button Save;
+    @FXML
+    private TextField fileTextField;
+    @FXML
+    private ChoiceBox<?> raitingChoiceBox;
+    @FXML
+    private TextField categoryTextField;
 
     /**
      * The instance variables er defined and some given an initial value
      */
     private AppModel appModel;
+    @FXML
+    private Button movieChoiceButton;
 
     /**
      * Initializes the controller class. Creates a list of categories and sets
@@ -63,4 +74,20 @@ public class NewMovieController implements Initializable {
         appModel = app;
     }
 
+    
+    @FXML
+    private void Cancel(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void Save(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void movieChoiceButton(ActionEvent event)
+    {
+    }
+    
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package privateMovieCollection.gui;
+package privateMovieCollection.gui.javaClass;
 
 import privateMovieCollection.bll.VideoPlayer;
 
@@ -18,7 +18,7 @@ public class AppModel {
      * AppModel constructor
      */
     public AppModel() throws Exception {
-        
+        videoPlayer = new VideoPlayer();
     }
     
     public VideoPlayer getVideoPlayer()
