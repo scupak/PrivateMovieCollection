@@ -171,5 +171,8 @@ public class MovieDBDAO implements MovieFacade {
          
         System.out.println(sdf.format(date2));
         
+        
+       
+        
     }
 }
