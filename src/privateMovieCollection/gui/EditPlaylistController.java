@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunes.gui;
+package privateMovieCollection.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author lumby
  */
-public class PlaylistController implements Initializable {
+public class EditPlaylistController implements Initializable {
 
     private AppModel appModel;
 
@@ -26,12 +26,10 @@ public class PlaylistController implements Initializable {
     }
 
     /**
-     * Sets the appModel for the class
-     *
-     * @param app
+     * Set the AppModel
      */
     public void setAppModel(AppModel app) {
         appModel = app;
     }
-    
+
 }

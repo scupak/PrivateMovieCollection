@@ -3,29 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunes.gui;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+package privateMovieCollection.gui;
 
 /**
  *
- * @author kacper
+ * @author kacpe
  */
-public class DeletePlaylistController {
+public class DeleteSongController {
 
     private AppModel appModel;
-    @FXML
-    private Button Yes;
-    @FXML
-    private Button No;
 
     /**
-     * Set the appModel object
+     * Sets the appModel
      *
      * @param app
      */
-    public void setAppModel(AppModel app) {
+    public void setappmodel(AppModel app) {
         appModel = app;
     }
 

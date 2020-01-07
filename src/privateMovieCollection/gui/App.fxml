@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.AppController">
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
    <children>
       <ListView fx:id="moivesInCategory" layoutX="255.0" layoutY="169.0" onMouseClicked="#clickedOnSongInPlaylist" prefHeight="402.0" prefWidth="183.0" />
       <TextField fx:id="searchField" layoutX="591.0" layoutY="33.0" onKeyPressed="#Search" prefHeight="38.0" prefWidth="192.0" promptText="Search">
