@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.javaClass.AppController">
    <children>
-      <ListView fx:id="moivesInCategory" layoutX="255.0" layoutY="169.0" onMouseClicked="#clickedOnMovieInCategory" prefHeight="402.0" prefWidth="183.0" />
+      <ListView fx:id="moivesInCategory" layoutX="264.0" layoutY="169.0" onMouseClicked="#clickedOnMovieInCategory" prefHeight="402.0" prefWidth="123.0" />
       <TextField fx:id="searchField" layoutX="591.0" layoutY="33.0" onKeyPressed="#search" prefHeight="38.0" prefWidth="192.0" promptText="Search">
          <font>
             <Font size="14.0" />
@@ -26,7 +26,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="271.0" layoutY="141.0" text="Moives in category">
+      <Label layoutX="251.0" layoutY="141.0" text="Moives in category">
          <font>
             <Font size="18.0" />
          </font>
@@ -35,11 +35,12 @@
       <Button fx:id="editMovieButton" layoutX="539.0" layoutY="581.0" mnemonicParsing="false" onAction="#editMoive" text="Edit..." />
       <Button fx:id="deleteSongButton" layoutX="601.0" layoutY="581.0" mnemonicParsing="false" onAction="#deleteMovie" text="Delete" />
       <Button fx:id="exitButton" layoutX="783.0" layoutY="582.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
-      <TableView fx:id="movieList" layoutX="472.0" layoutY="169.0" onMouseClicked="#clickedOnMoive" prefHeight="402.0" prefWidth="347.0">
+      <TableView fx:id="movieList" layoutX="472.0" layoutY="169.0" onMouseClicked="#clickedOnMoive" prefHeight="402.0" prefWidth="364.0">
         <columns>
-          <TableColumn fx:id="movieTitelCol" prefWidth="148.0" text="Titel" />
-            <TableColumn fx:id="moiveCategoryCol" prefWidth="139.20001220703125" text="Category" />
-            <TableColumn fx:id="movieRaitingCol" prefWidth="60.0" text="Raiting" />
+          <TableColumn fx:id="movieTitelCol" prefWidth="136.0" text="Titel" />
+            <TableColumn fx:id="moiveCategoryCol" prefWidth="112.00006103515625" text="Category" />
+            <TableColumn fx:id="movieReleasseCol" prefWidth="55.20001220703125" text="Release" />
+            <TableColumn fx:id="movieRaitingCol" prefWidth="59.199951171875" text="Raiting" />
         </columns>
       </TableView>
       <TableView fx:id="categoryList" layoutX="21.0" layoutY="169.0" onMouseClicked="#updateCategoryView" prefHeight="402.0" prefWidth="229.0">
@@ -48,5 +49,9 @@
           <TableColumn fx:id="moivesInCategoryCol" prefWidth="104.0" text="Moives" />
         </columns>
       </TableView>
+      <Button fx:id="moveToCategoryButton" layoutX="398.0" layoutY="199.0" mnemonicParsing="false" onAction="#moveToCategory" prefHeight="26.0" prefWidth="57.0" text="&lt;-" />
+      <Button fx:id="newCategoryButton" layoutX="21.0" layoutY="581.0" mnemonicParsing="false" onAction="#newCategory" text="New..." />
+      <Button fx:id="editCategoryButton" layoutX="77.0" layoutY="582.0" mnemonicParsing="false" onAction="#editCategory" text="Edit..." />
+      <Button fx:id="deleteCategoryButton" layoutX="129.0" layoutY="582.0" mnemonicParsing="false" onAction="#deleteCategory" text="Delete" />
    </children>
 </AnchorPane>

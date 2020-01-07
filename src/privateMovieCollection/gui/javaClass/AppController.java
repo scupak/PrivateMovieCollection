@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package privateMovieCollection.gui;
+package privateMovieCollection.gui.javaClass;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +38,6 @@ public class AppController implements Initializable {
     private Button exitButton;
     @FXML
     private TableView<?> movieList;
-  
     @FXML
     private TableView<?> categoryList;
     @FXML
@@ -51,6 +50,16 @@ public class AppController implements Initializable {
     private TableColumn<?, ?> categoryNameCol;
     @FXML
     private TableColumn<?, ?> moivesInCategoryCol;
+    @FXML
+    private TableColumn<?, ?> movieReleasseCol;
+    @FXML
+    private Button moveToCategoryButton;
+    @FXML
+    private Button newCategoryButton;
+    @FXML
+    private Button editCategoryButton;
+    @FXML
+    private Button deleteCategoryButton;
   
 
     /**
@@ -101,6 +110,26 @@ public class AppController implements Initializable {
 
     @FXML
     private void updateCategoryView(MouseEvent event)
+    {
+    }
+
+    @FXML
+    private void moveToCategory(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void newCategory(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void editCategory(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void deleteCategory(ActionEvent event)
     {
     }
 

@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package privateMovieCollection.gui;
+package privateMovieCollection.gui.javaClass;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -12,6 +16,10 @@ package privateMovieCollection.gui;
 public class DeleteMovieController {
 
     private AppModel appModel;
+    @FXML
+    private Button yes;
+    @FXML
+    private Button no;
 
     /**
      * Sets the appModel
@@ -20,6 +28,16 @@ public class DeleteMovieController {
      */
     public void setappmodel(AppModel app) {
         appModel = app;
+    }
+
+    @FXML
+    private void yes(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void no(ActionEvent event)
+    {
     }
 
 }
