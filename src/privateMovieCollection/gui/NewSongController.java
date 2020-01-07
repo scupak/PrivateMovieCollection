@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
  /*Here the package that this class is in is defined*/
-package mytunes.gui;
+package privateMovieCollection.gui;
 
 /*All the imports are defined here,the class needs to know witch other classes, packages or libraries it has acces to,
 this also defines how the class fits into the programs design structure.*/

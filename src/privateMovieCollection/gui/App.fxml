@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.AppController">
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
    <children>
       <Button fx:id="Play" layoutX="72.0" layoutY="28.0" mnemonicParsing="false" onAction="#Play" text="&gt;">
          <font>
