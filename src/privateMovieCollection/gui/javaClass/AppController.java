@@ -99,9 +99,7 @@ public class AppController implements Initializable {
     @FXML
     private void newMovie(ActionEvent event) throws IOException
     {
-       // appModel.getVideoPlayer().giveLifeSigns();
         appModel.getVideoPlayer().playVideo("movies/y2mate.com - ayaya_ayaya_intensifies_9wnNW4HyDtg_1080p.mp4");
-        
     }
 
     @FXML
