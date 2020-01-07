@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.be;
 
+import java.util.Date;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -16,16 +17,20 @@ public class Movie {
     private int id;
     private final SimpleStringProperty title;
     private final SimpleIntegerProperty rating;
+    private String path;
+    private Date lastview;
     
     /**
      * Movie constructor
      * @param id
      * @param title
      */
-    public Movie(int id, String title, int rating) {
+    public Movie(int id, String title, int rating, String path, Date lastview) {
         this.id = id;
         this.title = new SimpleStringProperty(title);
         this.rating = new SimpleIntegerProperty(rating);
+        this.path = path;
+        this.lastview = lastview;
     }
     
     /**
@@ -63,4 +68,37 @@ public class Movie {
     public void setTitle(String title) {
         this.title.set(title);
     }
+    /**
+     * get the rating of the movie
+     * @return 
+     */
+    public int getRating() {
+        return rating.get();
+    }
+    
+    public void setRating(int rating) {
+        this.rating.set(rating);
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Date getLastview() {
+        return lastview;
+    }
+
+    public void setLastview(Date lastview) {
+        this.lastview = lastview;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" + "id=" + id + ", title=" + title + ", rating=" + rating + ", path=" + path + ", lastview=" + lastview + '}';
+    }
+        
 }

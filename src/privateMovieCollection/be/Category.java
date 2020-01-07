@@ -60,4 +60,10 @@ public class Category {
     public void setName(String title) {
         this.name.set(title);
     }
+
+    @Override
+    public String toString() {
+        return "Category{" + "id=" + id + ", name=" + name + '}';
+    }
+    
 }
