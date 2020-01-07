@@ -75,10 +75,13 @@ public class MovieDBDAO implements MovieFacade {
     public Movie createMovie(Movie movie) {
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO movie "
-                    + "(title) "
-                    + "VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+                    + "(title, rating, filelink, lastview) "
+                    + "VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, movie.getTitle());
+            ps.setInt(2, movie.getRating());
+            ps.setString(3, movie.getPath());
+            ps.setDate(4, (java.sql.Date) movie.getLastview());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
@@ -152,24 +155,8 @@ public class MovieDBDAO implements MovieFacade {
         
         MovieDBDAO movieDB = new MovieDBDAO();
         
-        for (Movie movie : movieDB.getAllMovies()) {
-            
-            System.out.println(movie);
-        }
         
-        movies.addAll(movieDB.getAllMovies());
-        Date date1 = movies.get(0).getLastview();
-        Date date2 = new Date();
-        
-        System.out.println(date1);
-        System.out.println(date2);
-       
-        long diff = date2.getTime() - date1.getTime();
-        System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
-        
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-         
-        System.out.println(sdf.format(date2));
+        movieDB.createMovie(new Movie(1, "Hello", 28, "actions/batman.mp4", new Date()));
         
     }
 }

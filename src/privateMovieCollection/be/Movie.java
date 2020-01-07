@@ -99,7 +99,7 @@ public class Movie {
     /**
      * Set the path of the movie
      * 
-     * @return path
+     * @param path
      */
     public void setPath(String path) {
         this.path = path;
@@ -117,7 +117,7 @@ public class Movie {
     /**
      * Get the lastview of the movie
      * 
-     * @return lastview
+     * @param lastview
      */
     public void setLastview(Date lastview) {
         this.lastview = lastview;
