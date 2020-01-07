@@ -5,10 +5,14 @@
  */
 package privateMovieCollection.be;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author anton
  */
 public class Movie {
+    private int id;
     
 }
