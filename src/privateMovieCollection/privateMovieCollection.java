@@ -5,6 +5,8 @@
  */
 package privateMovieCollection;
 
+import java.io.IOException;
+import privateMovieCollection.gui.AppModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,6 +35,7 @@ public class privateMovieCollection extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
     }
 
 }

@@ -5,11 +5,14 @@
  */
 package privateMovieCollection.gui.javaClass;
 
+import privateMovieCollection.bll.VideoPlayer;
+
 /**
  *
  * @author andreasvillumsen
  */
 public class AppModel {
+    private VideoPlayer videoPlayer;
 
     /**
      * AppModel constructor
@@ -17,5 +20,11 @@ public class AppModel {
     public AppModel() throws Exception {
         
     }
+    
+    public VideoPlayer getVideoPlayer()
+    {
+        return videoPlayer;
+    }
+    
 
 }
