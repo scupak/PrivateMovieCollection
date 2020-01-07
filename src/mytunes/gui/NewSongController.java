@@ -30,8 +30,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import mytunes.be.Song;
 import mytunes.dal.database.SongDBDAO;
-import org.jaudiotagger.audio.AudioFile;
-import org.jaudiotagger.audio.AudioFileIO;
+
 
 /**
  * FXML Controller class
@@ -163,20 +162,6 @@ public class NewSongController implements Initializable {
         } else {
             FileTextField.setText("music/" + filename);
             System.out.print(directory + "dræb mig");
-        }
-
-        try {
-            AudioFile audioFile = AudioFileIO.read(new File(directory + filename));
-            duration = audioFile.getAudioHeader().getTrackLength();
-            /*
-            int seconds = duration % 60;
-            int minutes = (int) Math.floor(duration / 60);
-             */
-            Time_textField.setText(duration + "");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
         }
     }
 
