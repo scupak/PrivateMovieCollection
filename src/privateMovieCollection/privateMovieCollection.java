@@ -6,7 +6,7 @@
 package privateMovieCollection;
 
 import java.io.IOException;
-import privateMovieCollection.gui.AppModel;
+import privateMovieCollection.gui.javaClass.AppModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
