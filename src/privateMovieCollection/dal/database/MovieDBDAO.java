@@ -81,7 +81,10 @@ public class MovieDBDAO implements MovieFacade {
             ps.setString(1, movie.getTitle());
             ps.setInt(2, movie.getRating());
             ps.setString(3, movie.getPath());
-            ps.setDate(4, (java.sql.Date) movie.getLastview());
+            
+           // SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            
+            ps.setDate(4, new java.sql.Date(movie.getLastview().getTime()));
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
@@ -155,8 +158,11 @@ public class MovieDBDAO implements MovieFacade {
         
         MovieDBDAO movieDB = new MovieDBDAO();
         
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+         
         
-        movieDB.createMovie(new Movie(1, "Hello", 28, "actions/batman.mp4", new Date()));
+        
+        movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
         
         
        
