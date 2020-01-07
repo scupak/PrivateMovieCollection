@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import privateMovieCollection.dal.MovieFacade;
 import privateMovieCollection.be.Movie;
 
@@ -45,7 +47,11 @@ public class MovieDBDAO implements MovieFacade {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String title = rs.getString("title");
-                //movies.add(new Movie(id, title));
+                int rating = rs.getInt("rating");
+                String path = rs.getString("filelink");
+                java.sql.Date dbSqlDate = rs.getDate("lastview");
+                Date dbSqlDateConverted = new Date(dbSqlDate.getTime());
+                movies.add(new Movie(id, title, rating, path, dbSqlDateConverted));
             }
             return movies;
 
@@ -138,5 +144,26 @@ public class MovieDBDAO implements MovieFacade {
         }
 
         return false;
+    }
+    
+    public static void main(String[] args) {
+        ArrayList<Movie> movies = new ArrayList<>();
+        
+        MovieDBDAO movieDB = new MovieDBDAO();
+        
+        for (Movie movie : movieDB.getAllMovies()) {
+            
+            System.out.println(movie);
+        }
+        
+        movies.addAll(movieDB.getAllMovies());
+        Date date1 = movies.get(0).getLastview();
+        Date date2 = new Date();
+        
+        System.out.println(date1);
+        System.out.println(date2);
+       
+        long diff = date2.getTime() - date1.getTime();
+        System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
     }
 }
