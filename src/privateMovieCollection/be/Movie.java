@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.be;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -14,15 +15,17 @@ import javafx.beans.property.SimpleStringProperty;
 public class Movie {
     private int id;
     private final SimpleStringProperty title;
+    private final SimpleIntegerProperty rating;
     
     /**
      * Movie constructor
      * @param id
      * @param title
      */
-    public Movie(int id, String title) {
+    public Movie(int id, String title, int rating) {
         this.id = id;
         this.title = new SimpleStringProperty(title);
+        this.rating = new SimpleIntegerProperty(rating);
     }
     
     /**
