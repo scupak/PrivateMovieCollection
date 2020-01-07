@@ -11,22 +11,22 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author andreasvillumsen
  */
-public class Movie {
+public class Category {
     private int id;
-    private final SimpleStringProperty title;
+    private final SimpleStringProperty name;
     
     /**
      * Movie constructor
      * @param id
-     * @param title
+     * @param name
      */
-    public Movie(int id, String title) {
+    public Category(int id, String name) {
         this.id = id;
-        this.title = new SimpleStringProperty(title);
+        this.name = new SimpleStringProperty(name);
     }
     
     /**
-     * Get the id of the movie
+     * Get the id of the category
      *
      * @return id
      */
@@ -35,7 +35,7 @@ public class Movie {
     }
 
     /**
-     * Set the id of the movie
+     * Set the id of the category
      *
      * @param id
      */
@@ -44,20 +44,20 @@ public class Movie {
     }
     
     /**
-     * Get the title of the movie
+     * Get the name of the category
      *
-     * @return title
+     * @return name
      */
-    public String getTitle() {
-        return title.get();
+    public String getName() {
+        return name.get();
     }
 
     /**
-     * Set the title of the movie
+     * Set the name of the category
      *
-     * @param title
+     * @param name
      */
-    public void setTitle(String title) {
-        this.title.set(title);
+    public void setName(String title) {
+        this.name.set(title);
     }
 }
