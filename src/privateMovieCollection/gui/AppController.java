@@ -65,42 +65,43 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void clickedOnSongInPlaylist(MouseEvent event)
+    private void clickedOnMovieInCategory(MouseEvent event)
     {
     }
 
     @FXML
-    private void Search(KeyEvent event)
+    private void search(KeyEvent event)
     {
     }
 
     @FXML
-    private void newSong(ActionEvent event)
+    private void newMovie(ActionEvent event)
     {
     }
 
     @FXML
-    private void EditSong(ActionEvent event)
+    private void editMoive(ActionEvent event)
     {
     }
 
     @FXML
-    private void DeleteSong(ActionEvent event)
+    private void deleteMovie(ActionEvent event)
     {
     }
 
     @FXML
-    private void Exit(ActionEvent event)
+    private void exit(ActionEvent event)
     {
     }
 
     @FXML
-    private void clickedOnSongs(MouseEvent event)
+    private void clickedOnMoive(MouseEvent event)
     {
     }
 
     @FXML
-    private void updatePlaylistview(MouseEvent event)
+    private void updateCategoryView(MouseEvent event)
     {
     }
+
 }

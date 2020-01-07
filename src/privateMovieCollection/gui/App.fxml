@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
    <children>
-      <ListView fx:id="moivesInCategory" layoutX="255.0" layoutY="169.0" onMouseClicked="#clickedOnSongInPlaylist" prefHeight="402.0" prefWidth="183.0" />
-      <TextField fx:id="searchField" layoutX="591.0" layoutY="33.0" onKeyPressed="#Search" prefHeight="38.0" prefWidth="192.0" promptText="Search">
+      <ListView fx:id="moivesInCategory" layoutX="255.0" layoutY="169.0" onMouseClicked="#clickedOnMovieInCategory" prefHeight="402.0" prefWidth="183.0" />
+      <TextField fx:id="searchField" layoutX="591.0" layoutY="33.0" onKeyPressed="#search" prefHeight="38.0" prefWidth="192.0" promptText="Search">
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Label layoutX="472.0" layoutY="149.0" text="Movies">
+      <Label layoutX="471.0" layoutY="141.0" text="Movies">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="16.0" layoutY="141.0" text="Category">
+      <Label layoutX="21.0" layoutY="141.0" text="Category">
          <font>
             <Font size="18.0" />
          </font>
@@ -31,18 +31,18 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="newMoiveButton" layoutX="476.0" layoutY="581.0" mnemonicParsing="false" onAction="#newSong" text="New..." />
-      <Button fx:id="editMovieButton" layoutX="539.0" layoutY="581.0" mnemonicParsing="false" onAction="#EditSong" text="Edit..." />
-      <Button fx:id="deleteSongButton" layoutX="601.0" layoutY="581.0" mnemonicParsing="false" onAction="#DeleteSong" text="Delete" />
-      <Button fx:id="exitButton" layoutX="783.0" layoutY="582.0" mnemonicParsing="false" onAction="#Exit" text="Exit" />
-      <TableView fx:id="movieList" layoutX="472.0" layoutY="173.0" onMouseClicked="#clickedOnSongs" prefHeight="402.0" prefWidth="347.0">
+      <Button fx:id="newMoiveButton" layoutX="476.0" layoutY="581.0" mnemonicParsing="false" onAction="#newMovie" text="New..." />
+      <Button fx:id="editMovieButton" layoutX="539.0" layoutY="581.0" mnemonicParsing="false" onAction="#editMoive" text="Edit..." />
+      <Button fx:id="deleteSongButton" layoutX="601.0" layoutY="581.0" mnemonicParsing="false" onAction="#deleteMovie" text="Delete" />
+      <Button fx:id="exitButton" layoutX="783.0" layoutY="582.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <TableView fx:id="movieList" layoutX="472.0" layoutY="169.0" onMouseClicked="#clickedOnMoive" prefHeight="402.0" prefWidth="347.0">
         <columns>
           <TableColumn fx:id="movieTitelCol" prefWidth="148.0" text="Titel" />
             <TableColumn fx:id="moiveCategoryCol" prefWidth="139.20001220703125" text="Category" />
             <TableColumn fx:id="movieRaitingCol" prefWidth="60.0" text="Raiting" />
         </columns>
       </TableView>
-      <TableView fx:id="categoryList" layoutX="21.0" layoutY="169.0" onMouseClicked="#updatePlaylistview" prefHeight="402.0" prefWidth="229.0">
+      <TableView fx:id="categoryList" layoutX="21.0" layoutY="169.0" onMouseClicked="#updateCategoryView" prefHeight="402.0" prefWidth="229.0">
         <columns>
           <TableColumn fx:id="categoryNameCol" prefWidth="124.0" text="Name" />
           <TableColumn fx:id="moivesInCategoryCol" prefWidth="104.0" text="Moives" />
