@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  * @author lumby
  */
 /* This class controls the fxml that lets the user edit songs*/
-public class EditSongController implements Initializable {
+public class EditMovieController implements Initializable {
 
     private AppModel appModel;
 

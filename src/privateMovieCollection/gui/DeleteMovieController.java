@@ -9,7 +9,7 @@ package privateMovieCollection.gui;
  *
  * @author kacpe
  */
-public class DeleteSongController {
+public class DeleteMovieController {
 
     private AppModel appModel;
 
