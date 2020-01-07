@@ -38,7 +38,7 @@ import javax.swing.JOptionPane;
  * NewSongController is the class that controls the fxml page where the user can
  * create and add new songs to the app
  */
-public class NewSongController implements Initializable {
+public class NewMovieController implements Initializable {
 
     /**
      * The instance variables er defined and some given an initial value
