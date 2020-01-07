@@ -18,7 +18,7 @@ public class AppModel {
      * AppModel constructor
      */
     public AppModel() throws Exception {
-        
+        videoPlayer = new VideoPlayer();
     }
     
     public VideoPlayer getVideoPlayer()

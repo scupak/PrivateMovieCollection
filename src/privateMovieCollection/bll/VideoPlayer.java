@@ -15,9 +15,18 @@ import java.io.IOException;
  */
 public class VideoPlayer
 {
+    public VideoPlayer()throws Exception
+    {
+    }
     public void playVideo(String filepath) throws IOException
     {
         Desktop.getDesktop().open(new File(filepath));
+    }
+    
+    public void giveLifeSigns()
+    {
+        System.out.print("Im alive");
+        
     }
     
 }
