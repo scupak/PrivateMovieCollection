@@ -45,7 +45,7 @@ public class MovieDBDAO implements MovieFacade {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String title = rs.getString("title");
-                movies.add(new Movie(id, title));
+             //   movies.add(new Movie(id, title));
             }
             return movies;
 

@@ -20,7 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import privateMovieCollection.gui.AppModel;
+import privateMovieCollection.gui.javaClass.AppModel;
 
 /**
  *
