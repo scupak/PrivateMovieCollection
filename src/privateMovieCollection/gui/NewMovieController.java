@@ -18,6 +18,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Movie;
 /**
  * FXML Controller class
  *
@@ -39,7 +40,7 @@ public class NewMovieController implements Initializable {
     @FXML
     private Label fileLabel;
     @FXML
-    private TextField movieTitelTextField;
+    private TextField movieTitleTextField;
     @FXML
     private TextField releaseTextField;
     private Button cancel;
@@ -85,11 +86,12 @@ public class NewMovieController implements Initializable {
     @FXML
     private void Save(ActionEvent event)
     {
-        String titel = movieTitelTextField.getText();
+        String title = movieTitleTextField.getText();
         String release = releaseTextField.getText();
         String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
         String raiting = raitingTextField.getText();
+        
     }
 
     @FXML
