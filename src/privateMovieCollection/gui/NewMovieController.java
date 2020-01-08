@@ -42,7 +42,6 @@ public class NewMovieController implements Initializable {
     @FXML
     private TextField movieTitleTextField;
     @FXML
-    private TextField releaseTextField;
     private Button cancel;
     @FXML
     private Button Save;
@@ -86,8 +85,7 @@ public class NewMovieController implements Initializable {
     @FXML
     private void Save(ActionEvent event)
     {
-        String title = movieTitleTextField.getText();
-        String release = releaseTextField.getText();
+        String title = movieTitleTextField.getText(); 
         String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
         String raiting = raitingTextField.getText();

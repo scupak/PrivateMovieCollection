@@ -60,7 +60,7 @@ public class AppController implements Initializable {
     @FXML
     private TableColumn<?, ?> moivesInCategoryCol;
     @FXML
-    private TableColumn<?, ?> movieReleasseCol;
+    private TableColumn<?, ?> movieLastViewCol;
     @FXML
     private Button moveToCategoryButton;
     @FXML
