@@ -114,9 +114,12 @@ public class MovieDBDAO implements MovieFacade {
     @Override
     public boolean updateMovie(Movie movie) {
         try ( Connection con = dbCon.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE movie SET title = ? WHERE id = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE movie SET title = ?, rating = ?, filelink = ?, lastview = ? WHERE id = ?");
             ps.setString(1, movie.getTitle());
-            ps.setInt(2, movie.getId());
+            ps.setInt(2, movie.getRating());
+            ps.setString(3, movie.getPath());
+            ps.setDate(4, new java.sql.Date(movie.getLastview().getTime()));
+            ps.setInt(5, movie.getId());
             int updatedRows = ps.executeUpdate();
             return updatedRows > 0;
 
@@ -159,13 +162,7 @@ public class MovieDBDAO implements MovieFacade {
         MovieDBDAO movieDB = new MovieDBDAO();
         
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-         
-        
         
         movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
-        
-        
-       
-        
     }
 }
