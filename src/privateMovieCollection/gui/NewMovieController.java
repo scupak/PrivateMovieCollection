@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -39,7 +40,7 @@ public class NewMovieController implements Initializable {
     @FXML
     private TextField releaseTextField;
     @FXML
-    private Button Cancel;
+    private Button cancel;
     @FXML
     private Button Save;
     @FXML
@@ -78,6 +79,8 @@ public class NewMovieController implements Initializable {
     @FXML
     private void Cancel(ActionEvent event)
     {
+        Stage stage = (Stage) cancel.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
