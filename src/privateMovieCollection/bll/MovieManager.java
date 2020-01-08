@@ -6,6 +6,8 @@
 package privateMovieCollection.bll;
 
 import privateMovieCollection.dal.MovieFacade;
+import privateMovieCollection.dal.database.MovieDBDAO;
+import privateMovieCollection.be.Movie;
 
 /**
  *
@@ -14,4 +16,14 @@ import privateMovieCollection.dal.MovieFacade;
 public class MovieManager {
     
     private MovieFacade movieDBDAO;
+    
+    public MovieManager()
+    {
+        movieDBDAO = new MovieDBDAO();
+    }
+    
+    public void creatMovie(Movie movieToAdd)
+    {
+        movieDBDAO.createMovie(movieToAdd);
+    }
 }

@@ -5,7 +5,9 @@
  */
 package privateMovieCollection.gui;
 
+import privateMovieCollection.be.Movie;
 import privateMovieCollection.bll.VideoPlayer;
+import privateMovieCollection.bll.MovieManager;
 
 /**
  *
@@ -13,6 +15,7 @@ import privateMovieCollection.bll.VideoPlayer;
  */
 public class AppModel {
     private VideoPlayer videoPlayer;
+    private MovieManager movieManager;
 
     /**
      * AppModel constructor
@@ -24,6 +27,11 @@ public class AppModel {
     public VideoPlayer getVideoPlayer()
     {
         return videoPlayer;
+    }
+    
+    public void createMovie(Movie movieToAdd)
+    {
+        movieManager.createMovie(movieToAdd);
     }
     
 

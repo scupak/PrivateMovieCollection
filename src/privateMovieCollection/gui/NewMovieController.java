@@ -9,6 +9,7 @@ package privateMovieCollection.gui;
 /*All the imports are defined here,the class needs to know witch other classes, packages or libraries it has acces to,
 this also defines how the class fits into the programs design structure.*/
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,6 +90,16 @@ public class NewMovieController implements Initializable {
         String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
         String raiting = raitingTextField.getText();
+        Date lastView = new Date();
+        int intRaiting;
+        
+        try{
+            intRaiting = Integer.parseInt(raiting);
+        } catch(NumberFormatException e){
+            intRaiting = 0;
+        }
+        
+        Movie movieToAdd = new Movie(1, title, intRaiting, moviePath, lastView); 
         
     }
 
