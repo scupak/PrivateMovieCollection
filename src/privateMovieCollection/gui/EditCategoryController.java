@@ -8,39 +8,39 @@ package privateMovieCollection.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
  *
- * @author kacpe
+ * @author lumby
  */
-public class DeleteMovieController {
-
+public class EditCategoryController
+{
     private AppModel appModel;
-    @FXML
-    private Button yes;
-    @FXML
-    private Button no;
 
-    /**
-     * Sets the appModel
-     *
-     * @param app
-     */
-    public void setAppModel(AppModel app) {
+    @FXML
+    private TextField categoryName;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button cancelButton;
+
+    
+     public void setAppModel(AppModel app) {
         appModel = app;
     }
 
     @FXML
-    private void yes(ActionEvent event)
+    private void save(ActionEvent event)
     {
     }
 
     @FXML
-    private void no(ActionEvent event)
+    private void cancel(ActionEvent event)
     {
-        Stage stage = (Stage) no.getScene().getWindow();
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-
+    
 }
