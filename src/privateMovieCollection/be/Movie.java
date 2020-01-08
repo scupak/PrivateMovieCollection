@@ -68,34 +68,66 @@ public class Movie {
     public void setTitle(String title) {
         this.title.set(title);
     }
+    
     /**
-     * get the rating of the movie
-     * @return 
+     * Get the rating of the movie
+     * 
+     * @return rating
      */
     public int getRating() {
         return rating.get();
     }
     
+    /**
+     * Set the rating of the movie
+     * 
+     * @param rating
+     */
     public void setRating(int rating) {
         this.rating.set(rating);
     }
 
+    /**
+     * Get the path of the movie
+     * 
+     * @return path
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Set the path of the movie
+     * 
+     * @param path
+     */
     public void setPath(String path) {
         this.path = path;
     }
 
+    /**
+     * Get the lastview of the movie
+     * 
+     * @return lastview
+     */
     public Date getLastview() {
         return lastview;
     }
 
+    /**
+     * Get the lastview of the movie
+     * 
+     * @param lastview
+     */
     public void setLastview(Date lastview) {
         this.lastview = lastview;
     }
 
+    /**
+     * This class as a String
+     * 
+     * @return String
+     */
     @Override
     public String toString() {
         return "Movie{" + "id=" + id + ", title=" + title + ", rating=" + rating + ", path=" + path + ", lastview=" + lastview + '}';
