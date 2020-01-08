@@ -48,7 +48,7 @@ public class CategoryDBDAO implements CategoryFacade {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                categories.add(new Category(id, name));
+                categories.add(new Category(id, name,1));
             }
             return categories;
 
@@ -274,9 +274,9 @@ public class CategoryDBDAO implements CategoryFacade {
         CategoryDBDAO categoryDB = new CategoryDBDAO();
         // System.out.println(categoryDB.getAllCategories());
         //categoryDB.createCategory(new Category(0, "action") );
-        //categoryDB.updateCategory(new Category(2, "fuck"));
+        //categoryDB.updateCategory(new Category(3, "action", 0));
         //categoryDB.deleteCategory(new Category(2, "name"));
-        //categoryDB.addToCategory(new Category(3, "name"), new Movie(3, "title", 0, "path", new java.util.Date()));
+        //categoryDB.addToCategory(new Category(4, "name",0), new Movie(7, "title", 0, "path", new java.util.Date(),""));
         //System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name")));
         
         

@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,6 +6,7 @@
  */
 package privateMovieCollection.be;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -14,15 +16,17 @@ import javafx.beans.property.SimpleStringProperty;
 public class Category {
     private int id;
     private final SimpleStringProperty name;
+    private final SimpleIntegerProperty movies;
     
     /**
      * Movie constructor
      * @param id
      * @param name
      */
-    public Category(int id, String name) {
+    public Category(int id, String name , int movies) {
         this.id = id;
         this.name = new SimpleStringProperty(name);
+        this.movies = new SimpleIntegerProperty(movies);
     }
     
     /**
@@ -57,13 +61,29 @@ public class Category {
      *
      * @param name
      */
-    public void setName(String title) {
-        this.name.set(title);
+    public void setName(String name) {
+        this.name.set(name);
+    }
+    /**
+     * 
+     * @return 
+     */
+     public int getMovies() {
+        return movies.get();
+    }
+
+    /**
+     * Set the title of the song
+     *
+     * @param movies
+     */
+    public void setMovies(int movies) {
+        this.movies.set(movies);
     }
 
     @Override
     public String toString() {
-        return name +"";
+        return name.get();
     }
     
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import privateMovieCollection.be.Category;
 import privateMovieCollection.dal.MovieFacade;
 import privateMovieCollection.be.Movie;
 
@@ -156,14 +157,55 @@ public class MovieDBDAO implements MovieFacade {
         return false;
     }
     
+    public List<Category>GetAllCategoriesWithMovie(Movie movie){
+        ArrayList<Category> categories = new ArrayList<>();
+        
+        try ( Connection con = dbCon.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT "
+                    + "category_movie.Categoryid,category.id,category_movie.Movieid,category.name "
+                    + "FROM category_movie "
+                    + "INNER JOIN category ON category_movie.categoryid = category.id "
+                    + "WHERE category_movie.movieid = ? "
+                    + "ORDER BY category_movie.categoryid ASC");
+            
+            ps.setInt(1, movie.getId());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int categoryid = rs.getInt("Categoryid");
+                String name = rs.getString("name");
+                
+            
+                categories.add(new Category(categoryid, name, 0));
+            }
+            return categories;
+
+        } catch (SQLServerException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+        
+    
+    }
+    
     public static void main(String[] args) {
         ArrayList<Movie> movies = new ArrayList<>();
-        
+        ArrayList<Category> categories = new ArrayList<>();
         MovieDBDAO movieDB = new MovieDBDAO();
         
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
        // movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
       //movieDB.updateMovie(new Movie(6, "mello", 28, "actions/batman.mp4", new Date()));
+      
+       categories.addAll(movieDB.GetAllCategoriesWithMovie(new Movie(3, "title", 0, "path", new Date(), "")));
+       
+        for (Category category : categories) {
+            
+            System.out.println(category);
+        }
     }
 }
