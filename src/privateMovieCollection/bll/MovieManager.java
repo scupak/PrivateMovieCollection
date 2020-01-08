@@ -22,7 +22,7 @@ public class MovieManager {
         movieDBDAO = new MovieDBDAO();
     }
     
-    public void creatMovie(Movie movieToAdd)
+    public void createMovie(Movie movieToAdd)
     {
         movieDBDAO.createMovie(movieToAdd);
     }
