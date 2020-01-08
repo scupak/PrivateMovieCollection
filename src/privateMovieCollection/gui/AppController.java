@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package privateMovieCollection.gui.javaClass;
+package privateMovieCollection.gui;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,7 +12,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -20,7 +23,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import privateMovieCollection.gui.javaClass.AppModel;
+import javafx.stage.Stage;
+import privateMovieCollection.gui.AppModel;
 
 /**
  *
@@ -105,8 +109,19 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void editMoive(ActionEvent event)
+    private void editMoive(ActionEvent event) throws IOException
     {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditMovie.fxml").openStream());
+        EditMovieController cont = (EditMovieController) fxmlLoader.getController();
+        cont.setAppModel(appModel);
+        Stage stage = new Stage();
+        stage.setTitle("New/Edit Movie");
+        stage.setScene(new Scene(root));
+        stage.setAlwaysOnTop(true);
+        stage.show();
+        
     }
 
     @FXML
@@ -117,6 +132,8 @@ public class AppController implements Initializable {
     @FXML
     private void exit(ActionEvent event)
     {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

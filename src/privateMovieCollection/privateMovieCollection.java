@@ -6,7 +6,7 @@
 package privateMovieCollection;
 
 import java.io.IOException;
-import privateMovieCollection.gui.javaClass.AppModel;
+import privateMovieCollection.gui.AppModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,10 +22,9 @@ public class privateMovieCollection extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("gui/fxmlFile/App.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("gui/App.fxml"));
 
         Scene scene = new Scene(root);
-
         stage.setTitle("Private Movie Collection");
         stage.setScene(scene);
         stage.show();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunes.gui;
+package privateMovieCollection.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,9 +20,10 @@ import javafx.scene.control.TextField;
  *
  * @author lumby
  */
-public class NewSongController implements Initializable
-{
+/* This class controls the fxml that lets the user edit songs*/
+public class EditMovieController implements Initializable {
 
+    private AppModel appModel;
     @FXML
     private Label CategoryLabel;
     @FXML
@@ -34,34 +35,49 @@ public class NewSongController implements Initializable
     @FXML
     private TextField releaseTextField;
     @FXML
-    private Button Cancel;
+    private Button cancelbutton;
     @FXML
-    private Button Save;
+    private Button saveButton;
+    @FXML
+    private Button movieChoiceButton;
     @FXML
     private TextField fileTextField;
     @FXML
     private ChoiceBox<?> raitingChoiceBox;
     @FXML
     private TextField categoryTextField;
-    @FXML
-    private Button movieChoiceButton;
+
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class. Creates a list of categories and sets
+     * it to the choiceBox.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
-    }    
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
+    /**
+     * Set the AppModel
+     *
+     * We need to make sure that the controller uses the same appmodel as the
+     * rest of the program otherwise it would be working with different datasets.
+     * We therefore have a method that we call when the fxml stage is set where
+     * the correct appmodel is passed to the controller.
+     *
+     * @param app
+     */
+    public void setAppModel(AppModel app) {
+        appModel = app;
+    }
 
     @FXML
-    private void Cancel(ActionEvent event)
+    private void cancel(ActionEvent event)
     {
     }
 
     @FXML
-    private void Save(ActionEvent event)
+    private void save(ActionEvent event)
     {
     }
 
@@ -69,5 +85,4 @@ public class NewSongController implements Initializable
     private void movieChoiceButton(ActionEvent event)
     {
     }
-    
 }

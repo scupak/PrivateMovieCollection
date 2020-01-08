@@ -3,36 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunes.gui;
+package privateMovieCollection.gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 /**
- * FXML Controller class
  *
- * @author lumby
+ * @author kacpe
  */
-public class DeleteSongController implements Initializable
-{
+public class DeleteMovieController {
 
+    private AppModel appModel;
     @FXML
     private Button yes;
     @FXML
     private Button no;
 
     /**
-     * Initializes the controller class.
+     * Sets the appModel
+     *
+     * @param app
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
-    }    
+    public void setappmodel(AppModel app) {
+        appModel = app;
+    }
 
     @FXML
     private void yes(ActionEvent event)
@@ -43,5 +39,5 @@ public class DeleteSongController implements Initializable
     private void no(ActionEvent event)
     {
     }
-    
+
 }
