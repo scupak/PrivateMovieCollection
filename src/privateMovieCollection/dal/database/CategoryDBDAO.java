@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import privateMovieCollection.dal.CategoryFacade;
@@ -171,7 +172,7 @@ public class CategoryDBDAO implements CategoryFacade {
                 int rating = rs.getInt("rating");
                 String filelink = rs.getString("filelink");
                 Date lastview = rs.getDate("lastview");
-                movies.add(new Movie(id, title, rating, filelink, lastview));
+                movies.add(new Movie(id, title, rating, filelink, lastview,""));
             }
             return movies;
 
@@ -266,5 +267,20 @@ public class CategoryDBDAO implements CategoryFacade {
         }
 
         return false;
+    }
+    public static void main(String[] args) {
+        ArrayList<Category> categories = new ArrayList<>();
+        
+        CategoryDBDAO categoryDB = new CategoryDBDAO();
+        // System.out.println(categoryDB.getAllCategories());
+        //categoryDB.createCategory(new Category(0, "action") );
+        //categoryDB.updateCategory(new Category(2, "fuck"));
+        //categoryDB.deleteCategory(new Category(2, "name"));
+        //categoryDB.addToCategory(new Category(3, "name"), new Movie(3, "title", 0, "path", new java.util.Date()));
+        //System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name")));
+        
+        
+        
+        
     }
 }

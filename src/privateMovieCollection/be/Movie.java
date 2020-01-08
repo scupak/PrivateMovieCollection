@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.be;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,18 +20,21 @@ public class Movie {
     private final SimpleIntegerProperty rating;
     private String path;
     private Date lastview;
+    private final SimpleStringProperty categories;
+    private  ArrayList<Category> categoryArray;
     
     /**
      * Movie constructor
      * @param id
      * @param title
      */
-    public Movie(int id, String title, int rating, String path, Date lastview) {
+    public Movie(int id, String title, int rating, String path, Date lastview, String categories) {
         this.id = id;
         this.title = new SimpleStringProperty(title);
         this.rating = new SimpleIntegerProperty(rating);
         this.path = path;
         this.lastview = lastview;
+        this.categories = new SimpleStringProperty(categories);
     }
     
     /**
@@ -121,6 +125,14 @@ public class Movie {
      */
     public void setLastview(Date lastview) {
         this.lastview = lastview;
+    }
+    
+    public String getCategories() {
+        return categories.get();
+    }
+    
+    public void setCategories(String categories) {
+        this.categories.set(categories);
     }
 
     /**

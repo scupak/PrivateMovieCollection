@@ -52,7 +52,7 @@ public class MovieDBDAO implements MovieFacade {
                 String path = rs.getString("filelink");
                 java.sql.Date dbSqlDate = rs.getDate("lastview");
                 Date dbSqlDateConverted = new Date(dbSqlDate.getTime());
-                movies.add(new Movie(id, title, rating, path, dbSqlDateConverted));
+                movies.add(new Movie(id, title, rating, path, dbSqlDateConverted,""));
             }
             return movies;
 
@@ -163,6 +163,7 @@ public class MovieDBDAO implements MovieFacade {
         
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
-        movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
+       // movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
+      //movieDB.updateMovie(new Movie(6, "mello", 28, "actions/batman.mp4", new Date()));
     }
 }
