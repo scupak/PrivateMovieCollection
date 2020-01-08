@@ -126,17 +126,19 @@ public class CategoryDBDAO implements CategoryFacade {
      */
     @Override
     public boolean deleteCategory(Category category) {
-        try ( Connection con = dbCon.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("DELETE FROM category WHERE id = ?");
-            ps.setInt(1, category.getId());
+        if (clearCategory(category)) {
+            try ( Connection con = dbCon.getConnection()) {
+                PreparedStatement ps = con.prepareStatement("DELETE FROM category WHERE id = ?");
+                ps.setInt(1, category.getId());
 
-            int updatedRows = ps.executeUpdate();
-            return updatedRows > 0;
+                int updatedRows = ps.executeUpdate();
+                return updatedRows > 0;
 
-        } catch (SQLServerException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            } catch (SQLServerException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
 
         return false;
