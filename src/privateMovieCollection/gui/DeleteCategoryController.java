@@ -17,11 +17,18 @@ import javafx.stage.Stage;
 public class DeleteCategoryController
 {
 
+    private AppModel appModel;
+    
     @FXML
     private Button yes;
     @FXML
     private Button no;
 
+    
+     public void setAppModel(AppModel app) {
+        appModel = app;
+    }
+    
     @FXML
     private void yes(ActionEvent event)
     {

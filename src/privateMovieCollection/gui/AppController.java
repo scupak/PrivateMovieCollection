@@ -134,8 +134,18 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void deleteMovie(ActionEvent event)
+    private void deleteMovie(ActionEvent event) throws IOException
     {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteMovie.fxml").openStream());
+        DeleteMovieController cont = (DeleteMovieController) fxmlLoader.getController();
+        cont.setAppModel(appModel);
+        Stage stage = new Stage();
+        stage.setTitle("New/Edit Movie");
+        stage.setScene(new Scene(root));
+        stage.setAlwaysOnTop(true);
+        stage.show();
     }
 
     @FXML
@@ -192,8 +202,18 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void deleteCategory(ActionEvent event)
+    private void deleteCategory(ActionEvent event) throws IOException
     {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteCategory.fxml").openStream());
+        DeleteCategoryController cont = (DeleteCategoryController) fxmlLoader.getController();
+        cont.setAppModel(appModel);
+        Stage stage = new Stage();
+        stage.setTitle("New/Edit Movie");
+        stage.setScene(new Scene(root));
+        stage.setAlwaysOnTop(true);
+        stage.show();
     }
 
 }

@@ -27,7 +27,7 @@ public class DeleteMovieController {
      *
      * @param app
      */
-    public void setappmodel(AppModel app) {
+    public void setAppModel(AppModel app) {
         appModel = app;
     }
 
