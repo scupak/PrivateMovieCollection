@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,7 +39,7 @@
       <Button fx:id="Save" layoutX="238.0" layoutY="246.0" mnemonicParsing="false" onAction="#Save" text="Save" />
       <Button fx:id="movieChoiceButton" layoutX="151.0" layoutY="207.0" mnemonicParsing="false" onAction="#movieChoiceButton" prefHeight="26.0" prefWidth="99.0" text="Choose Movie" />
       <TextField fx:id="fileTextField" layoutX="150.0" layoutY="181.0" />
-      <ChoiceBox fx:id="raitingChoiceBox" layoutX="149.0" layoutY="147.0" prefHeight="26.0" prefWidth="76.0" />
       <TextField fx:id="categoryTextField" layoutX="150.0" layoutY="112.0" promptText="i.e: Action, Drama..." />
+      <TextField fx:id="raitingTextField" layoutX="150.0" layoutY="147.0" />
    </children>
 </AnchorPane>

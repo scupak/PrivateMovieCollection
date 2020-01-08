@@ -29,6 +29,9 @@ import javafx.stage.Stage;
  */
 public class NewMovieController implements Initializable {
     
+    
+    private AppModel appModel;
+    
     @FXML
     private Label CategoryLabel;
     @FXML
@@ -39,23 +42,20 @@ public class NewMovieController implements Initializable {
     private TextField movieTitelTextField;
     @FXML
     private TextField releaseTextField;
-    @FXML
     private Button cancel;
     @FXML
     private Button Save;
     @FXML
     private TextField fileTextField;
-    @FXML
-    private ChoiceBox<?> raitingChoiceBox;
+    
     @FXML
     private TextField categoryTextField;
-
-    /**
-     * The instance variables er defined and some given an initial value
-     */
-    private AppModel appModel;
     @FXML
     private Button movieChoiceButton;
+    @FXML
+    private Button Cancel;
+    @FXML
+    private TextField raitingTextField;
 
     /**
      * Initializes the controller class. Creates a list of categories and sets
@@ -76,7 +76,6 @@ public class NewMovieController implements Initializable {
     }
 
     
-    @FXML
     private void Cancel(ActionEvent event)
     {
         Stage stage = (Stage) cancel.getScene().getWindow();
@@ -86,10 +85,20 @@ public class NewMovieController implements Initializable {
     @FXML
     private void Save(ActionEvent event)
     {
+        String titel = movieTitelTextField.getText();
+        String release = releaseTextField.getText();
+        String category = categoryTextField.getText();
+        String moviePath = fileTextField.getText();
+        String raiting = raitingTextField.getText();
     }
 
     @FXML
     private void movieChoiceButton(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void cancel(ActionEvent event)
     {
     }
     
