@@ -104,6 +104,17 @@ public class AppController implements Initializable {
     private void newMovie(ActionEvent event) throws IOException
     {
         appModel.getVideoPlayer().playVideo("movies/y2mate.com - ayaya_ayaya_intensifies_9wnNW4HyDtg_1080p.mp4");
+        
+        /* FXMLLoader fxmlLoader = new FXMLLoader();
+
+        Parent root = (Parent) fxmlLoader.load(getClass().getResource("NewMovie.fxml").openStream());
+        NewMovieController cont = (NewMovieController) fxmlLoader.getController();
+        cont.setAppModel(appModel);
+        Stage stage = new Stage();
+        stage.setTitle("New/Edit Movie");
+        stage.setScene(new Scene(root));
+        stage.setAlwaysOnTop(true);
+        stage.show(); */
     }
 
     @FXML
@@ -150,13 +161,34 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void newCategory(ActionEvent event)
+    private void newCategory(ActionEvent event) throws IOException
     {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+
+        Parent root = (Parent) fxmlLoader.load(getClass().getResource("NewCategory.fxml").openStream());
+        NewCategoryController cont = (NewCategoryController) fxmlLoader.getController();
+        cont.setAppModel(appModel);
+        Stage stage = new Stage();
+        stage.setTitle("New/Edit Category");
+        stage.setScene(new Scene(root));
+        stage.setAlwaysOnTop(true);
+        stage.show();
+        
     }
 
     @FXML
-    private void editCategory(ActionEvent event)
+    private void editCategory(ActionEvent event) throws IOException
     {
+         FXMLLoader fxmlLoader = new FXMLLoader();
+
+        Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditCategory.fxml").openStream());
+        EditCategoryController cont = (EditCategoryController) fxmlLoader.getController();
+        cont.setAppModel(appModel);
+        Stage stage = new Stage();
+        stage.setTitle("New/Edit Category");
+        stage.setScene(new Scene(root));
+        stage.setAlwaysOnTop(true);
+        stage.show();
     }
 
     @FXML

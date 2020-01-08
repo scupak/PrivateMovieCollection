@@ -12,24 +12,15 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author kacpe
+ * @author lumby
  */
-public class DeleteMovieController {
+public class DeleteCategoryController
+{
 
-    private AppModel appModel;
     @FXML
     private Button yes;
     @FXML
     private Button no;
-
-    /**
-     * Sets the appModel
-     *
-     * @param app
-     */
-    public void setappmodel(AppModel app) {
-        appModel = app;
-    }
 
     @FXML
     private void yes(ActionEvent event)
@@ -42,5 +33,5 @@ public class DeleteMovieController {
         Stage stage = (Stage) no.getScene().getWindow();
         stage.close();
     }
-
+    
 }
