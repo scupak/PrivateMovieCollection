@@ -58,19 +58,7 @@ public class AppModel {
     
     }
     
-    public ObservableList<Category> getAllCategories(){
-    allCategories.clear();
-    allCategories.addAll(categoryManager.getAllCategories());
-    return allCategories;
     
-    }
-    
-    public ObservableList<Movie>getAllMoviesInCategory(Category category){
-        moviesInCategory.clear();
-        moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(category));
-        return moviesInCategory;
-        
-    }
     
     public VideoPlayer getVideoPlayer()
     {
@@ -80,6 +68,61 @@ public class AppModel {
     public void createMovie(Movie movieToAdd)
     {
         movieManager.createMovie(movieToAdd);
+        movieClearAdd();
+    }
+    
+    public void deleteMovie(Movie movie){
+        movieManager.deleteMovie(movie);
+        movieClearAdd();
+    }
+    
+    public void updateMovie(Movie movie){
+        movieManager.updateMovie(movie);
+        movieClearAdd();
+    }
+    
+    public void movieClearAdd() {
+        allMovies.clear();
+        allMovies.addAll(movieManager.getAllMovies());
+    }
+    
+    public void categoriesClearAdd(){
+        allCategories.clear();
+        allCategories.addAll(categoryManager.getAllCategories());
+    }
+    
+    public ObservableList<Category> getAllCategories(){
+    allCategories.clear();
+    allCategories.addAll(categoryManager.getAllCategories());
+    return allCategories;
+    
+    }
+    
+    public ObservableList<Movie>getAllMoviesInCategory(Category category){
+        moviesInCategoriesClearAdd(category);
+        return moviesInCategory;
+        
+    }
+    public void moviesInCategoriesClearAdd(Category category){
+        moviesInCategory.clear();
+        moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(category));
+    
+    }
+    
+    void createCategory(Category category){
+        categoryManager.createCategory(category);
+    }
+    
+    public boolean clearMovieFromCategory(Category category, Movie movie){
+        boolean result = categoryManager.clearMovieFromPlayList(category, movie);
+        moviesInCategory.clear();
+        moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(category));
+        
+        allCategories.clear();
+        allCategories.addAll(categoryManager.getAllCategories());
+        return result;
+    
+    
     }
     
      public static void main(String[] args) throws Exception {
