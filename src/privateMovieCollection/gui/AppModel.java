@@ -37,6 +37,10 @@ public class AppModel {
         allMovies.addAll(movieManager.getAllMovies());
         
         categoryManager = new CategoryManager();
+        allCategories = FXCollections.observableArrayList();
+        allCategories.addAll(categoryManager.getAllCategories());
+        
+        
     }
     
     public ObservableList<Movie> getAllMovies(){

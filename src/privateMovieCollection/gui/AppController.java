@@ -57,7 +57,7 @@ public class AppController implements Initializable {
     @FXML
     private TableView<?> categoryList;
     @FXML
-    private TableColumn<?, ?> movieTitelCol;
+    private TableColumn<Movie, String> movieTitelCol;
     @FXML
     private TableColumn<Movie, String> moiveCategoryCol;
     @FXML
@@ -95,6 +95,11 @@ public class AppController implements Initializable {
     {
         moiveCategoryCol.setCellValueFactory( 
                 new PropertyValueFactory<Movie, String>("categories")
+        
+        );
+        
+        movieTitelCol.setCellValueFactory( 
+                new PropertyValueFactory<Movie, String>("title")
         
         );
         try   
