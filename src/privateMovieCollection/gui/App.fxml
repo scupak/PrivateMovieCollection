@@ -39,15 +39,15 @@
       <TableView fx:id="movieList" layoutX="472.0" layoutY="169.0" onMouseClicked="#clickedOnMoive" prefHeight="402.0" prefWidth="364.0">
         <columns>
           <TableColumn fx:id="movieTitelCol" prefWidth="136.0" text="Titel" />
-            <TableColumn fx:id="moiveCategoryCol" prefWidth="112.00006103515625" text="Category" />
-            <TableColumn fx:id="movieReleasseCol" prefWidth="55.20001220703125" text="Release" />
+            <TableColumn fx:id="movieCategoryCol" prefWidth="112.00006103515625" text="Category" />
+            <TableColumn fx:id="movieRaitingCol" prefWidth="55.20001220703125" text="raiting" />
             <TableColumn fx:id="movieLastViewCol" prefWidth="59.199951171875" text="Last view" />
         </columns>
       </TableView>
       <TableView fx:id="categoryList" layoutX="21.0" layoutY="169.0" onMouseClicked="#updateCategoryView" prefHeight="402.0" prefWidth="229.0">
         <columns>
           <TableColumn fx:id="categoryNameCol" prefWidth="124.0" text="Name" />
-          <TableColumn fx:id="moivesInCategoryCol" prefWidth="104.0" text="Movies" />
+          <TableColumn fx:id="moviesInCategoryCol" prefWidth="104.0" text="Movies" />
         </columns>
       </TableView>
       <Button fx:id="moveToCategoryButton" layoutX="398.0" layoutY="199.0" mnemonicParsing="false" onAction="#moveToCategory" prefHeight="26.0" prefWidth="57.0" text="&lt;-" />
