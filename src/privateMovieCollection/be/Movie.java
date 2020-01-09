@@ -110,6 +110,7 @@ public class Movie {
              System.out.println("ifstatment");
             for (Category category : categoryArray) {
                 
+                
                  System.out.println("looop");
                  if(i == categoryArray.size()){
                 text = text + category.toString();

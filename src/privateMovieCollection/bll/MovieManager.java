@@ -50,9 +50,64 @@ public class MovieManager {
      * @param query
      * @return 
      */
-    public List<Movie> search(ArrayList<String> query){
+    public List<Movie> search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
+    {
+        List<Movie> searchBase = movieDBDAO.getAllMovies();
+        List<Movie> titleResult = new ArrayList<>();
+        List<Movie> filterResult = new ArrayList<>();
+        List<Movie> finalResult = new ArrayList<>();
     
-        return null;
+        if (titleQuery == null)
+        {
+            titleResult.addAll(searchBase);
+        }
+        else
+        {
+            for (Movie movie : searchBase)
+            {
+                if (movie.getTitle().toLowerCase().contains(titleQuery.toLowerCase()))
+                {
+                    titleResult.add(movie);
+                }
+            }
+        }
+        
+        if (filterQuery == null)
+        {
+            filterResult.addAll(titleResult);
+        }
+        else
+        {
+            for (String string : filterQuery)
+            {
+                for (Movie movie : titleResult)
+                {
+                    for (Category category : movie.getCategoryArray())
+                    {
+                        if (category.getName().toLowerCase().contains(string.toLowerCase()))
+                        {
+                            filterResult.add(movie);
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (ratingQuery == 0)
+        {
+            finalResult.addAll(filterResult);
+        }
+        else
+        {
+            for (Movie movie : filterResult)
+            {
+                if (movie.getRating() > ratingQuery )
+                {
+                    finalResult.add(movie);
+                }
+            }
+        }
+        return finalResult;
     }
     /**
      * 

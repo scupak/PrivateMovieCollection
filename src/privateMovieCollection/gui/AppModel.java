@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.gui;
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import privateMovieCollection.be.Category;
@@ -60,6 +61,19 @@ public class AppModel {
         movieManager.createMovie(movieToAdd);
     }
     
+    public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
+    {
+        if (titleQuery == null || filterQuery == null || ratingQuery == 0)
+        {
+            allMovies.clear();
+            allMovies.addAll(movieManager.getAllMovies());
+        }
+        else
+        {
+            allMovies.clear();
+            allMovies.addAll(movieManager.search(titleQuery, filterQuery, ratingQuery));
+        }
+    }
     
 
 }
