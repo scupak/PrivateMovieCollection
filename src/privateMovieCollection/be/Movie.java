@@ -106,10 +106,20 @@ public class Movie {
         String text = "";
         
         if(!categoryArray.isEmpty()){
+            int i = 1;
              System.out.println("ifstatment");
             for (Category category : categoryArray) {
+                
                  System.out.println("looop");
-                text = text + category.toString() +",";
+                 if(i == categoryArray.size()){
+                text = text + category.toString();
+                
+                 }
+                 else{
+                 text = text + category.toString() +",";
+                 i++;
+                 
+                 }
             }
         
             setCategories(text);
