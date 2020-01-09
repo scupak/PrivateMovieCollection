@@ -25,10 +25,12 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Movie;
 import privateMovieCollection.gui.AppModel;
 
 /**
@@ -51,13 +53,13 @@ public class AppController implements Initializable {
     @FXML
     private Button exitButton;
     @FXML
-    private TableView<?> movieList;
+    private TableView<Movie> movieList;
     @FXML
     private TableView<?> categoryList;
     @FXML
     private TableColumn<?, ?> movieTitelCol;
     @FXML
-    private TableColumn<?, ?> moiveCategoryCol;
+    private TableColumn<Movie, String> moiveCategoryCol;
     @FXML
     private TableColumn<?, ?> movieRaitingCol;
     @FXML
@@ -91,6 +93,10 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        moiveCategoryCol.setCellValueFactory( 
+                new PropertyValueFactory<Movie, String>("categories")
+        
+        );
         try   
         {
             appModel = new AppModel();
@@ -106,6 +112,8 @@ public class AppController implements Initializable {
                         minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
                     }
                 });
+        
+        movieList.setItems(appModel.getAllMovies());
     }
 
     @FXML

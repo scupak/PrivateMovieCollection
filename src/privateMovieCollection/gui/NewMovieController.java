@@ -99,8 +99,9 @@ public class NewMovieController implements Initializable {
             intRaiting = 0;
         }
         
-        Movie movieToAdd = new Movie(1, title, intRaiting, moviePath, lastView); 
+        Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
         
+       
     }
 
     @FXML
