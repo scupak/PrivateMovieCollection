@@ -8,6 +8,8 @@ package privateMovieCollection.gui;
 
 /*All the imports are defined here,the class needs to know witch other classes, packages or libraries it has acces to,
 this also defines how the class fits into the programs design structure.*/
+import java.awt.FileDialog;
+import java.io.File;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -19,6 +21,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 /**
  * FXML Controller class
@@ -33,6 +36,8 @@ public class NewMovieController implements Initializable {
     
     
     private AppModel appModel;
+    private String filename = "";
+    private String directory = "";
     
     @FXML
     private Label CategoryLabel;
@@ -76,12 +81,7 @@ public class NewMovieController implements Initializable {
         appModel = app;
     }
 
-    
-    private void Cancel(ActionEvent event)
-    {
-        Stage stage = (Stage) cancel.getScene().getWindow();
-        stage.close();
-    }
+ 
 
     @FXML
     private void Save(ActionEvent event)
@@ -100,6 +100,9 @@ public class NewMovieController implements Initializable {
         }
         
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
+        appModel.createMovie(movieToAdd);
+        Stage stage = (Stage) Save.getScene().getWindow();
+        stage.close();
         
        
     }
@@ -107,11 +110,26 @@ public class NewMovieController implements Initializable {
     @FXML
     private void movieChoiceButton(ActionEvent event)
     {
+        FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null);
+        fd.setDirectory("C:\\");
+        fd.setFile("*.mp4;*.mpeg4");
+        fd.setVisible(true);
+        filename = fd.getFile();
+        directory = fd.getDirectory();
+        if (filename == null) {
+            JOptionPane.showMessageDialog(null, "Add song canceled");
+        } else {
+            fileTextField.setText("music/" + filename);
+            System.out.print(directory + "dræb mig");
+        }
+
     }
 
     @FXML
     private void cancel(ActionEvent event)
     {
+        Stage stage = (Stage) cancel.getScene().getWindow();
+        stage.close();
     }
     
 }

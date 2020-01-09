@@ -41,11 +41,11 @@ public class AppController implements Initializable {
     private AppModel appModel;
 
     @FXML
-    private ListView<?> moivesInCategory;
+    private ListView<?> moviesInCategory;
     @FXML
     private TextField searchField;
     @FXML
-    private Button newMoiveButton;
+    private Button newMovieButton;
     @FXML
     private Button editMovieButton;
     @FXML
@@ -59,11 +59,13 @@ public class AppController implements Initializable {
     @FXML
     private TableColumn<Movie, String> movieTitelCol;
     @FXML
-    private TableColumn<Movie, String> moiveCategoryCol;
+    private TableColumn<Movie, String> movieCategoryCol;
+    @FXML
+    private TableColumn<Movie, String> movieRaitingCol;
     @FXML
     private TableColumn<?, ?> categoryNameCol;
     @FXML
-    private TableColumn<?, ?> moivesInCategoryCol;
+    private TableColumn<?, ?> moviesInCategoryCol;
     @FXML
     private TableColumn<Movie, String> movieLastViewCol;
     @FXML
@@ -93,7 +95,7 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        moiveCategoryCol.setCellValueFactory( 
+        movieCategoryCol.setCellValueFactory( 
                 new PropertyValueFactory<Movie, String>("categories")
         
         );
@@ -136,9 +138,9 @@ public class AppController implements Initializable {
     @FXML
     private void newMovie(ActionEvent event) throws IOException
     {
-        appModel.getVideoPlayer().playVideo("movies/y2mate.com - ayaya_ayaya_intensifies_9wnNW4HyDtg_1080p.mp4");
+        //appModel.getVideoPlayer().playVideo("movies/y2mate.com - ayaya_ayaya_intensifies_9wnNW4HyDtg_1080p.mp4");
         
-        /* FXMLLoader fxmlLoader = new FXMLLoader();
+        FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("NewMovie.fxml").openStream());
         NewMovieController cont = (NewMovieController) fxmlLoader.getController();
@@ -147,7 +149,7 @@ public class AppController implements Initializable {
         stage.setTitle("New/Edit Movie");
         stage.setScene(new Scene(root));
         stage.setAlwaysOnTop(true);
-        stage.show(); */
+        stage.show();
     }
 
     @FXML
