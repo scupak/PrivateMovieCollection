@@ -57,7 +57,7 @@ public class AppController implements Initializable {
     @FXML
     private TableView<?> categoryList;
     @FXML
-    private TableColumn<Movie, String> movieTitleCol;
+    private TableColumn<Movie, String> movieTitelCol;
     @FXML
     private TableColumn<Movie, String> movieCategoryCol;
     @FXML
@@ -82,6 +82,8 @@ public class AppController implements Initializable {
     private Slider minimumRatingSlider;
     @FXML
     private Label minimumRatingLabel;
+    @FXML
+    private TableColumn<?, ?> movieReleasseCol;
   
 
     /**
@@ -97,14 +99,11 @@ public class AppController implements Initializable {
                 new PropertyValueFactory<Movie, String>("categories")
         
         );
-        movieTitleCol.setCellValueFactory( 
+        
+        movieTitelCol.setCellValueFactory( 
                 new PropertyValueFactory<Movie, String>("title")
         
         );
-        
-        
-        
-        
         try   
         {
             appModel = new AppModel();
@@ -129,10 +128,6 @@ public class AppController implements Initializable {
     {
     }
 
-    @FXML
-    private void search(KeyEvent event)
-    {
-    }
 
     @FXML
     private void newMovie(ActionEvent event) throws IOException
@@ -251,12 +246,12 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void search(DragEvent event)
+    private void searchTitle(KeyEvent event)
     {
     }
 
     @FXML
-    private void search(MouseEvent event)
+    private void Filter(KeyEvent event)
     {
     }
 
