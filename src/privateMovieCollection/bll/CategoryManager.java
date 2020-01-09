@@ -20,79 +20,92 @@ public class CategoryManager {
     private CategoryFacade CategoryDBDAO;
     
     /**
-     * 
+     * Category Manager Constructor
      */
     public CategoryManager(){
         CategoryDBDAO = new CategoryDBDAO();
     }
+    
     /**
+     * Get a list of categories
      * 
-     * @return 
+     * @return categories
      */
     public List<Category> getAllCategories(){
-        List<Category> result = CategoryDBDAO.getAllCategories();
+        List<Category> categories = CategoryDBDAO.getAllCategories();
         
-        for (Category category : result) {
-            
+        for (Category category : categories) {
             category.setMovies(CategoryDBDAO.getAllMoviesInCategory(category).size());
-            
         }
                 
-        return result;
+        return categories;
     }
-    /**
-     * 
-     * @param categoryToAdd
-     */
-    public void createCategory(Category categoryToAdd){
-        CategoryDBDAO.createCategory(categoryToAdd);
     
-    }
     /**
-     * 
-     * @param categoryToDelete 
-     */
-    public void deleteCategory(Category categoryToDelete){
-        CategoryDBDAO.deleteCategory(categoryToDelete);
-    
-    }
-    /**
-     * 
-     * @param categoryToUpdate 
-     */
-    public void updateCategory(Category categoryToUpdate)   {
-        CategoryDBDAO.updateCategory(categoryToUpdate);
-    
-    }
-    /**
+     * Create a category
      * 
      * @param category
-     * @return 
+     */
+    public void createCategory(Category category){
+        CategoryDBDAO.createCategory(category);
+    }
+    
+    /**
+     * Delete a category
+     * 
+     * @param category 
+     */
+    public void deleteCategory(Category category){
+        CategoryDBDAO.deleteCategory(category);
+    }
+    
+    /**
+     * Update a category
+     * 
+     * @param category 
+     */
+    public void updateCategory(Category category)   {
+        CategoryDBDAO.updateCategory(category);
+    }
+    
+    /**
+     * Get all movies in a category
+     * 
+     * @param category
+     * @return movies
      */
     public List<Movie> getAllMoviesinCategory(Category category){
         return CategoryDBDAO.getAllMoviesInCategory(category);
     
     }
     /**
+     * Add a movie to a category
      * 
      * @param category
      * @param movie 
      */
     public void addToCategory(Category category, Movie movie){
         CategoryDBDAO.addToCategory(category, movie);
-    
     }
     
+    /**
+     * Clear all movies from a category
+     * 
+     * @param category 
+     */
     public void clearCategory(Category category){
         CategoryDBDAO.clearCategory(category);
-    
     }
     
+    /**
+     * Remove a movie from a category
+     * 
+     * @param category
+     * @param movie
+     * @return 
+     */
     public boolean clearMovieFromPlayList(Category category, Movie movie){
-    
         return clearMovieFromPlayList(category, movie);
     }
-    
-    
     
 }

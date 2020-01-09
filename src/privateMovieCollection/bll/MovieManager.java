@@ -21,34 +21,34 @@ public class MovieManager {
     private MovieFacade movieDBDAO;
 
     /**
-     * 
+     * Movie Manager Constructor
      */
     public MovieManager() {
         movieDBDAO = new MovieDBDAO();
     }
+    
     /**
+     * Get the movies and assign their categories
      * 
-     * @return 
+     * @return list of movies
      */
     public List<Movie>getAllMovies(){
         List<Movie> result = movieDBDAO.getAllMovies();
         
-        
         for (Movie movie : result) {
-            
             if(!movieDBDAO.GetAllCategoriesWithMovie(movie).isEmpty()){
-                
                 movie.getCategoryArray().addAll(movieDBDAO.GetAllCategoriesWithMovie(movie));
-            
             }
         }
         
         return result;
     }
+    
     /**
+     * Search in movies
      * 
      * @param query
-     * @return 
+     * @return movies
      */
     public List<Movie> search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
     {
@@ -109,43 +109,45 @@ public class MovieManager {
         }
         return finalResult;
     }
+    
     /**
+     * Pass a movie to be created.
      * 
-     * @param movieToAdd 
+     * @param movie 
      */
-    public void createMovie(Movie movieToAdd){
-        movieDBDAO.createMovie(movieToAdd);
-    }
-    /**
-     * 
-     * @param movieToDelete 
-     */
-    public void deleteMovie(Movie movieToDelete){
-        movieDBDAO.deleteMovie(movieToDelete);
+    public void createMovie(Movie movie){
+        movieDBDAO.createMovie(movie);
     }
     
-    public void updateMovie(Movie MovieToUpdate) {
-        movieDBDAO.updateMovie(MovieToUpdate);
-        
+    /**
+     * Delete a movie from the database
+     * 
+     * @param movie 
+     */
+    public void deleteMovie(Movie movie){
+        movieDBDAO.deleteMovie(movie);
+    }
+    
+    /**
+     * Update a movie
+     * 
+     * @param movie 
+     */
+    public void updateMovie(Movie movie) {
+        movieDBDAO.updateMovie(movie);
     }
     
     public static void main(String[] args) {
-        
         MovieFacade movieDBDAO = new MovieDBDAO();
         MovieManager manager = new MovieManager();
         
-         ArrayList<Movie> movies = new ArrayList<>();
+        ArrayList<Movie> movies = new ArrayList<>();
          
-         
-         movies.addAll(manager.getAllMovies());
+        movies.addAll(manager.getAllMovies());
         
-         for (Movie movy : movies) {
-            
-             System.out.println(movy);
+        for (Movie movy : movies) {
+            System.out.println(movy);
         }
     }
-    
-    
-    
     
 }

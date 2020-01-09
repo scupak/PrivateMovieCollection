@@ -48,12 +48,26 @@ public interface CategoryFacade {
      */
      public List<Movie> getAllMoviesInCategory(Category category);
      
-     
+     /**
+      * 
+      * @param category
+      * @param movie
+      * @return 
+      */
      public boolean addToCategory(Category category, Movie movie);
      
-     
+     /**
+      * 
+      * @param category
+      * @return 
+      */
       public boolean clearCategory(Category category);
       
-      
+      /**
+       * 
+       * @param category
+       * @param movie
+       * @return 
+       */
       public boolean clearMovieFromCategory(Category category, Movie movie);
 }
