@@ -102,6 +102,12 @@ public class AppController implements Initializable {
                 new PropertyValueFactory<Movie, String>("title")
         
         );
+        
+        
+         movieLastViewCol.setCellValueFactory( 
+                new PropertyValueFactory<Movie, String>("lastviewTekst")
+        
+        );
         try   
         {
             appModel = new AppModel();
