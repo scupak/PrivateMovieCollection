@@ -83,7 +83,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return name.get();
+        return name.get().trim();
     }
     
 }

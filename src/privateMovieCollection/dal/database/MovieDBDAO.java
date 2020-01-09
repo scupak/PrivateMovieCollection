@@ -53,8 +53,8 @@ public class MovieDBDAO implements MovieFacade {
                 String path = rs.getString("filelink");
                 java.sql.Date dbSqlDate = rs.getDate("lastview");
                 Date dbSqlDateConverted = new Date(dbSqlDate.getTime());
-                movies.add(new Movie(id, title, rating, path, dbSqlDateConverted,""));
-            }
+                movies.add(new Movie(id, title, rating,"","", path, dbSqlDateConverted));
+            }//int id, String title,int rating ,String categories ,String lastviewTekst, String path, Date lastview
             return movies;
 
         } catch (SQLServerException ex) {
@@ -201,11 +201,13 @@ public class MovieDBDAO implements MovieFacade {
        // movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
       //movieDB.updateMovie(new Movie(6, "mello", 28, "actions/batman.mp4", new Date()));
       
-       categories.addAll(movieDB.GetAllCategoriesWithMovie(new Movie(3, "title", 0, "path", new Date(), "")));
-       
-        for (Category category : categories) {
+       //categories.addAll(movieDB.GetAllCategoriesWithMovie(new Movie(3, "title", 0, "path", new Date(), "")));
+      
+       movies.addAll(movieDB.getAllMovies());
+      
+        for (Movie movie : movies) {
             
-            System.out.println(category);
+            System.out.println(movie);
         }
     }
 }

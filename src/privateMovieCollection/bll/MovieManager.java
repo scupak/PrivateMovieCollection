@@ -31,7 +31,19 @@ public class MovieManager {
      * @return 
      */
     public List<Movie>getAllMovies(){
-        return movieDBDAO.getAllMovies();
+        List<Movie> result = movieDBDAO.getAllMovies();
+        
+        
+        for (Movie movie : result) {
+            
+            if(!movieDBDAO.GetAllCategoriesWithMovie(movie).isEmpty()){
+                
+                movie.getCategoryArray().addAll(movieDBDAO.GetAllCategoriesWithMovie(movie));
+            
+            }
+        }
+        
+        return result;
     }
     /**
      * 
@@ -62,6 +74,21 @@ public class MovieManager {
         
     }
     
+    public static void main(String[] args) {
+        
+        MovieFacade movieDBDAO = new MovieDBDAO();
+        MovieManager manager = new MovieManager();
+        
+         ArrayList<Movie> movies = new ArrayList<>();
+         
+         
+         movies.addAll(manager.getAllMovies());
+        
+         for (Movie movy : movies) {
+            
+             System.out.println(movy);
+        }
+    }
     
     
     

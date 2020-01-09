@@ -172,7 +172,7 @@ public class CategoryDBDAO implements CategoryFacade {
                 int rating = rs.getInt("rating");
                 String filelink = rs.getString("filelink");
                 Date lastview = rs.getDate("lastview");
-                movies.add(new Movie(id, title, rating, filelink, lastview,""));
+                movies.add(new Movie(id, title, rating,"","",filelink,lastview));
             }
             return movies;
 
@@ -277,7 +277,7 @@ public class CategoryDBDAO implements CategoryFacade {
         //categoryDB.updateCategory(new Category(3, "action", 0));
         //categoryDB.deleteCategory(new Category(2, "name"));
         //categoryDB.addToCategory(new Category(4, "name",0), new Movie(7, "title", 0, "path", new java.util.Date(),""));
-        //System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name")));
+        System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name",0)));
         
         
         
