@@ -9,6 +9,7 @@ package privateMovieCollection.gui;
 /*All the imports are defined here,the class needs to know witch other classes, packages or libraries it has acces to,
 this also defines how the class fits into the programs design structure.*/
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Movie;
 /**
  * FXML Controller class
  *
@@ -29,6 +31,9 @@ import javafx.stage.Stage;
  */
 public class NewMovieController implements Initializable {
     
+    
+    private AppModel appModel;
+    
     @FXML
     private Label CategoryLabel;
     @FXML
@@ -36,26 +41,22 @@ public class NewMovieController implements Initializable {
     @FXML
     private Label fileLabel;
     @FXML
-    private TextField movieTitelTextField;
-    @FXML
-    private TextField releaseTextField;
+    private TextField movieTitleTextField;
     @FXML
     private Button cancel;
     @FXML
     private Button Save;
     @FXML
     private TextField fileTextField;
-    @FXML
-    private ChoiceBox<?> raitingChoiceBox;
+    
     @FXML
     private TextField categoryTextField;
-
-    /**
-     * The instance variables er defined and some given an initial value
-     */
-    private AppModel appModel;
     @FXML
     private Button movieChoiceButton;
+    @FXML
+    private Button Cancel;
+    @FXML
+    private TextField raitingTextField;
 
     /**
      * Initializes the controller class. Creates a list of categories and sets
@@ -76,7 +77,6 @@ public class NewMovieController implements Initializable {
     }
 
     
-    @FXML
     private void Cancel(ActionEvent event)
     {
         Stage stage = (Stage) cancel.getScene().getWindow();
@@ -86,10 +86,31 @@ public class NewMovieController implements Initializable {
     @FXML
     private void Save(ActionEvent event)
     {
+        String title = movieTitleTextField.getText(); 
+        String category = categoryTextField.getText();
+        String moviePath = fileTextField.getText();
+        String raiting = raitingTextField.getText();
+        Date lastView = new Date();
+        int intRaiting;
+        
+        try{
+            intRaiting = Integer.parseInt(raiting);
+        } catch(NumberFormatException e){
+            intRaiting = 0;
+        }
+        
+        Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
+        
+       
     }
 
     @FXML
     private void movieChoiceButton(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void cancel(ActionEvent event)
     {
     }
     

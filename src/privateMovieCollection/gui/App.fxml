@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +13,7 @@
 <AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
    <children>
       <ListView fx:id="moivesInCategory" layoutX="264.0" layoutY="169.0" onMouseClicked="#clickedOnMovieInCategory" prefHeight="402.0" prefWidth="123.0" />
-      <TextField fx:id="searchField" layoutX="591.0" layoutY="33.0" onKeyPressed="#search" prefHeight="38.0" prefWidth="192.0" promptText="Search">
+      <TextField fx:id="searchField" layoutX="591.0" layoutY="14.0" onKeyPressed="#search" prefHeight="38.0" prefWidth="192.0" promptText="Search">
          <font>
             <Font size="14.0" />
          </font></TextField>
@@ -40,7 +41,7 @@
           <TableColumn fx:id="movieTitelCol" prefWidth="136.0" text="Titel" />
             <TableColumn fx:id="moiveCategoryCol" prefWidth="112.00006103515625" text="Category" />
             <TableColumn fx:id="movieReleasseCol" prefWidth="55.20001220703125" text="Release" />
-            <TableColumn fx:id="movieRaitingCol" prefWidth="59.199951171875" text="Raiting" />
+            <TableColumn fx:id="movieLastViewCol" prefWidth="59.199951171875" text="Last view" />
         </columns>
       </TableView>
       <TableView fx:id="categoryList" layoutX="21.0" layoutY="169.0" onMouseClicked="#updateCategoryView" prefHeight="402.0" prefWidth="229.0">
@@ -53,5 +54,12 @@
       <Button fx:id="newCategoryButton" layoutX="21.0" layoutY="581.0" mnemonicParsing="false" onAction="#newCategory" text="New..." />
       <Button fx:id="editCategoryButton" layoutX="77.0" layoutY="582.0" mnemonicParsing="false" onAction="#editCategory" text="Edit..." />
       <Button fx:id="deleteCategoryButton" layoutX="129.0" layoutY="582.0" mnemonicParsing="false" onAction="#deleteCategory" text="Delete" />
+      <TextField fx:id="filterField" layoutX="591.0" layoutY="65.0" onKeyPressed="#search" prefHeight="38.0" prefWidth="192.0" promptText="Filter">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Slider fx:id="minimumRatingSlider" blockIncrement="1.0" layoutX="591.0" layoutY="116.0" onDragDetected="#search" onDragDone="#search" onDragDropped="#search" onDragEntered="#search" onDragExited="#search" onDragOver="#search" prefHeight="38.0" prefWidth="192.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Label fx:id="minimumRatingLabel" layoutX="787.0" layoutY="116.0" text="Rating" />
    </children>
 </AnchorPane>

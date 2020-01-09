@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +19,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Movie;
 import privateMovieCollection.gui.AppModel;
 
 /**
@@ -46,13 +53,13 @@ public class AppController implements Initializable {
     @FXML
     private Button exitButton;
     @FXML
-    private TableView<?> movieList;
+    private TableView<Movie> movieList;
     @FXML
     private TableView<?> categoryList;
     @FXML
     private TableColumn<?, ?> movieTitelCol;
     @FXML
-    private TableColumn<?, ?> moiveCategoryCol;
+    private TableColumn<Movie, String> moiveCategoryCol;
     @FXML
     private TableColumn<?, ?> movieRaitingCol;
     @FXML
@@ -60,7 +67,7 @@ public class AppController implements Initializable {
     @FXML
     private TableColumn<?, ?> moivesInCategoryCol;
     @FXML
-    private TableColumn<?, ?> movieReleasseCol;
+    private TableColumn<?, ?> movieLastViewCol;
     @FXML
     private Button moveToCategoryButton;
     @FXML
@@ -69,6 +76,12 @@ public class AppController implements Initializable {
     private Button editCategoryButton;
     @FXML
     private Button deleteCategoryButton;
+    @FXML
+    private TextField filterField;
+    @FXML
+    private Slider minimumRatingSlider;
+    @FXML
+    private Label minimumRatingLabel;
   
 
     /**
@@ -80,6 +93,10 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        moiveCategoryCol.setCellValueFactory( 
+                new PropertyValueFactory<Movie, String>("categories")
+        
+        );
         try   
         {
             appModel = new AppModel();
@@ -88,6 +105,15 @@ public class AppController implements Initializable {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        minimumRatingSlider.valueProperty().addListener(new InvalidationListener() {
+                    @Override
+                    public void invalidated(Observable observable) {
+
+                        minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
+                    }
+                });
+        
+        movieList.setItems(appModel.getAllMovies());
     }
 
     @FXML
@@ -214,6 +240,16 @@ public class AppController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setAlwaysOnTop(true);
         stage.show();
+    }
+
+    @FXML
+    private void search(DragEvent event)
+    {
+    }
+
+    @FXML
+    private void search(MouseEvent event)
+    {
     }
 
 }

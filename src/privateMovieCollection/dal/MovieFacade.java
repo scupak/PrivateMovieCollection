@@ -6,6 +6,7 @@
 package privateMovieCollection.dal;
 
 import java.util.List;
+import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 
 /**
@@ -39,4 +40,11 @@ public interface MovieFacade {
      * @return boolean
      */
    public boolean deleteMovie(Movie movie);
+   
+   /**
+    * 
+    * @param movie
+    * @return 
+    */
+    public List<Category>GetAllCategoriesWithMovie(Movie movie);
 }
