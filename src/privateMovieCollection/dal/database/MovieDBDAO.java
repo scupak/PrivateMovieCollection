@@ -73,6 +73,8 @@ public class MovieDBDAO implements MovieFacade {
      */
     @Override
     public Movie createMovie(Movie movie) {
+        if(movieExist(movie)) return null;
+        
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO movie "
                     + "(title, rating, filelink, lastview) "
@@ -156,6 +158,36 @@ public class MovieDBDAO implements MovieFacade {
         return false;
     }
     
+    /**
+     * Check if a given movie title does exist in the database.
+     * 
+     * @param movie
+     * @return true if movie exist, false if not.
+     */
+    public boolean movieExist(Movie movie) {
+        try ( Connection con = dbCon.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ?");
+            ps.setString(1, movie.getTitle());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLServerException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    /**
+     * 
+     * @param args 
+     */
     public static void main(String[] args) {
         ArrayList<Movie> movies = new ArrayList<>();
         
