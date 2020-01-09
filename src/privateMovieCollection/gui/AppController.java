@@ -7,6 +7,7 @@ package privateMovieCollection.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +31,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 import privateMovieCollection.gui.AppModel;
 
@@ -38,14 +40,21 @@ import privateMovieCollection.gui.AppModel;
  * @author andreasvillumsen
  */
 public class AppController implements Initializable {
+
+    @FXML
+    private Button newMoiveButton;
+    
+    enum ListSelection {
+        MOVIES, MOVIESINCATEGORY, CATEGORY,
+    }
+    
+    ListSelection listSelection = ListSelection.MOVIES;
     private AppModel appModel;
 
     @FXML
-    private ListView<?> moviesInCategory;
+    private ListView<Movie> moviesInCategory;
     @FXML
     private TextField searchField;
-    @FXML
-    private Button newMovieButton;
     @FXML
     private Button editMovieButton;
     @FXML
@@ -55,7 +64,7 @@ public class AppController implements Initializable {
     @FXML
     private TableView<Movie> movieList;
     @FXML
-    private TableView<?> categoryList;
+    private TableView<Category> categoryList;
     @FXML
     private TableColumn<Movie, String> movieTitelCol;
     @FXML
@@ -63,9 +72,9 @@ public class AppController implements Initializable {
     @FXML
     private TableColumn<Movie, String> movieRaitingCol;
     @FXML
-    private TableColumn<?, ?> categoryNameCol;
+    private TableColumn<Category,  String> categoryNameCol;
     @FXML
-    private TableColumn<?, ?> moviesInCategoryCol;
+    private TableColumn<Category, Integer> moviesInCategoryCol;
     @FXML
     private TableColumn<Movie, String> movieLastViewCol;
     @FXML
@@ -82,8 +91,6 @@ public class AppController implements Initializable {
     private Slider minimumRatingSlider;
     @FXML
     private Label minimumRatingLabel;
-    @FXML
-    private TableColumn<?, ?> movieReleasseCol;
   
 
     /**
@@ -110,13 +117,27 @@ public class AppController implements Initializable {
                 new PropertyValueFactory<Movie, String>("lastviewTekst")
         
         );
+         
+         movieRaitingCol.setCellValueFactory( 
+                new PropertyValueFactory<Movie, String>("rating")
+        
+        );
+         
+        categoryNameCol.setCellValueFactory( 
+                new PropertyValueFactory<Category, String>("name")
+        
+        ); 
+        
+        moviesInCategoryCol.setCellValueFactory( 
+                new PropertyValueFactory<Category, Integer>("movies")
+        
+        ); 
+         
+         
         try   
         {
             appModel = new AppModel();
-        } catch (Exception ex)
-        {
-            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
         minimumRatingSlider.valueProperty().addListener(new InvalidationListener() {
                     @Override
@@ -127,6 +148,17 @@ public class AppController implements Initializable {
                 });
         
         movieList.setItems(appModel.getAllMovies());
+       categoryList.setItems(appModel.getAllCategories());
+       moviesInCategory.setItems(appModel.getAllMovies());
+        
+       /* System.out.println("");
+        System.out.println(appModel.getAllMoviesInCategory(appModel.getAllCategories().get(0)));
+        System.out.println("");*/
+       
+       } catch (Exception ex)
+        {
+            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -198,6 +230,13 @@ public class AppController implements Initializable {
     @FXML
     private void updateCategoryView(MouseEvent event)
     {
+        System.out.println("fuck fuck");
+        if(categoryList.getSelectionModel().getSelectedItem() != null){
+            
+            listSelection  = ListSelection.CATEGORY;
+            moviesInCategory.setItems(appModel.getAllMoviesInCategory(categoryList.getSelectionModel().getSelectedItem()));
+        
+        }
     }
 
     @FXML
@@ -259,6 +298,19 @@ public class AppController implements Initializable {
     @FXML
     private void Filter(KeyEvent event)
     {
+    }
+    
+    public static void main(String[] args) throws Exception {
+         
+         AppModel am = new AppModel();
+        ArrayList<Category> categories = new ArrayList<>();
+        
+         //System.out.println(am.getAllCategories()); 
+        
+       System.out.println(am.getAllMoviesInCategory(am.getAllCategories().get(0)));
+        
+        
+        
     }
 
 }

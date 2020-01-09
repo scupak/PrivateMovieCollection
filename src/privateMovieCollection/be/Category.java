@@ -53,7 +53,7 @@ public class Category {
      * @return name
      */
     public String getName() {
-        return name.get();
+        return name.get().trim();
     }
 
     /**

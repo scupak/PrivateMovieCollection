@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
    <children>
-      <ListView fx:id="moivesInCategory" layoutX="264.0" layoutY="169.0" onMouseClicked="#clickedOnMovieInCategory" prefHeight="402.0" prefWidth="123.0" />
+      <ListView fx:id="moviesInCategory" layoutX="264.0" layoutY="169.0" onMouseClicked="#clickedOnMovieInCategory" prefHeight="402.0" prefWidth="123.0" />
       <TextField fx:id="searchField" layoutX="591.0" layoutY="14.0" onKeyPressed="#searchTitle" prefHeight="38.0" prefWidth="192.0" promptText="Search">
          <font>
             <Font size="14.0" />

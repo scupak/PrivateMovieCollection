@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.gui;
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import privateMovieCollection.be.Category;
@@ -12,6 +13,7 @@ import privateMovieCollection.be.Movie;
 import privateMovieCollection.bll.CategoryManager;
 import privateMovieCollection.bll.VideoPlayer;
 import privateMovieCollection.bll.MovieManager;
+import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
  *
@@ -25,6 +27,7 @@ public class AppModel {
     private ObservableList<Movie> allMovies;
     private ObservableList<Category> allCategories;
     private ObservableList<Movie> moviesInCategory;
+    
 
     /**
      * AppModel constructor
@@ -40,6 +43,11 @@ public class AppModel {
         allCategories = FXCollections.observableArrayList();
         allCategories.addAll(categoryManager.getAllCategories());
         
+        moviesInCategory = FXCollections.observableArrayList();
+        
+        if (categoryManager.getAllCategories().size() != 0) {
+            moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(categoryManager.getAllCategories().get(0)));
+        }
         
     }
     
@@ -48,6 +56,20 @@ public class AppModel {
     allMovies.addAll(movieManager.getAllMovies());
     return allMovies;
     
+    }
+    
+    public ObservableList<Category> getAllCategories(){
+    allCategories.clear();
+    allCategories.addAll(categoryManager.getAllCategories());
+    return allCategories;
+    
+    }
+    
+    public ObservableList<Movie>getAllMoviesInCategory(Category category){
+        moviesInCategory.clear();
+        moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(category));
+        return moviesInCategory;
+        
     }
     
     public VideoPlayer getVideoPlayer()
@@ -60,6 +82,18 @@ public class AppModel {
         movieManager.createMovie(movieToAdd);
     }
     
+     public static void main(String[] args) throws Exception {
+         
+         AppModel am = new AppModel();
+        ArrayList<Category> categories = new ArrayList<>();
+        
+         //System.out.println(am.getAllCategories()); 
+        
+       System.out.println(am.getAllMoviesInCategory(am.getAllCategories().get(0)));
+        
+        
+        
+    }
     
 
 }

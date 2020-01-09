@@ -102,15 +102,15 @@ public class Movie {
      * @return 
      */
     public String getCategories() {
-        System.out.println("privateMovieCollection.be.Movie.getCategories()");
+        //System.out.println("privateMovieCollection.be.Movie.getCategories()");
         String text = "";
         
         if(!categoryArray.isEmpty()){
             int i = 1;
-             System.out.println("ifstatment");
+             //System.out.println("ifstatment");
             for (Category category : categoryArray) {
                 
-                 System.out.println("looop");
+                // System.out.println("looop");
                  if(i == categoryArray.size()){
                 text = text + category.toString();
                 
@@ -125,7 +125,7 @@ public class Movie {
             setCategories(text);
         }
         else{
-            System.out.println("else");
+            //System.out.println("else");
             setCategories("none");
         }
         return categories.get();
@@ -216,7 +216,7 @@ public class Movie {
      */
     @Override
     public String toString() {
-        return "Movie{" + "id=" + id + ", title=" + title.get() + ", rating=" + rating.get() + ", path=" + path + ", lastviewtext=" + getLastviewTekst() +"categories =" + getCategories() + '}';
+        return getTitle();
     }
         
 }
