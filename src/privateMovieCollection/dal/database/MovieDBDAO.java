@@ -187,7 +187,7 @@ public class MovieDBDAO implements MovieFacade {
     }
     
     @Override
-    public List<Category>GetAllCategoriesWithMovie(Movie movie){
+    public List<Category> GetAllCategoriesWithMovie(Movie movie){
         ArrayList<Category> categories = new ArrayList<>();
         
         try ( Connection con = dbCon.getConnection()) {
@@ -213,6 +213,14 @@ public class MovieDBDAO implements MovieFacade {
             ex.printStackTrace();
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        
+        return null;
+    }
+
+    public List<Movie> searchMovies(String searchQuery, List<Category> filter, int rating) {
+        if(searchQuery == null) {
+            searchQuery = "";
         }
         
         return null;
