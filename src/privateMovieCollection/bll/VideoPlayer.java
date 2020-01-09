@@ -15,10 +15,19 @@ import java.io.IOException;
  */
 public class VideoPlayer
 {
+    /**
+     * VideoPlayer Constructor
+     * @throws Exception 
+     */
     public VideoPlayer() throws Exception {
         
     }
     
+    /**
+     * Play a video at a specific filepath.
+     * @param filepath
+     * @throws IOException 
+     */
     public void playVideo(String filepath) throws IOException {
         Desktop.getDesktop().open(new File(filepath));
     }
