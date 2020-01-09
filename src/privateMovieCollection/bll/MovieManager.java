@@ -52,11 +52,12 @@ public class MovieManager {
      */
     public List<Movie> search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
     {
-        List<Movie> searchBase = movieDBDAO.getAllMovies();
+        System.out.println("in search");
+        List<Movie> searchBase = getAllMovies();
         List<Movie> titleResult = new ArrayList<>();
         List<Movie> filterResult = new ArrayList<>();
         List<Movie> finalResult = new ArrayList<>();
-    
+    /*
         if (titleQuery == null)
         {
             titleResult.addAll(searchBase);
@@ -71,19 +72,24 @@ public class MovieManager {
                 }
             }
         }
-        
+        */
+    
         if (filterQuery == null)
         {
-            filterResult.addAll(titleResult);
+            System.out.println("awdawdawd");
+            filterResult.addAll(searchBase);
         }
         else
         {
             for (String string : filterQuery)
             {
-                for (Movie movie : titleResult)
+                for (Movie movie : searchBase)
                 {
                     for (Category category : movie.getCategoryArray())
                     {
+                        System.out.println(category.getName());
+                        System.out.println("awdawdawd");
+                        
                         if (category.getName().toLowerCase().contains(string.toLowerCase()))
                         {
                             filterResult.add(movie);
@@ -101,12 +107,13 @@ public class MovieManager {
         {
             for (Movie movie : filterResult)
             {
-                if (movie.getRating() > ratingQuery )
+                if (movie.getRating() >= ratingQuery )
                 {
                     finalResult.add(movie);
                 }
             }
         }
+        
         return finalResult;
     }
     

@@ -46,6 +46,10 @@ public class AppController implements Initializable {
     private Button newMoiveButton;
     @FXML
     private Button play;
+    @FXML
+    private Button searchButton;
+
+   
 
     
     
@@ -150,7 +154,7 @@ public class AppController implements Initializable {
                     public void invalidated(Observable observable) {
 
                         minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
-                        search();
+                       
                     }
                 });
         
@@ -167,7 +171,11 @@ public class AppController implements Initializable {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+ @FXML
+    private void clickedsearchButton(ActionEvent event) {
+        search();
+    }
     @FXML
     private void clickedOnMovieInCategory(MouseEvent event)
     {
@@ -312,13 +320,13 @@ public class AppController implements Initializable {
     @FXML
     private void searchTitle(KeyEvent event)
     {
-        search();
+       
     }
 
     @FXML
     private void Filter(KeyEvent event)
     {
-        search();
+        
     }
     
     private void search()
@@ -329,6 +337,8 @@ public class AppController implements Initializable {
             String CSV = filterField.getText();
             String[] values = CSV.split(",");
             filterQuery = new ArrayList(Arrays.asList(values));
+            
+            System.out.println(filterQuery);
             int ratingQuery = (int) Math.round(minimumRatingSlider.getValue());
             appModel.search(titleQuery, filterQuery, ratingQuery);
         }

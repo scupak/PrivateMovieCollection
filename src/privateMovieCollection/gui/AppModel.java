@@ -162,13 +162,15 @@ public class AppModel {
     
     public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
     {
-        if (titleQuery == null || filterQuery == null || ratingQuery == 0)
+        if (filterQuery.get(0).isEmpty() && ratingQuery == 0 && titleQuery.isEmpty())
         {
+            System.out.println("its empty");
             allMovies.clear();
             allMovies.addAll(movieManager.getAllMovies());
         }
         else
         {
+            System.out.println(filterQuery.size());
             allMovies.clear();
             allMovies.addAll(movieManager.search(titleQuery, filterQuery, ratingQuery));
         }
