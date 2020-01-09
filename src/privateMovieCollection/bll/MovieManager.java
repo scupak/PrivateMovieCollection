@@ -57,7 +57,7 @@ public class MovieManager {
         List<Movie> titleResult = new ArrayList<>();
         List<Movie> filterResult = new ArrayList<>();
         List<Movie> finalResult = new ArrayList<>();
-    /*
+    
         if (titleQuery == null)
         {
             titleResult.addAll(searchBase);
@@ -68,27 +68,28 @@ public class MovieManager {
             {
                 if (movie.getTitle().toLowerCase().contains(titleQuery.toLowerCase()))
                 {
+                    System.out.println(movie.getTitle().toLowerCase());
                     titleResult.add(movie);
                 }
             }
         }
-        */
+        
     
-        if (filterQuery == null)
+        if (filterQuery.get(0).isEmpty())
         {
             System.out.println("awdawdawd");
-            filterResult.addAll(searchBase);
+            filterResult.addAll(titleResult);
         }
         else
         {
             for (String string : filterQuery)
             {
-                for (Movie movie : searchBase)
+                for (Movie movie : titleResult)
                 {
                     for (Category category : movie.getCategoryArray())
                     {
                         System.out.println(category.getName());
-                        System.out.println("awdawdawd");
+                        System.out.println("shits aktive");
                         
                         if (category.getName().toLowerCase().contains(string.toLowerCase()))
                         {
