@@ -61,8 +61,6 @@ public class AppController implements Initializable {
     @FXML
     private TableColumn<Movie, String> moiveCategoryCol;
     @FXML
-    private TableColumn<?, ?> movieRaitingCol;
-    @FXML
     private TableColumn<?, ?> categoryNameCol;
     @FXML
     private TableColumn<?, ?> moivesInCategoryCol;
@@ -82,6 +80,8 @@ public class AppController implements Initializable {
     private Slider minimumRatingSlider;
     @FXML
     private Label minimumRatingLabel;
+    @FXML
+    private TableColumn<?, ?> movieReleasseCol;
   
 
     /**
@@ -121,10 +121,6 @@ public class AppController implements Initializable {
     {
     }
 
-    @FXML
-    private void search(KeyEvent event)
-    {
-    }
 
     @FXML
     private void newMovie(ActionEvent event) throws IOException
@@ -243,12 +239,12 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void search(DragEvent event)
+    private void searchTitle(KeyEvent event)
     {
     }
 
     @FXML
-    private void search(MouseEvent event)
+    private void Filter(KeyEvent event)
     {
     }
 
