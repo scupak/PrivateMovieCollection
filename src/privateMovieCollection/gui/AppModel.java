@@ -7,7 +7,9 @@ package privateMovieCollection.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
+import privateMovieCollection.bll.CategoryManager;
 import privateMovieCollection.bll.VideoPlayer;
 import privateMovieCollection.bll.MovieManager;
 
@@ -18,16 +20,23 @@ import privateMovieCollection.bll.MovieManager;
 public class AppModel {
     private VideoPlayer videoPlayer;
     private MovieManager movieManager;
+    private CategoryManager categoryManager;
+    private AppController appController;
     private ObservableList<Movie> allMovies;
+    private ObservableList<Category> allCategories;
+    private ObservableList<Movie> moviesInCategory;
 
     /**
      * AppModel constructor
      */
     public AppModel() throws Exception {
         videoPlayer = new VideoPlayer();
+        
         movieManager = new MovieManager();
         allMovies = FXCollections.observableArrayList();
         allMovies.addAll(movieManager.getAllMovies());
+        
+        categoryManager = new CategoryManager();
     }
     
     public ObservableList<Movie> getAllMovies(){
