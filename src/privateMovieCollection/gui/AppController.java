@@ -43,6 +43,10 @@ public class AppController implements Initializable {
 
     @FXML
     private Button newMoiveButton;
+    @FXML
+    private Button play;
+
+    
     
     enum ListSelection {
         MOVIES, MOVIESINCATEGORY, CATEGORY,
@@ -166,6 +170,18 @@ public class AppController implements Initializable {
     {
     }
 
+    @FXML
+    private void play(ActionEvent event) throws IOException
+    {
+        if(listSelection == listSelection.MOVIES)
+        {
+            appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
+        }
+        else if(listSelection == listSelection.MOVIESINCATEGORY)
+        {
+            appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
+        }
+    }
 
     @FXML
     private void newMovie(ActionEvent event) throws IOException
