@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.dal.MovieFacade;
 import privateMovieCollection.be.Movie;
@@ -54,7 +53,8 @@ public class MovieDBDAO implements MovieFacade {
                 java.sql.Date dbSqlDate = rs.getDate("lastview");
                 Date dbSqlDateConverted = new Date(dbSqlDate.getTime());
                 movies.add(new Movie(id, title, rating,"","", path, dbSqlDateConverted));
-            }//int id, String title,int rating ,String categories ,String lastviewTekst, String path, Date lastview
+            }
+            //int id, String title,int rating ,String categories ,String lastviewTekst, String path, Date lastview
             return movies;
 
         } catch (SQLServerException ex) {
@@ -74,6 +74,8 @@ public class MovieDBDAO implements MovieFacade {
      */
     @Override
     public Movie createMovie(Movie movie) {
+        if(movieExist(movie)) return null;
+        
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO movie "
                     + "(title, rating, filelink, lastview) "
@@ -157,6 +159,34 @@ public class MovieDBDAO implements MovieFacade {
         return false;
     }
     
+    /**
+     * Check if a given movie title does exist in the database.
+     * 
+     * @param movie
+     * @return true if movie exist, false if not.
+     */
+    public boolean movieExist(Movie movie) {
+        try ( Connection con = dbCon.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ?");
+            ps.setString(1, movie.getTitle());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                return true;
+            }
+            
+            return false;
+        } catch (SQLServerException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    @Override
     public List<Category>GetAllCategoriesWithMovie(Movie movie){
         ArrayList<Category> categories = new ArrayList<>();
         
@@ -174,7 +204,6 @@ public class MovieDBDAO implements MovieFacade {
             while (rs.next()) {
                 int categoryid = rs.getInt("Categoryid");
                 String name = rs.getString("name");
-                
             
                 categories.add(new Category(categoryid, name, 0));
             }
@@ -185,10 +214,8 @@ public class MovieDBDAO implements MovieFacade {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        return null;
         
-    
+        return null;
     }
     
     public static void main(String[] args) {
@@ -198,12 +225,12 @@ public class MovieDBDAO implements MovieFacade {
         
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
-       // movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
-      //movieDB.updateMovie(new Movie(6, "mello", 28, "actions/batman.mp4", new Date()));
+        // movieDB.createMovie(new Movie(1, "mello", 28, "actions/batman.mp4", new Date()));
+        //movieDB.updateMovie(new Movie(6, "mello", 28, "actions/batman.mp4", new Date()));
       
-       //categories.addAll(movieDB.GetAllCategoriesWithMovie(new Movie(3, "title", 0, "path", new Date(), "")));
+        //categories.addAll(movieDB.GetAllCategoriesWithMovie(new Movie(3, "title", 0, "path", new Date(), "")));
       
-       movies.addAll(movieDB.getAllMovies());
+        movies.addAll(movieDB.getAllMovies());
       
         for (Movie movie : movies) {
             
