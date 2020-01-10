@@ -6,8 +6,6 @@
 package privateMovieCollection.bll;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
@@ -128,12 +126,7 @@ public class MovieManager {
     public void updateMovie(Movie movie) {
         movieDBDAO.updateMovie(movie);
     }
-    /*
-    public List<Movie>getAllMoviesForDeletion(){
-         List<Movie> result = movieDBDAO.getAllMovies();
-         Date currentdate = new Date();
-    }
-    */
+    
     public static void main(String[] args) {
         MovieFacade movieDBDAO = new MovieDBDAO();
         MovieManager manager = new MovieManager();

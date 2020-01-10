@@ -221,6 +221,14 @@ public class MovieDBDAO implements MovieFacade {
         
         return null;
     }
+
+    public List<Movie> searchMovies(String searchQuery, List<Category> filter, int rating) {
+        if(searchQuery == null) {
+            searchQuery = "";
+        }
+        
+        return null;
+    }
     
     public static void main(String[] args) {
         ArrayList<Movie> movies = new ArrayList<>();
