@@ -8,6 +8,7 @@ package privateMovieCollection.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -168,26 +169,33 @@ public class AppController implements Initializable {
     @FXML
     private void clickedOnMovieInCategory(MouseEvent event)
     {
+        listSelection = listSelection.MOVIESINCATEGORY;
     }
 
     @FXML
     private void play(ActionEvent event) throws IOException
     {
+        Date lastview = new Date();
+        
         if(listSelection == listSelection.MOVIES)
         {
             appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
+            movieList.getSelectionModel().getSelectedItem().setLastview(lastview);
+            appModel.updateMovie(movieList.getSelectionModel().getSelectedItem());
         }
         else if(listSelection == listSelection.MOVIESINCATEGORY)
         {
             appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
+            Movie movieUpdate = moviesInCategory.getSelectionModel().getSelectedItem();
+            movieUpdate.setLastview(lastview);
+            appModel.updateMovie(movieUpdate);
+            
         }
     }
 
     @FXML
     private void newMovie(ActionEvent event) throws IOException
     {
-        //appModel.getVideoPlayer().playVideo("movies/y2mate.com - ayaya_ayaya_intensifies_9wnNW4HyDtg_1080p.mp4");
-        
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("NewMovie.fxml").openStream());
@@ -208,6 +216,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditMovie.fxml").openStream());
         EditMovieController cont = (EditMovieController) fxmlLoader.getController();
         cont.setAppModel(appModel);
+        cont.setMovie(movieList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Movie");
         stage.setScene(new Scene(root));
@@ -241,6 +250,7 @@ public class AppController implements Initializable {
     @FXML
     private void clickedOnMoive(MouseEvent event)
     {
+        listSelection = ListSelection.MOVIES;
     }
 
     @FXML

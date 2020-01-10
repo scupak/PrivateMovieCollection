@@ -120,7 +120,6 @@ public class NewMovieController implements Initializable {
             JOptionPane.showMessageDialog(null, "Add song canceled");
         } else {
             fileTextField.setText("movies/" + filename);
-            System.out.print(directory + "dræb mig");
         }
 
     }
