@@ -43,17 +43,6 @@ import privateMovieCollection.gui.AppModel;
  */
 public class AppController implements Initializable {
 
-    @FXML
-    private Button newMoiveButton;
-    @FXML
-    private Button play;
-    @FXML
-    private Button searchButton;
-
-   
-
-    
-    
     enum ListSelection {
         MOVIES, MOVIESINCATEGORY, CATEGORY,
     }
@@ -61,7 +50,13 @@ public class AppController implements Initializable {
     ListSelection listSelection = ListSelection.MOVIES;
     private AppModel appModel;
     private ArrayList<String> filterQuery;
-
+    
+    @FXML
+    private Button newMoiveButton;
+    @FXML
+    private Button play;
+    @FXML
+    private Button searchButton;
     @FXML
     private ListView<Movie> moviesInCategory;
     @FXML
@@ -244,6 +239,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteMovie.fxml").openStream());
         DeleteMovieController cont = (DeleteMovieController) fxmlLoader.getController();
         cont.setAppModel(appModel);
+        cont.setMovie(movieList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Movie");
         stage.setScene(new Scene(root));

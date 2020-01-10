@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Movie;
 
 /**
  *
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 public class DeleteMovieController {
 
     private AppModel appModel;
+    private Movie movie;
     @FXML
     private Button yes;
     @FXML
@@ -31,9 +33,16 @@ public class DeleteMovieController {
         appModel = app;
     }
 
+    public void setMovie(Movie movie)
+    {
+        this.movie = movie;
+    }
+    
     @FXML
     private void yes(ActionEvent event)
     {
+        appModel.deleteMovie(movie);
+        no(event);
     }
 
     @FXML

@@ -101,8 +101,7 @@ public class NewMovieController implements Initializable {
         
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
         appModel.createMovie(movieToAdd);
-        Stage stage = (Stage) Save.getScene().getWindow();
-        stage.close();
+        cancel(event);
         
        
     }
