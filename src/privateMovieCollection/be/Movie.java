@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.be;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -19,7 +20,7 @@ public class Movie {
     private final SimpleStringProperty title;
     private final SimpleIntegerProperty rating;
     private final SimpleStringProperty categories;
-    private final SimpleStringProperty lastviewText; 
+    private final SimpleStringProperty LastviewText; 
     private String path;
     private Date lastview;
     private  ArrayList<Category> categoryArray;
@@ -39,8 +40,9 @@ public class Movie {
         this.lastview = lastview;
         categoryArray = new ArrayList<>();
         
-        setLastviewText(lastview.toString());
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         
+        setLastviewText(sdf.format(lastview));
     }
     
     /**
@@ -179,7 +181,9 @@ public class Movie {
     public void setLastview(Date lastview) {
         this.lastview = lastview;
         
-        setLastviewText(lastview.toString());
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        
+        setLastviewText(sdf.format(lastview));
     }
     /**
      * 
