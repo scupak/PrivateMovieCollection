@@ -131,7 +131,9 @@ public class NewMovieController implements Initializable {
     @FXML
     private void cancel(ActionEvent event)
     {
-        Stage stage = (Stage) cancel.getScene().getWindow();
+        Stage stage = (Stage) Cancel.getScene().getWindow();
+        System.out.println(cancel);
+        
         stage.close();
     }
     
