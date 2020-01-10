@@ -98,11 +98,16 @@ public class NewMovieController implements Initializable {
         } catch(NumberFormatException e){
             intRaiting = 0;
         }
-        
+        try{
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
         appModel.createMovie(movieToAdd);
         cancel(event);
+        }
+        catch(NullPointerException exeption){
+            
+            JOptionPane.showMessageDialog(null, "invalid input or movie with same name already");
         
+        }
        
     }
 
