@@ -20,7 +20,7 @@ public class Movie {
     private final SimpleStringProperty title;
     private final SimpleIntegerProperty rating;
     private final SimpleStringProperty categories;
-    private final SimpleStringProperty lastviewTekst; 
+    private final SimpleStringProperty lastviewText; 
     private String path;
     private Date lastview;
     private  ArrayList<Category> categoryArray;
@@ -42,7 +42,7 @@ public class Movie {
         this.title = new SimpleStringProperty(title);
         this.rating = new SimpleIntegerProperty(rating);
         this.categories = new SimpleStringProperty(categories);
-        this.lastviewTekst = new SimpleStringProperty();
+        this.lastviewText = new SimpleStringProperty();
         this.path = path;
         this.lastview = lastview;
         categoryArray = new ArrayList<>();
@@ -153,8 +153,8 @@ public class Movie {
      * 
      * @param LastviewText 
      */
-    public String getLastviewTekst(){
-       return lastviewTekst.get();
+    public String getLastviewText(){
+       return lastviewText.get();
        
     }
     /**
@@ -162,8 +162,8 @@ public class Movie {
      * 
      * @param LastviewTekst 
      */
-    public void setLastviewTekst(String LastviewTekst ){
-        this.lastviewTekst.set(LastviewTekst);
+    public void setLastviewText(String LastviewTekst ){
+        this.lastviewText.set(LastviewTekst);
     }
     
     /**
