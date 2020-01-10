@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.be;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -39,7 +40,11 @@ public class Movie {
         this.lastview = lastview;
         categoryArray = new ArrayList<>();
         
-        setLastviewTekst(lastview.toString());
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+        setLastviewTekst(sdf.format(lastview));
+        
+        
         
     }
     
@@ -190,7 +195,9 @@ public class Movie {
     public void setLastview(Date lastview) {
         this.lastview = lastview;
         
-        setLastviewTekst(lastview.toString());
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        
+        setLastviewTekst(sdf.format(lastview));
     }
     /**
      * 

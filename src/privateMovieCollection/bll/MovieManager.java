@@ -91,8 +91,9 @@ public class MovieManager {
                         System.out.println(category.getName());
                         System.out.println("shits aktive");
                         
-                        if (category.getName().toLowerCase().contains(string.toLowerCase()))
+                        if (category.getName().toLowerCase().contains(string.toLowerCase().trim()))
                         {
+                            
                             filterResult.add(movie);
                         }
                     }
