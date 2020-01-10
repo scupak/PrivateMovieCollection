@@ -20,7 +20,7 @@ public class Movie {
     private final SimpleStringProperty title;
     private final SimpleIntegerProperty rating;
     private final SimpleStringProperty categories;
-    private final SimpleStringProperty LastviewText; 
+    private final SimpleStringProperty lastviewText; 
     private String path;
     private Date lastview;
     private  ArrayList<Category> categoryArray;
@@ -185,14 +185,18 @@ public class Movie {
         
         setLastviewText(sdf.format(lastview));
     }
+    
     /**
+     * Get an array of the categories
      * 
-     * @return 
+     * @return category array
      */
     public ArrayList<Category> getCategoryArray() {
         return categoryArray;
     }
+    
     /**
+     * Set the array of categories
      * 
      * @param categoryArray 
      */
