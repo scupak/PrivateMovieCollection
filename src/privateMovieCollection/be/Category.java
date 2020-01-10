@@ -81,6 +81,10 @@ public class Category {
         this.movies.set(movies);
     }
 
+    /**
+     * 
+     * @return string
+     */
     @Override
     public String toString() {
         return name.get().trim();
