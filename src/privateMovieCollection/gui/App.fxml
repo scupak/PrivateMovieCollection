@@ -35,7 +35,7 @@
       <Button fx:id="newMoiveButton" layoutX="476.0" layoutY="581.0" mnemonicParsing="false" onAction="#newMovie" text="New..." />
       <Button fx:id="editMovieButton" layoutX="539.0" layoutY="581.0" mnemonicParsing="false" onAction="#editMoive" text="Edit..." />
       <Button fx:id="deleteSongButton" layoutX="601.0" layoutY="581.0" mnemonicParsing="false" onAction="#deleteMovie" text="Delete" />
-      <Button fx:id="exitButton" layoutX="783.0" layoutY="582.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <Button fx:id="exitButton" layoutX="940.0" layoutY="582.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <TableView fx:id="movieList" layoutX="472.0" layoutY="169.0" onMouseClicked="#clickedOnMoive" prefHeight="402.0" prefWidth="503.0">
         <columns>
           <TableColumn fx:id="movieTitelCol" prefWidth="136.0" text="Titel" />
