@@ -102,8 +102,7 @@ public class EditMovieController implements Initializable {
         
         Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview()); 
         appModel.updateMovie(movieToUpdate);
-        Stage stage = (Stage) saveButton.getScene().getWindow();
-        stage.close();
+        cancel(event);
     }
 
     @FXML
