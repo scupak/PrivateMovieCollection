@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import privateMovieCollection.dal.CategoryFacade;
@@ -278,9 +277,5 @@ public class CategoryDBDAO implements CategoryFacade {
         //categoryDB.deleteCategory(new Category(2, "name"));
         //categoryDB.addToCategory(new Category(4, "name",0), new Movie(7, "title", 0, "path", new java.util.Date(),""));
         System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name",0)));
-        
-        
-        
-        
     }
 }
