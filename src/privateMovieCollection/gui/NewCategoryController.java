@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import privateMovieCollection.be.Category;
 
 /**
  * FXML Controller class
@@ -46,6 +48,18 @@ public class NewCategoryController implements Initializable
     @FXML
     private void save(ActionEvent event)
     {
+        String categoryTitle = categoryName.getText();
+        if(categoryTitle.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "category title can not be blank!");
+        } else
+        {
+            categoryTitle = categoryName.getText();
+            Category categoryToAdd = new Category(0, categoryTitle, 0);
+            appModel.createCategory(categoryToAdd);
+            cancel(event);
+        }
+        
     }
 
     @FXML
