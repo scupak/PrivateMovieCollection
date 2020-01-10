@@ -82,6 +82,7 @@ public class Category {
     }
 
     /**
+     * Class as string
      * 
      * @return string
      */
