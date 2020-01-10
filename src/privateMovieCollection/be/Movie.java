@@ -24,11 +24,18 @@ public class Movie {
     private String path;
     private Date lastview;
     private  ArrayList<Category> categoryArray;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     
     /**
      * Movie constructor
+     * 
      * @param id
      * @param title
+     * @param rating
+     * @param categories
+     * @param lastviewTekst
+     * @param path
+     * @param lastview
      */
     public Movie(int id, String title,int rating ,String categories ,String lastviewTekst, String path, Date lastview) {
         this.id = id;
@@ -40,12 +47,7 @@ public class Movie {
         this.lastview = lastview;
         categoryArray = new ArrayList<>();
         
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        
-        setLastviewTekst(sdf.format(lastview));
-        
-        
-        
+        setLastviewText(sdf.format(lastview));
     }
     
     /**
@@ -103,8 +105,9 @@ public class Movie {
     } 
     
     /**
+     * Get the categories as a string seperated with semicolon
      * 
-     * @return 
+     * @return categories as string
      */
     public String getCategories() {
         //System.out.println("privateMovieCollection.be.Movie.getCategories()");
@@ -137,6 +140,7 @@ public class Movie {
     }
     
     /**
+     * Set categories
      * 
      * @param categories 
      */
@@ -145,14 +149,16 @@ public class Movie {
     }
     
     /**
+     * Get lastview
      * 
-     * @param LastviewTekst 
+     * @param LastviewText 
      */
     public String getLastviewTekst(){
        return lastviewTekst.get();
        
     }
     /**
+     * Set the lastviewtext
      * 
      * @param LastviewTekst 
      */
@@ -194,10 +200,7 @@ public class Movie {
      */
     public void setLastview(Date lastview) {
         this.lastview = lastview;
-        
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        
-        setLastviewTekst(sdf.format(lastview));
+        setLastviewText(sdf.format(lastview));
     }
     /**
      * 
