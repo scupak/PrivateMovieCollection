@@ -19,7 +19,7 @@ public class Movie {
     private final SimpleStringProperty title;
     private final SimpleIntegerProperty rating;
     private final SimpleStringProperty categories;
-    private final SimpleStringProperty lastviewTekst; 
+    private final SimpleStringProperty lastviewText; 
     private String path;
     private Date lastview;
     private  ArrayList<Category> categoryArray;
@@ -34,12 +34,12 @@ public class Movie {
         this.title = new SimpleStringProperty(title);
         this.rating = new SimpleIntegerProperty(rating);
         this.categories = new SimpleStringProperty(categories);
-        this.lastviewTekst = new SimpleStringProperty();
+        this.lastviewText = new SimpleStringProperty();
         this.path = path;
         this.lastview = lastview;
         categoryArray = new ArrayList<>();
         
-        setLastviewTekst(lastview.toString());
+        setLastviewText(lastview.toString());
         
     }
     
@@ -98,41 +98,31 @@ public class Movie {
     } 
     
     /**
-     * 
-     * @return 
+     * Get the categories as a string seperated with semicolon
+     * @return categories as string
      */
     public String getCategories() {
-        //System.out.println("privateMovieCollection.be.Movie.getCategories()");
         String text = "";
-        
         if(!categoryArray.isEmpty()){
             int i = 1;
-             //System.out.println("ifstatment");
             for (Category category : categoryArray) {
-                
-                // System.out.println("looop");
-                 if(i == categoryArray.size()){
-                text = text + category.toString();
-                
-                 }
-                 else{
-                 text = text + category.toString() +",";
-                 i++;
-                 
-                 }
+                if(i == categoryArray.size()){
+                    text = text + category.toString();
+                } else {
+                    text = text + category.toString() +",";
+                    i++;
+                }
             }
-        
+            
             setCategories(text);
-        }
-        else{
-            //System.out.println("else");
+        } else{
             setCategories("none");
         }
         return categories.get();
     }
     
     /**
-     * 
+     * Set categories
      * @param categories 
      */
     public void setCategories(String categories) {
@@ -140,19 +130,18 @@ public class Movie {
     }
     
     /**
-     * 
-     * @param LastviewTekst 
+     * Get lastview
+     * @param LastviewText 
      */
-    public String getLastviewTekst(){
-       return lastviewTekst.get();
-       
+    public String getLastviewText(){
+       return lastviewText.get();
     }
     /**
      * 
-     * @param LastviewTekst 
+     * @param LastviewText 
      */
-    public void setLastviewTekst(String LastviewTekst ){
-        this.lastviewTekst.set(LastviewTekst);
+    public void setLastviewText(String LastviewText ){
+        this.lastviewText.set(LastviewText);
     }
     
     /**
@@ -190,7 +179,7 @@ public class Movie {
     public void setLastview(Date lastview) {
         this.lastview = lastview;
         
-        setLastviewTekst(lastview.toString());
+        setLastviewText(lastview.toString());
     }
     /**
      * 
@@ -206,8 +195,6 @@ public class Movie {
     public void setCategoryArray(ArrayList<Category> categoryArray) {
         this.categoryArray = categoryArray;
     }
-    
-    
 
     /**
      * This class as a String
