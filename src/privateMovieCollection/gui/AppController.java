@@ -301,7 +301,6 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditCategory.fxml").openStream());
         EditCategoryController cont = (EditCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
-        cont.setCategory(categoryList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Category");
         stage.setScene(new Scene(root));
@@ -317,7 +316,6 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteCategory.fxml").openStream());
         DeleteCategoryController cont = (DeleteCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
-        cont.setCategory(categoryList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Movie");
         stage.setScene(new Scene(root));
