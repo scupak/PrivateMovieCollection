@@ -120,7 +120,7 @@ public class AppController implements Initializable {
         
         
          movieLastViewCol.setCellValueFactory( 
-                new PropertyValueFactory<Movie, String>("lastviewText")
+                new PropertyValueFactory<Movie, String>("lastviewTekst")
         
         );
          
