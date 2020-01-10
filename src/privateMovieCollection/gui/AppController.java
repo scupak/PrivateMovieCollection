@@ -121,7 +121,7 @@ public class AppController implements Initializable {
         
         
          movieLastViewCol.setCellValueFactory( 
-                new PropertyValueFactory<Movie, String>("lastviewTekst")
+                new PropertyValueFactory<Movie, String>("lastviewText")
         
         );
          
