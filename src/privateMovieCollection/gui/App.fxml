@@ -66,5 +66,6 @@
             <Font size="36.0" />
          </font>
       </Button>
+      <Button fx:id="searchButton" layoutX="792.0" layoutY="21.0" mnemonicParsing="false" onAction="#clickedsearchButton" prefHeight="83.0" prefWidth="175.0" text="search" />
    </children>
 </AnchorPane>

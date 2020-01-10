@@ -50,8 +50,72 @@ public class MovieManager {
      * @param query
      * @return movies
      */
-    public List<Movie> search(ArrayList<String> query){
-        return null;
+    public List<Movie> search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
+    {
+        System.out.println("in search");
+        List<Movie> searchBase = getAllMovies();
+        List<Movie> titleResult = new ArrayList<>();
+        List<Movie> filterResult = new ArrayList<>();
+        List<Movie> finalResult = new ArrayList<>();
+    
+        if (titleQuery == null)
+        {
+            titleResult.addAll(searchBase);
+        }
+        else
+        {
+            for (Movie movie : searchBase)
+            {
+                if (movie.getTitle().toLowerCase().contains(titleQuery.toLowerCase()))
+                {
+                    System.out.println(movie.getTitle().toLowerCase());
+                    titleResult.add(movie);
+                }
+            }
+        }
+        
+    
+        if (filterQuery.get(0).isEmpty())
+        {
+            System.out.println("awdawdawd");
+            filterResult.addAll(titleResult);
+        }
+        else
+        {
+            for (String string : filterQuery)
+            {
+                for (Movie movie : titleResult)
+                {
+                    for (Category category : movie.getCategoryArray())
+                    {
+                        System.out.println(category.getName());
+                        System.out.println("shits aktive");
+                        
+                        if (category.getName().toLowerCase().contains(string.toLowerCase()))
+                        {
+                            filterResult.add(movie);
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (ratingQuery == 0)
+        {
+            finalResult.addAll(filterResult);
+        }
+        else
+        {
+            for (Movie movie : filterResult)
+            {
+                if (movie.getRating() >= ratingQuery )
+                {
+                    finalResult.add(movie);
+                }
+            }
+        }
+        
+        return finalResult;
     }
     
     /**

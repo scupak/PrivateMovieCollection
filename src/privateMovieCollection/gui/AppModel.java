@@ -160,17 +160,20 @@ public class AppModel {
     
     }
     
-     public static void main(String[] args) throws Exception {
-         
-         AppModel am = new AppModel();
-        ArrayList<Category> categories = new ArrayList<>();
-        
-         //System.out.println(am.getAllCategories()); 
-        
-       System.out.println(am.getAllMoviesInCategory(am.getAllCategories().get(0)));
-        
-        
-        
+    public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
+    {
+        if (filterQuery.get(0).isEmpty() && ratingQuery == 0 && titleQuery.isEmpty())
+        {
+            System.out.println("its empty");
+            allMovies.clear();
+            allMovies.addAll(movieManager.getAllMovies());
+        }
+        else
+        {
+            System.out.println(filterQuery.size());
+            allMovies.clear();
+            allMovies.addAll(movieManager.search(titleQuery, filterQuery, ratingQuery));
+        }
     }
     
 

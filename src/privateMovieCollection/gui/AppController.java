@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,6 +47,10 @@ public class AppController implements Initializable {
     private Button newMoiveButton;
     @FXML
     private Button play;
+    @FXML
+    private Button searchButton;
+
+   
 
     
     
@@ -55,6 +60,7 @@ public class AppController implements Initializable {
     
     ListSelection listSelection = ListSelection.MOVIES;
     private AppModel appModel;
+    private ArrayList<String> filterQuery;
 
     @FXML
     private ListView<Movie> moviesInCategory;
@@ -149,6 +155,7 @@ public class AppController implements Initializable {
                     public void invalidated(Observable observable) {
 
                         minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
+                       
                     }
                 });
         
@@ -165,7 +172,11 @@ public class AppController implements Initializable {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+ @FXML
+    private void clickedsearchButton(ActionEvent event) {
+        search();
+    }
     @FXML
     private void clickedOnMovieInCategory(MouseEvent event)
     {
@@ -319,11 +330,32 @@ public class AppController implements Initializable {
     @FXML
     private void searchTitle(KeyEvent event)
     {
+       
     }
 
     @FXML
     private void Filter(KeyEvent event)
     {
+        
+    }
+    
+    private void search()
+    {
+        try 
+        {
+            String titleQuery = searchField.getText().trim();
+            String CSV = filterField.getText();
+            String[] values = CSV.split(",");
+            filterQuery = new ArrayList(Arrays.asList(values));
+            
+            System.out.println(filterQuery);
+            int ratingQuery = (int) Math.round(minimumRatingSlider.getValue());
+            appModel.search(titleQuery, filterQuery, ratingQuery);
+        }
+        catch (Exception ex)
+        {
+          ex.printStackTrace();
+        }
     }
     
     public static void main(String[] args) throws Exception {
