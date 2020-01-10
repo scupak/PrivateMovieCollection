@@ -275,6 +275,9 @@ public class AppController implements Initializable {
     @FXML
     private void moveToCategory(ActionEvent event)
     {
+        Category currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
+        Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
+        appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie);
     }
 
     @FXML

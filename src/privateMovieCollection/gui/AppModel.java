@@ -126,6 +126,16 @@ public class AppModel {
         return moviesInCategory;
         
     }
+    
+    public void addToCategory(Category category, Movie movie)
+    {
+        categoryManager.addToCategory(category, movie);
+        moviesInCategoriesClearAdd(category);
+        allCategories.clear();
+        allCategories.addAll(categoryManager.getAllCategories());
+    }
+            
+            
     /**
      * 
      * @param category 
