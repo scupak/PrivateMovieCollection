@@ -116,8 +116,6 @@ public class MovieDBDAO implements MovieFacade {
      */
     @Override
     public boolean updateMovie(Movie movie) {
-        if(movieExist(movie)) return false;
-        
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("UPDATE movie SET title = ?, rating = ?, filelink = ?, lastview = ? WHERE id = ?");
             ps.setString(1, movie.getTitle());
@@ -162,17 +160,15 @@ public class MovieDBDAO implements MovieFacade {
     }
     
     /**
-     * Check if a given movie title does exist in the database, 
-     * but allow the same movie to be edited.
+     * Check if a given movie title does exist in the database.
      * 
      * @param movie
      * @return true if movie exist, false if not.
      */
     public boolean movieExist(Movie movie) {
         try ( Connection con = dbCon.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ? WHERE id != ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ?");
             ps.setString(1, movie.getTitle());
-            ps.setInt(2, movie.getId());
             
             ResultSet rs = ps.executeQuery();
             
