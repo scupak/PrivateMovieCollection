@@ -33,6 +33,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 import privateMovieCollection.gui.AppModel;
@@ -161,6 +162,9 @@ public class AppController implements Initializable {
        /* System.out.println("");
         System.out.println(appModel.getAllMoviesInCategory(appModel.getAllCategories().get(0)));
         System.out.println("");*/
+       
+       JOptionPane.showMessageDialog(null, "remember to delete movies, that have a personal rating under 60 "
+                                         + "and have not been opened from the application in more than 2 years");
        
        } catch (Exception ex)
         {
@@ -304,6 +308,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditCategory.fxml").openStream());
         EditCategoryController cont = (EditCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
+        cont.setCategory(categoryList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Category");
         stage.setScene(new Scene(root));
@@ -319,6 +324,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteCategory.fxml").openStream());
         DeleteCategoryController cont = (DeleteCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
+        cont.setCategory(categoryList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Movie");
         stage.setScene(new Scene(root));

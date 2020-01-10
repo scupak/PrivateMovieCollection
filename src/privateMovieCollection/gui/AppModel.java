@@ -151,6 +151,17 @@ public class AppModel {
      */
     void createCategory(Category category){
         categoryManager.createCategory(category);
+        categoriesClearAdd();
+    }
+    
+    public void updateCategory(Category category){
+        categoryManager.updateCategory(category);
+        categoriesClearAdd();
+    }
+    
+    public void deleteCategory(Category category){
+        categoryManager.deleteCategory(category);
+        categoriesClearAdd();
     }
     /**
      * 
