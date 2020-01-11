@@ -170,7 +170,7 @@ public class MovieDBDAO implements MovieFacade {
      */
     public boolean movieExist(Movie movie) {
         try ( Connection con = dbCon.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ? WHERE id != ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ? AND id != ?");
             ps.setString(1, movie.getTitle());
             ps.setInt(2, movie.getId());
             
@@ -217,6 +217,14 @@ public class MovieDBDAO implements MovieFacade {
             ex.printStackTrace();
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        
+        return null;
+    }
+
+    public List<Movie> searchMovies(String searchQuery, List<Category> filter, int rating) {
+        if(searchQuery == null) {
+            searchQuery = "";
         }
         
         return null;

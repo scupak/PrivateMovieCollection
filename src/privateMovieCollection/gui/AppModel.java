@@ -71,10 +71,13 @@ public class AppModel {
      * 
      * @param movieToAdd 
      */
-    public void createMovie(Movie movieToAdd)
+    public Movie createMovie(Movie movieToAdd)
     {
-        movieManager.createMovie(movieToAdd);
+        Movie movie;
+        movie = movieManager.createMovie(movieToAdd);
         movieClearAdd();
+        
+        return movie;
     }
     /**
      * 
@@ -151,17 +154,6 @@ public class AppModel {
      */
     void createCategory(Category category){
         categoryManager.createCategory(category);
-        categoriesClearAdd();
-    }
-    
-    public void updateCategory(Category category){
-        categoryManager.updateCategory(category);
-        categoriesClearAdd();
-    }
-    
-    public void deleteCategory(Category category){
-        categoryManager.deleteCategory(category);
-        categoriesClearAdd();
     }
     /**
      * 
