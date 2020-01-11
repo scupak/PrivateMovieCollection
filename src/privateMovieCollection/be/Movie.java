@@ -47,7 +47,7 @@ public class Movie {
         this.lastview = lastview;
         categoryArray = new ArrayList<>();
         
-        setLastviewTekst(sdf.format(lastview));
+        setLastviewText(sdf.format(lastview));
     }
     
     /**
@@ -200,7 +200,7 @@ public class Movie {
      */
     public void setLastview(Date lastview) {
         this.lastview = lastview;
-        setLastviewTekst(sdf.format(lastview));
+        setLastviewText(sdf.format(lastview));
     }
     /**
      * 
