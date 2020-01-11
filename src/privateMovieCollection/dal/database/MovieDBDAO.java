@@ -170,7 +170,7 @@ public class MovieDBDAO implements MovieFacade {
      */
     public boolean movieExist(Movie movie) {
         try ( Connection con = dbCon.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ? WHERE id != ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ? AND id != ?");
             ps.setString(1, movie.getTitle());
             ps.setInt(2, movie.getId());
             

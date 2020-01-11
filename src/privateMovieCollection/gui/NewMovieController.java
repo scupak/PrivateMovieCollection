@@ -23,6 +23,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
+import java.lang.NullPointerException;
+import javax.swing.JFrame;
 /**
  * FXML Controller class
  *
@@ -98,18 +100,25 @@ public class NewMovieController implements Initializable {
         } catch(NumberFormatException e){
             intRaiting = 0;
         }
-
+         try{
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
         //System.out.println("closed");
-        appModel.createMovie(movieToAdd);
-                try{
+        
+        if(appModel.createMovie(movieToAdd) == null){
+
+            throw new NullPointerException();
+
+        }  
         cancel(event);
            
         }
         catch(NullPointerException exeption){
             System.out.println(event);
+            System.out.println("lololololol");
              //exeption.printStackTrace();
-            JOptionPane.showMessageDialog(null, "invalid input or movie with same name already");
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
         
         }
        
@@ -136,7 +145,7 @@ public class NewMovieController implements Initializable {
     private void cancel(ActionEvent event)
     {
         Stage stage = (Stage) Cancel.getScene().getWindow();
-        System.out.println(cancel);
+        //System.out.println(cancel);
         
         stage.close();
     }

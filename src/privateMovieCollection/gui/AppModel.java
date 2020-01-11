@@ -71,10 +71,13 @@ public class AppModel {
      * 
      * @param movieToAdd 
      */
-    public void createMovie(Movie movieToAdd)
+    public Movie createMovie(Movie movieToAdd)
     {
-        movieManager.createMovie(movieToAdd);
+        Movie movie;
+        movie = movieManager.createMovie(movieToAdd);
         movieClearAdd();
+        
+        return movie;
     }
     /**
      * 

@@ -105,8 +105,8 @@ public class MovieManager {
      * 
      * @param movie 
      */
-    public void createMovie(Movie movie){
-        movieDBDAO.createMovie(movie);
+    public Movie createMovie(Movie movie){
+       return movieDBDAO.createMovie(movie);
     }
     
     /**
