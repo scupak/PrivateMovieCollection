@@ -105,7 +105,6 @@ public class NewMovieController implements Initializable {
     private void Save(ActionEvent event)
     {
         String title = movieTitleTextField.getText(); 
-        String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
         String raiting = raitingLabel.getText();
         Date lastView = new Date();

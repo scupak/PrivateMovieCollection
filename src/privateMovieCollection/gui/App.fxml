@@ -13,7 +13,7 @@
 <AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="privateMovieCollection.gui.AppController">
    <children>
       <ListView fx:id="moviesInCategory" layoutX="264.0" layoutY="169.0" onMouseClicked="#clickedOnMovieInCategory" prefHeight="402.0" prefWidth="123.0" />
-      <TextField fx:id="searchField" layoutX="591.0" layoutY="14.0" onKeyPressed="#searchTitle" prefHeight="38.0" prefWidth="192.0" promptText="Search">
+      <TextField fx:id="searchField" layoutX="591.0" layoutY="14.0" prefHeight="38.0" prefWidth="192.0" promptText="Search">
          <font>
             <Font size="14.0" />
          </font></TextField>
@@ -54,7 +54,7 @@
       <Button fx:id="newCategoryButton" layoutX="21.0" layoutY="581.0" mnemonicParsing="false" onAction="#newCategory" text="New..." />
       <Button fx:id="editCategoryButton" layoutX="77.0" layoutY="582.0" mnemonicParsing="false" onAction="#editCategory" text="Edit..." />
       <Button fx:id="deleteCategoryButton" layoutX="129.0" layoutY="582.0" mnemonicParsing="false" onAction="#deleteCategory" text="Delete" />
-      <TextField fx:id="filterField" layoutX="591.0" layoutY="65.0" onKeyPressed="#Filter" prefHeight="38.0" prefWidth="192.0" promptText="Filter">
+      <TextField fx:id="filterField" layoutX="591.0" layoutY="65.0" prefHeight="38.0" prefWidth="192.0" promptText="Filter">
          <font>
             <Font size="14.0" />
          </font>
@@ -67,5 +67,6 @@
          </font>
       </Button>
       <Button fx:id="searchButton" layoutX="792.0" layoutY="21.0" mnemonicParsing="false" onAction="#clickedsearchButton" prefHeight="83.0" prefWidth="175.0" text="search" />
+      <Button fx:id="deleteFromCategory" layoutX="264.0" layoutY="582.0" mnemonicParsing="false" onAction="#deleteFromCategory" text="Delete" />
    </children>
 </AnchorPane>

@@ -88,6 +88,15 @@ public class EditMovieController implements Initializable {
     public void setAppModel(AppModel app) {
         appModel = app;
     }
+    
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+
+        movieTitleTextField.setText(movie.getTitle());
+        categoryTextField.setText(movie.getCategories());
+        raitingSlider.setValue(movie.getRating());
+        fileTextField.setText(movie.getPath());
+    }
 
     @FXML
     private void cancel(ActionEvent event)
@@ -95,6 +104,7 @@ public class EditMovieController implements Initializable {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
+    
 
     @FXML
     private void save(ActionEvent event)
@@ -113,6 +123,7 @@ public class EditMovieController implements Initializable {
         
         Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview()); 
         appModel.updateMovie(movieToUpdate);
+        
         cancel(event);
     }
 
@@ -132,13 +143,6 @@ public class EditMovieController implements Initializable {
         }
     }
     
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-
-        movieTitleTextField.setText(movie.getTitle());
-        categoryTextField.setText(movie.getCategories());
-        raitingSlider.setValue(movie.getRating());
-        fileTextField.setText(movie.getPath());
-    }
+    
        
 }

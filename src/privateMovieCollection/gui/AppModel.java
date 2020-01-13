@@ -155,6 +155,12 @@ public class AppModel {
      */
     void createCategory(Category category){
         categoryManager.createCategory(category);
+        categoriesClearAdd();
+    }
+    
+    public void updateCategory(Category category){
+        categoryManager.updateCategory(category);
+        categoriesClearAdd();
     }
     /**
      * 
@@ -164,11 +170,9 @@ public class AppModel {
      */
     public boolean clearMovieFromCategory(Category category, Movie movie){
         boolean result = categoryManager.clearMovieFromPlayList(category, movie);
-        moviesInCategory.clear();
-        moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(category));
-        
-        allCategories.clear();
-        allCategories.addAll(categoryManager.getAllCategories());
+        moviesInCategoriesClearAdd(category);
+        categoriesClearAdd();
+      
         return result;
     
     
@@ -193,7 +197,12 @@ public class AppModel {
     public List<Movie> moviesToDelete(){
     
         return movieManager.moviesToDelete();
+    }
     
+    public void deleteCategory(Category category){
+        categoryManager.deleteCategory(category);
+        categoriesClearAdd();
+        movieClearAdd();
     }
     
 

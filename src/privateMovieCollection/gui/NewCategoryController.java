@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Category;
 
 /**
  * FXML Controller class
@@ -46,6 +47,10 @@ public class NewCategoryController implements Initializable
     @FXML
     private void save(ActionEvent event)
     {
+        String title = categoryName.getText();
+        Category categoryToAdd = new Category(0, title, 0);
+        appModel.createCategory(categoryToAdd);
+        cancel(event);
     }
 
     @FXML

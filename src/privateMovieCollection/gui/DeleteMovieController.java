@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 
 /**
@@ -41,8 +42,19 @@ public class DeleteMovieController {
     @FXML
     private void yes(ActionEvent event)
     {
-        appModel.deleteMovie(movie);
-        no(event);
+       if ( movie.getCategoryArray().isEmpty() == false )
+       {
+           for (Category category : movie.getCategoryArray())
+           {
+               appModel.clearMovieFromCategory(category,movie);
+               appModel.moviesInCategoriesClearAdd(category);
+           }
+       }
+   
+         appModel.deleteMovie(movie);
+         appModel.movieClearAdd();
+         appModel.categoriesClearAdd();
+         no(event);
     }
 
     @FXML
