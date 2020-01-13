@@ -18,7 +18,7 @@ public interface CategoryFacade {
      * List over all categories in database
      * @return list of categories
      */
-    public List<Category> getAllCategories();
+    public List<Category> getAllCategories() throws PmcDalException;
     
      /**
      * Create a new category in the database

@@ -17,6 +17,7 @@ import java.util.List;
 import privateMovieCollection.dal.CategoryFacade;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
+import privateMovieCollection.dal.PmcDalException;
 
 /**
  *
@@ -35,9 +36,10 @@ public class CategoryDBDAO implements CategoryFacade {
      * List over all movies in database
      *
      * @return list of movies
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     @Override
-    public List<Category> getAllCategories() {
+    public List<Category> getAllCategories() throws PmcDalException{
         ArrayList<Category> categories = new ArrayList<>();
 
         try ( Connection con = dbCon.getConnection()) {
@@ -52,12 +54,14 @@ public class CategoryDBDAO implements CategoryFacade {
             return categories;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            
+           throw new PmcDalException("culd not get all categories from database", ex);
+           
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not get all categories from database", ex);
         }
 
-        return null;
+        
     }
 
     /**

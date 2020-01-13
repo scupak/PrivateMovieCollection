@@ -5,11 +5,16 @@
  */
 package privateMovieCollection.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
+import privateMovieCollection.dal.PmcDalException;
 
 /**
  *
@@ -38,11 +43,18 @@ public class DeleteCategoryController
     @FXML
     private void yes(ActionEvent event)
     {
-        appModel.deleteCategory(category);
-        appModel.categoriesClearAdd();
-        appModel.movieClearAdd();
-        appModel.moviesInCategoriesClearAdd(category);
-        no(event);
+        try {
+            appModel.deleteCategory(category);
+            appModel.categoriesClearAdd();
+            appModel.movieClearAdd();
+            appModel.moviesInCategoriesClearAdd(category);
+            no(event);
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+        }
     }
 
     @FXML

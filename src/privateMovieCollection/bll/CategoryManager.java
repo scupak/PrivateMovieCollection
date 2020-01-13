@@ -9,6 +9,7 @@ import java.util.List;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 import privateMovieCollection.dal.CategoryFacade;
+import privateMovieCollection.dal.PmcDalException;
 import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
@@ -31,7 +32,7 @@ public class CategoryManager {
      * 
      * @return categories
      */
-    public List<Category> getAllCategories(){
+    public List<Category> getAllCategories() throws PmcDalException{
         List<Category> categories = CategoryDBDAO.getAllCategories();
         
         for (Category category : categories) {

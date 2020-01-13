@@ -14,6 +14,7 @@ import privateMovieCollection.be.Movie;
 import privateMovieCollection.bll.CategoryManager;
 import privateMovieCollection.bll.VideoPlayer;
 import privateMovieCollection.bll.MovieManager;
+import privateMovieCollection.dal.PmcDalException;
 import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
@@ -106,7 +107,7 @@ public class AppModel {
     /**
      * 
      */
-    public void categoriesClearAdd(){
+    public void categoriesClearAdd() throws PmcDalException{
         allCategories.clear();
         allCategories.addAll(categoryManager.getAllCategories());
     }
@@ -114,7 +115,7 @@ public class AppModel {
      * 
      * @return 
      */
-    public ObservableList<Category> getAllCategories(){
+    public ObservableList<Category> getAllCategories() throws PmcDalException{
     allCategories.clear();
     allCategories.addAll(categoryManager.getAllCategories());
     return allCategories;
@@ -131,7 +132,7 @@ public class AppModel {
         
     }
     
-    public void addToCategory(Category category, Movie movie)
+    public void addToCategory(Category category, Movie movie) throws PmcDalException
     {
         categoryManager.addToCategory(category, movie);
         moviesInCategoriesClearAdd(category);
@@ -153,12 +154,12 @@ public class AppModel {
      * 
      * @param category 
      */
-    void createCategory(Category category){
+    void createCategory(Category category) throws PmcDalException{
         categoryManager.createCategory(category);
         categoriesClearAdd();
     }
     
-    public void updateCategory(Category category){
+    public void updateCategory(Category category) throws PmcDalException{
         categoryManager.updateCategory(category);
         categoriesClearAdd();
     }
@@ -168,7 +169,7 @@ public class AppModel {
      * @param movie
      * @return 
      */
-    public boolean clearMovieFromCategory(Category category, Movie movie){
+    public boolean clearMovieFromCategory(Category category, Movie movie) throws PmcDalException{
         boolean result = categoryManager.clearMovieFromPlayList(category, movie);
         moviesInCategoriesClearAdd(category);
         categoriesClearAdd();
@@ -199,7 +200,7 @@ public class AppModel {
         return movieManager.moviesToDelete();
     }
     
-    public void deleteCategory(Category category){
+    public void deleteCategory(Category category) throws PmcDalException{
         categoryManager.deleteCategory(category);
         categoriesClearAdd();
         movieClearAdd();
