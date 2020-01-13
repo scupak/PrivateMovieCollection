@@ -43,6 +43,7 @@ import privateMovieCollection.gui.AppModel;
  */
 public class AppController implements Initializable {
 
+    
     enum ListSelection {
         MOVIES, MOVIESINCATEGORY, CATEGORY,
     }
@@ -97,6 +98,8 @@ public class AppController implements Initializable {
     private Slider minimumRatingSlider;
     @FXML
     private Label minimumRatingLabel;
+    @FXML
+    private Button deleteFromCategory;
   
 
     /**
@@ -319,6 +322,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteCategory.fxml").openStream());
         DeleteCategoryController cont = (DeleteCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
+        cont.setCategory(categoryList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Movie");
         stage.setScene(new Scene(root));
@@ -368,6 +372,13 @@ public class AppController implements Initializable {
         
         
         
+    }
+    
+    @FXML
+    private void deleteFromCategory(ActionEvent event)
+    {
+        appModel.clearMovieFromCategory(categoryList.getSelectionModel().getSelectedItem(), 
+                moviesInCategory.getSelectionModel().getSelectedItem());
     }
 
 }

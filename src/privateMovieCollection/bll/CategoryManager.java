@@ -105,7 +105,7 @@ public class CategoryManager {
      * @return 
      */
     public boolean clearMovieFromPlayList(Category category, Movie movie){
-        return clearMovieFromPlayList(category, movie);
+        return CategoryDBDAO.clearMovieFromCategory(category, movie);
     }
     
 }
