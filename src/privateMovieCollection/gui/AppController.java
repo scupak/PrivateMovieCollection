@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +34,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 import privateMovieCollection.gui.AppModel;
@@ -165,6 +168,22 @@ public class AppController implements Initializable {
        } catch (Exception ex)
         {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(!appModel.moviesToDelete().isEmpty()){
+            List<Movie> finalResult = new ArrayList<>();
+            finalResult.addAll(appModel.moviesToDelete());
+            
+              JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "remember to delete movies, that have a personal rating under 6 "
+                                             + "and have not been opened from the application in more than 2 years."
+                                             + "\n movies pending deletion:"
+                                             + "\n" + appModel.moviesToDelete());
+            
+        
+        
+        
         }
     }
     

@@ -6,7 +6,9 @@
 package privateMovieCollection.bll;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 import privateMovieCollection.dal.MovieFacade;
@@ -99,7 +101,43 @@ public class MovieManager {
         
         return finalResult;
     }
-    
+     public List<Movie> moviesToDelete(){
+           final int daysin2years = 730;
+           Date currentdate = new Date();
+           List<Movie> finalResult = new ArrayList<>();
+           
+            for (Movie movie : getAllMovies()) {
+                boolean fordeletion = false;
+                if (movie.getRating() < 60 ) {
+                    fordeletion = true;
+                }
+            
+            
+            
+                long diff = currentdate.getTime() - movie.getLastview().getTime();
+                System.out.println(currentdate);
+                System.out.println(movie.getLastview());
+                System.out.println(diff);
+                System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                
+                if(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) >= daysin2years){
+                    fordeletion = true;
+                
+                }
+                
+                if(fordeletion){
+                    finalResult.add(movie);
+                
+                }
+            
+            }
+            
+            
+            return finalResult;
+        }
+     
+     
+     
     /**
      * Pass a movie to be created.
      * 
@@ -128,15 +166,21 @@ public class MovieManager {
     }
     
     public static void main(String[] args) {
+        
         MovieFacade movieDBDAO = new MovieDBDAO();
         MovieManager manager = new MovieManager();
-        
+        /*
         ArrayList<Movie> movies = new ArrayList<>();
          
         movies.addAll(manager.getAllMovies());
         
         for (Movie movy : movies) {
             System.out.println(movy);
+        }
+        */
+        
+        for (Movie movy : manager.moviesToDelete()) {
+            System.out.println(movy +" "+ movy.getRating() +" "+ movy.getLastview());
         }
     }
     

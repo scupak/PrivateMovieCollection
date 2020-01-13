@@ -6,6 +6,7 @@
 package privateMovieCollection.gui;
 
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import privateMovieCollection.be.Category;
@@ -187,6 +188,12 @@ public class AppModel {
             allMovies.clear();
             allMovies.addAll(movieManager.search(titleQuery, filterQuery, ratingQuery));
         }
+    }
+    
+    public List<Movie> moviesToDelete(){
+    
+        return movieManager.moviesToDelete();
+    
     }
     
 
