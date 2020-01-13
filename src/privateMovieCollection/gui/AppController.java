@@ -335,17 +335,7 @@ public class AppController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void searchTitle(KeyEvent event)
-    {
-       
-    }
-
-    @FXML
-    private void Filter(KeyEvent event)
-    {
-        
-    }
+   
     
     private void search()
     {

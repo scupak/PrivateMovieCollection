@@ -35,11 +35,18 @@ public class EditCategoryController
      
      public void setCategory(Category category){
          this.category = category;
+         
+         categoryName.setText(category.getName());
      }
 
     @FXML
     private void save(ActionEvent event)
     {
+        String name = categoryName.getText();
+        
+        Category categoryToUpdate = new Category(category.getId(), name, category.getMovies());
+        appModel.updateCategory(categoryToUpdate);
+        cancel(event);
     }
 
     @FXML
