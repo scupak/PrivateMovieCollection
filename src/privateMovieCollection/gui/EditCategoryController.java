@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import privateMovieCollection.be.Category;
 
 /**
  *
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 public class EditCategoryController
 {
     private AppModel appModel;
+    private Category category;
 
     @FXML
     private TextField categoryName;
@@ -30,10 +32,21 @@ public class EditCategoryController
      public void setAppModel(AppModel app) {
         appModel = app;
     }
+     
+     public void setCategory(Category category){
+         this.category = category;
+         
+         categoryName.setText(category.getName());
+     }
 
     @FXML
     private void save(ActionEvent event)
     {
+        String name = categoryName.getText();
+        
+        Category categoryToUpdate = new Category(category.getId(), name, category.getMovies());
+        appModel.updateCategory(categoryToUpdate);
+        cancel(event);
     }
 
     @FXML

@@ -307,6 +307,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditCategory.fxml").openStream());
         EditCategoryController cont = (EditCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
+        cont.setCategory(categoryList.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
         stage.setTitle("New/Edit Category");
         stage.setScene(new Scene(root));
@@ -330,17 +331,7 @@ public class AppController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void searchTitle(KeyEvent event)
-    {
-       
-    }
-
-    @FXML
-    private void Filter(KeyEvent event)
-    {
-        
-    }
+   
     
     private void search()
     {
