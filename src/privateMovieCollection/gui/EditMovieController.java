@@ -9,12 +9,15 @@ import java.awt.FileDialog;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -52,7 +55,9 @@ public class EditMovieController implements Initializable {
     @FXML
     private TextField categoryTextField;
     @FXML
-    private TextField raitingTextField;
+    private Slider raitingSlider;
+    @FXML
+    private Label raitingLabel;
 
 
     /**
@@ -61,7 +66,13 @@ public class EditMovieController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        raitingSlider.valueProperty().addListener(new InvalidationListener() {
+                    @Override
+                    public void invalidated(Observable observable) {
 
+                        raitingLabel.setText(Math.round(raitingSlider.getValue())+"");
+                    }
+        });
     }
 
     /**
@@ -91,7 +102,7 @@ public class EditMovieController implements Initializable {
         String title = movieTitleTextField.getText(); 
         String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
-        String raiting = raitingTextField.getText();
+        String raiting = raitingLabel.getText();
         int intRaiting;
         
         try{
@@ -126,7 +137,7 @@ public class EditMovieController implements Initializable {
 
         movieTitleTextField.setText(movie.getTitle());
         categoryTextField.setText(movie.getCategories());
-        raitingTextField.setText(movie.getRating() + "");
+        raitingSlider.setValue(movie.getRating());
         fileTextField.setText(movie.getPath());
     }
        

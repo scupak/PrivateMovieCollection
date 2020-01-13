@@ -13,12 +13,15 @@ import java.io.File;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -47,7 +50,6 @@ public class NewMovieController implements Initializable {
     private Label fileLabel;
     @FXML
     private TextField movieTitleTextField;
-    @FXML
     private Button cancel;
     @FXML
     private Button Save;
@@ -61,7 +63,13 @@ public class NewMovieController implements Initializable {
     @FXML
     private Button Cancel;
     @FXML
-    private TextField raitingTextField;
+    private Slider raitingSlider;
+    @FXML
+    private Label zero;
+    @FXML
+    private Label hundred;
+    @FXML
+    private Label raitingLabel;
 
     /**
      * Initializes the controller class. Creates a list of categories and sets
@@ -69,6 +77,14 @@ public class NewMovieController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        raitingSlider.valueProperty().addListener(new InvalidationListener() {
+                    @Override
+                    public void invalidated(Observable observable) {
+
+                        raitingLabel.setText(Math.round(raitingSlider.getValue())+"");
+                    }
+        });
+                       
     }
 
     /**
@@ -89,12 +105,14 @@ public class NewMovieController implements Initializable {
         String title = movieTitleTextField.getText(); 
         String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
-        String raiting = raitingTextField.getText();
+        String raiting = raitingLabel.getText();
         Date lastView = new Date();
         int intRaiting;
         
         try{
             intRaiting = Integer.parseInt(raiting);
+            
+                
         } catch(NumberFormatException e){
             intRaiting = 0;
         }

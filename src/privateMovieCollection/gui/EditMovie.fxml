@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -34,6 +35,9 @@
       <Button fx:id="movieChoiceButton" layoutX="151.0" layoutY="207.0" mnemonicParsing="false" onAction="#movieChoiceButton" prefHeight="26.0" prefWidth="98.0" text="Choose Moive" />
       <TextField fx:id="fileTextField" layoutX="150.0" layoutY="181.0" />
       <TextField fx:id="categoryTextField" layoutX="150.0" layoutY="78.0" promptText="i.e: Action, Drama..." />
-      <TextField fx:id="raitingTextField" layoutX="150.0" layoutY="131.0" promptText="0-100" />
+      <Slider fx:id="raitingSlider" layoutX="154.0" layoutY="135.0" />
+      <Label layoutX="146.0" layoutY="146.0" text="0" />
+      <Label layoutX="279.0" layoutY="146.0" text="100" />
+      <Label fx:id="raitingLabel" layoutX="210.0" layoutY="147.0" text="Raiting" />
    </children>
 </AnchorPane>
