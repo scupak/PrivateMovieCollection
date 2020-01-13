@@ -67,5 +67,6 @@
          </font>
       </Button>
       <Button fx:id="searchButton" layoutX="792.0" layoutY="21.0" mnemonicParsing="false" onAction="#clickedsearchButton" prefHeight="83.0" prefWidth="175.0" text="search" />
+      <Button fx:id="deleteFromCategory" layoutX="264.0" layoutY="582.0" mnemonicParsing="false" onAction="#deleteFromCategory" text="Delete" />
    </children>
 </AnchorPane>
