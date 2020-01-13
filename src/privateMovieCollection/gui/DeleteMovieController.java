@@ -47,10 +47,13 @@ public class DeleteMovieController {
            for (Category category : movie.getCategoryArray())
            {
                appModel.clearMovieFromCategory(category,movie);
+               appModel.moviesInCategoriesClearAdd(category);
            }
        }
    
          appModel.deleteMovie(movie);
+         appModel.movieClearAdd();
+         appModel.categoriesClearAdd();
          no(event);
     }
 

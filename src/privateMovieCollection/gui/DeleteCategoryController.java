@@ -39,6 +39,9 @@ public class DeleteCategoryController
     private void yes(ActionEvent event)
     {
         appModel.deleteCategory(category);
+        appModel.categoriesClearAdd();
+        appModel.movieClearAdd();
+        appModel.moviesInCategoriesClearAdd(category);
         no(event);
     }
 

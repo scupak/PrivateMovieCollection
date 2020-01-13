@@ -113,6 +113,7 @@ public class EditMovieController implements Initializable {
         
         Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview()); 
         appModel.updateMovie(movieToUpdate);
+        
         cancel(event);
     }
 

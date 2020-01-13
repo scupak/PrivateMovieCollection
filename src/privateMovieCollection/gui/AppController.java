@@ -51,6 +51,7 @@ public class AppController implements Initializable {
     ListSelection listSelection = ListSelection.MOVIES;
     private AppModel appModel;
     private ArrayList<String> filterQuery;
+    private Category currentlySelectedCategory;
     
     @FXML
     private Button newMoiveButton;
@@ -268,7 +269,7 @@ public class AppController implements Initializable {
     {
         System.out.println("fuck fuck");
         if(categoryList.getSelectionModel().getSelectedItem() != null){
-            
+            currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
             listSelection  = ListSelection.CATEGORY;
             moviesInCategory.setItems(appModel.getAllMoviesInCategory(categoryList.getSelectionModel().getSelectedItem()));
         
@@ -278,9 +279,12 @@ public class AppController implements Initializable {
     @FXML
     private void moveToCategory(ActionEvent event)
     {
-        Category currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
+        
         Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
         appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie);
+        appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
+        appModel.categoriesClearAdd();
+        appModel.movieClearAdd();
     }
 
     @FXML
@@ -307,6 +311,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditCategory.fxml").openStream());
         EditCategoryController cont = (EditCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
+        cont.setCategory(currentlySelectedCategory);
         Stage stage = new Stage();
         stage.setTitle("New/Edit Category");
         stage.setScene(new Scene(root));
@@ -322,7 +327,7 @@ public class AppController implements Initializable {
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteCategory.fxml").openStream());
         DeleteCategoryController cont = (DeleteCategoryController) fxmlLoader.getController();
         cont.setAppModel(appModel);
-        cont.setCategory(categoryList.getSelectionModel().getSelectedItem());
+        cont.setCategory(currentlySelectedCategory);
         Stage stage = new Stage();
         stage.setTitle("New/Edit Movie");
         stage.setScene(new Scene(root));
@@ -377,8 +382,12 @@ public class AppController implements Initializable {
     @FXML
     private void deleteFromCategory(ActionEvent event)
     {
-        appModel.clearMovieFromCategory(categoryList.getSelectionModel().getSelectedItem(), 
-                moviesInCategory.getSelectionModel().getSelectedItem());
+        Movie currentlySelectedMovieInCategory = moviesInCategory.getSelectionModel().getSelectedItem();
+        
+        appModel.clearMovieFromCategory(currentlySelectedCategory, currentlySelectedMovieInCategory);
+        appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
+        appModel.categoriesClearAdd();
+        appModel.movieClearAdd();
     }
 
 }
