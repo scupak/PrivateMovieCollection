@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import privateMovieCollection.be.Category;
 
 /**
  *
@@ -19,7 +18,6 @@ public class DeleteCategoryController
 {
 
     private AppModel appModel;
-    private Category category;
     
     @FXML
     private Button yes;
@@ -30,16 +28,10 @@ public class DeleteCategoryController
      public void setAppModel(AppModel app) {
         appModel = app;
     }
-     
-     public void setCategory(Category category){
-         this.category = category;
-     }
     
     @FXML
     private void yes(ActionEvent event)
     {
-        appModel.deleteCategory(category);
-        no(event);
     }
 
     @FXML
