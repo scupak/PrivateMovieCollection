@@ -190,16 +190,16 @@ public class AppController implements Initializable {
         }
     }
    /**
-    * calls the search funtion
+    * Calls the search funtion
     * @param event 
     */ 
- @FXML
+    @FXML
     private void clickedsearchButton(ActionEvent event) {
         search();
     }
     
     /**
-     * sets listselction to MOVIESINCATEGORY
+     * Sets listselction to MOVIESINCATEGORY
      * @param event 
      */
     @FXML
@@ -208,7 +208,7 @@ public class AppController implements Initializable {
     }
     
     /**
-     * sets the listSelection to MOVIES
+     * Sets the listSelection to MOVIES
      * @param event 
      */
     @FXML
@@ -218,7 +218,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * play the selected movie and updates lastview
+     * Play the selected movie and updates lastview
      * @param event
      * @throws IOException 
      */
@@ -258,7 +258,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * opens a new menu to create a new movie
+     * Opens a new menu to create a new movie
      * @param event
      * @throws IOException 
      */
@@ -278,7 +278,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * opens a new menu to edit a already exsting movie
+     * Opens a new menu to edit a already exsting movie
      * @param event
      * @throws IOException 
      */
@@ -300,7 +300,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * gives the user a pop-up asking if they want to delete the selcted movie
+     * Gives the user a pop-up asking if they want to delete the selcted movie
      * @param event
      * @throws IOException 
      */
@@ -321,7 +321,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * closes the program
+     * Closes the program
      * @param event 
      */
     @FXML
@@ -333,7 +333,7 @@ public class AppController implements Initializable {
 
 
     /**
-     * shows the movies in a selected category in the moviesInCategory listview
+     * Shows the movies in a selected category in the moviesInCategory listview
      * @param event 
      */
     @FXML
@@ -355,7 +355,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * adds a chosen movie to a selcted category
+     * Adds a chosen movie to a selcted category
      * @param event 
      */
     @FXML
@@ -389,7 +389,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * opens a new window to add a new category
+     * Opens a new window to add a new category
      * @param event
      * @throws IOException 
      */
@@ -410,7 +410,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * opens a window to edit an exsiting category
+     * Opens a window to edit an exsiting category
      * @param event
      * @throws IOException 
      */
@@ -431,7 +431,7 @@ public class AppController implements Initializable {
     }
 
     /**
-     * gives the user a pop-up asking if they want to delete a selcted category
+     * Gives the user a pop-up asking if they want to delete a selcted category
      * @param event
      * @throws IOException 
      */
@@ -453,7 +453,7 @@ public class AppController implements Initializable {
 
    
     /**
-     * handels the search function for the program, making it poisblie
+     * Handels the search function for the program, making it poisblie
      * to filter between titel, raiting and categories at the same time
      */
     private void search()
@@ -479,7 +479,7 @@ public class AppController implements Initializable {
     }
     
     /**
-     * deletes a song from a category
+     * Deletes a song from a category
      * @param event 
      */
     @FXML

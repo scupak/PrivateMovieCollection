@@ -15,10 +15,9 @@ import privateMovieCollection.bll.CategoryManager;
 import privateMovieCollection.bll.VideoPlayer;
 import privateMovieCollection.bll.MovieManager;
 import privateMovieCollection.dal.PmcDalException;
-import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
- *Appmodel lets the GUI layer perform operations via the bll layer. 
+ *  Appmodel lets the GUI layer perform operations via the bll layer. 
  * @author andreasvillumsen
  */
 public class AppModel {
@@ -47,20 +46,22 @@ public class AppModel {
         
         moviesInCategory = FXCollections.observableArrayList();
         
-        if (categoryManager.getAllCategories().size() != 0) {
+        if (!categoryManager.getAllCategories().isEmpty()) {
             moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(categoryManager.getAllCategories().get(0)));
         }
         
     }
+    
     /**
      * clears the list of movies then adds them all back by calling moviemanager.getAllMovies. 
-     * @return 
+     * @return allMovies
      */
     public ObservableList<Movie> getAllMovies() throws PmcDalException{
-    allMovies.clear();
-    allMovies.addAll(movieManager.getAllMovies());
-    return allMovies;
+        allMovies.clear();
+        allMovies.addAll(movieManager.getAllMovies());
+        return allMovies;
     }
+    
    /**
     * gives you acces to the videoplayer classes methods.
     * @return 
@@ -72,6 +73,8 @@ public class AppModel {
     /**
      * Creates a new movie by calling moviemanager
      * @param movieToAdd 
+     * @return movie
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public Movie createMovie(Movie movieToAdd) throws PmcDalException
     {
@@ -84,6 +87,7 @@ public class AppModel {
     /**
      * Deletes a movie by calling moviemanager
      * @param movie 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public void deleteMovie(Movie movie) throws PmcDalException{
         movieManager.deleteMovie(movie);
@@ -93,6 +97,7 @@ public class AppModel {
      * Updates a movie by calling moviemanager. 
      * @param movie 
      * @return result
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public boolean updateMovie(Movie movie) throws PmcDalException{
         boolean result;
