@@ -155,7 +155,7 @@ public class CategoryDBDAO implements CategoryFacade {
      * @param category
      * @return list of movies
      */
-    public List<Movie> getAllMoviesInCategory(Category category) {
+    public List<Movie> getAllMoviesInCategory(Category category) throws PmcDalException{
         ArrayList<Movie> movies = new ArrayList<>();
 
         try ( Connection con = dbCon.getConnection()) {
@@ -281,6 +281,6 @@ public class CategoryDBDAO implements CategoryFacade {
         //categoryDB.updateCategory(new Category(3, "action", 0));
         //categoryDB.deleteCategory(new Category(2, "name"));
         //categoryDB.addToCategory(new Category(4, "name",0), new Movie(7, "title", 0, "path", new java.util.Date(),""));
-        System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name",0)));
+       // System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name",0)));
     }
 }
