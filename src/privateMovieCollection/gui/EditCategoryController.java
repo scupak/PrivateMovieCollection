@@ -5,12 +5,17 @@
  */
 package privateMovieCollection.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
+import privateMovieCollection.dal.PmcDalException;
 
 /**
  *
@@ -42,11 +47,18 @@ public class EditCategoryController
     @FXML
     private void save(ActionEvent event)
     {
-        String name = categoryName.getText();
-        
-        Category categoryToUpdate = new Category(category.getId(), name, category.getMovies());
-        appModel.updateCategory(categoryToUpdate);
-        cancel(event);
+        try {
+            String name = categoryName.getText();
+            
+            Category categoryToUpdate = new Category(category.getId(), name, category.getMovies());
+            appModel.updateCategory(categoryToUpdate);
+            cancel(event);
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+        }
     }
 
     @FXML

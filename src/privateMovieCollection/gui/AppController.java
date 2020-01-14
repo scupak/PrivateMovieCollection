@@ -38,6 +38,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
+import privateMovieCollection.dal.PmcDalException;
 import privateMovieCollection.gui.AppModel;
 
 /**
@@ -337,11 +338,19 @@ public class AppController implements Initializable {
     @FXML
     private void moveToCategory(ActionEvent event)
     {
-        Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
-        appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie);
-        appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
-        appModel.categoriesClearAdd();
-        appModel.movieClearAdd();
+        
+        try {
+            Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
+            appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie);
+            appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
+            appModel.categoriesClearAdd();
+            appModel.movieClearAdd();
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+        }
     }
 
     /**
@@ -427,7 +436,10 @@ public class AppController implements Initializable {
         }
         catch (Exception ex)
         {
-          ex.printStackTrace();
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
         }
     }
     
@@ -438,12 +450,21 @@ public class AppController implements Initializable {
     @FXML
     private void deleteFromCategory(ActionEvent event)
     {
-        Movie currentlySelectedMovieInCategory = moviesInCategory.getSelectionModel().getSelectedItem();
-        
-        appModel.clearMovieFromCategory(currentlySelectedCategory, currentlySelectedMovieInCategory);
-        appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
-        appModel.categoriesClearAdd();
-        appModel.movieClearAdd();
+        try {
+            Movie currentlySelectedMovieInCategory = moviesInCategory.getSelectionModel().getSelectedItem();
+            
+            appModel.clearMovieFromCategory(currentlySelectedCategory, currentlySelectedMovieInCategory);
+            appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
+            appModel.categoriesClearAdd();
+            appModel.movieClearAdd();
+        } catch (PmcDalException ex) {
+            
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+           
+        }
     }
 
 }

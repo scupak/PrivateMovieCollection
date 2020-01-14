@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 
@@ -119,12 +120,27 @@ public class EditMovieController implements Initializable {
             intRaiting = Integer.parseInt(raiting);
         } catch(NumberFormatException e){
             intRaiting = 0;
+            JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+        
         }
         
-        Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview()); 
-        appModel.updateMovie(movieToUpdate);
-        
+        Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview());
+       try{ 
+        if(appModel.updateMovie(movieToUpdate) == false){
+
+            throw new NullPointerException();
+
+        } 
         cancel(event);
+       }
+       catch(NullPointerException exeption){
+       JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+
+       }
     }
 
     @FXML
