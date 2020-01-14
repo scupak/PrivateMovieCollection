@@ -54,8 +54,9 @@ public class CategoryDBDAO implements CategoryFacade {
             return categories;
 
         } catch (SQLServerException ex) {
-            
+          
            throw new PmcDalException("culd not get all categories from database", ex);
+           
            
         } catch (SQLException ex) {
             throw new PmcDalException("culd not get all categories from database", ex);
@@ -69,10 +70,9 @@ public class CategoryDBDAO implements CategoryFacade {
      *
      * @param category
      * @return boolean
-     * @throws privateMovieCollection.dal.PmcDalException
      */
     @Override
-    public Category createCategory(Category category) throws PmcDalException{
+    public Category createCategory(Category category) throws PmcDalException {
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO category "
                     + "(name) "
@@ -91,12 +91,12 @@ public class CategoryDBDAO implements CategoryFacade {
             return category;
 
         } catch (SQLServerException ex) {
-            throw new PmcDalException("culd not get all categories from database", ex);
+             throw new PmcDalException("culd not create categories", ex);
         } catch (SQLException ex) {
-            throw new PmcDalException("culd not get all categories from database", ex);
+             throw new PmcDalException("culd not create categories", ex);
         }
 
-    
+        //return null;
     }
 
     /**
@@ -106,7 +106,7 @@ public class CategoryDBDAO implements CategoryFacade {
      * @return boolean
      */
     @Override
-    public boolean updateCategory(Category category) {
+    public boolean updateCategory(Category category) throws PmcDalException{
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("UPDATE category SET name = ? WHERE id = ?");
             ps.setString(1, category.getName());
@@ -115,12 +115,12 @@ public class CategoryDBDAO implements CategoryFacade {
             return updatedRows > 0;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+           throw new PmcDalException("culd not update categories", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           throw new PmcDalException("culd not update categories", ex);
         }
 
-        return false;
+        //return false;
     }
 
     /**
@@ -130,7 +130,7 @@ public class CategoryDBDAO implements CategoryFacade {
      * @return boolean
      */
     @Override
-    public boolean deleteCategory(Category category) {
+    public boolean deleteCategory(Category category) throws PmcDalException{
         if (clearCategory(category)) {
             try ( Connection con = dbCon.getConnection()) {
                 PreparedStatement ps = con.prepareStatement("DELETE FROM category WHERE id = ?");
@@ -140,9 +140,9 @@ public class CategoryDBDAO implements CategoryFacade {
                 return updatedRows > 0;
 
             } catch (SQLServerException ex) {
-                ex.printStackTrace();
+                throw new PmcDalException("culd not get all categories from database", ex);
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                throw new PmcDalException("culd not get all categories from database", ex);
             }
         }
 
