@@ -141,7 +141,7 @@ public class AppModel {
      * @param category
      * @param movie 
      */
-    public void addToCategory(Category category, Movie movie)
+    public void addToCategory(Category category, Movie movie)throws PmcDalException
     {
         categoryManager.addToCategory(category, movie);
         moviesInCategoriesClearAdd(category);
@@ -172,7 +172,7 @@ public class AppModel {
      * Updates a category.
      * @param category 
      */
-    public void updateCategory(Category category){
+    public void updateCategory(Category category) throws PmcDalException{
         categoryManager.updateCategory(category);
         categoriesClearAdd();
     }
@@ -227,7 +227,7 @@ public class AppModel {
      * Deletes a category.
      * @param category 
      */
-    public void deleteCategory(Category category){
+    public void deleteCategory(Category category) throws PmcDalException{
         categoryManager.deleteCategory(category);
         categoriesClearAdd();
         movieClearAdd();
