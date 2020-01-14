@@ -84,9 +84,20 @@ public class CategoryManager {
      * 
      * @param category
      * @param movie 
+     * @return  
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
-    public void addToCategory(Category category, Movie movie)throws PmcDalException{
-        CategoryDBDAO.addToCategory(category, movie);
+    public boolean addToCategory(Category category, Movie movie)throws PmcDalException{
+        for (Movie movie1 : getAllMoviesinCategory(category)) {
+            
+            if(movie1.getTitle().equals(movie.getTitle())){
+                
+                return false;
+            
+            }
+        }
+        
+       return CategoryDBDAO.addToCategory(category, movie);
     }
     
     /**

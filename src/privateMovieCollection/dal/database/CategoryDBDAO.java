@@ -272,27 +272,7 @@ public class CategoryDBDAO implements CategoryFacade {
 
         return false;
     }
-    public boolean movieExistincategory(Movie movie, Category category) {
-        try ( Connection con = dbCon.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ? AND id != ?");
-            ps.setString(1, movie.getTitle());
-            ps.setInt(2, movie.getId());
-            
-            ResultSet rs = ps.executeQuery();
-            
-            while (rs.next()) {
-                return true;
-            }
-            
-            return false;
-        } catch (SQLServerException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        
-        return false;
-    }
+    
     public static void main(String[] args) {
         ArrayList<Category> categories = new ArrayList<>();
         
