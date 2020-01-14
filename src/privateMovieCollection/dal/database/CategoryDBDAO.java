@@ -6,6 +6,7 @@
 package privateMovieCollection.dal.database;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -28,7 +29,7 @@ public class CategoryDBDAO implements CategoryFacade {
     /**
      * MovieDBDAO constructor
      */
-    public CategoryDBDAO() {
+    public CategoryDBDAO() throws IOException {
         dbCon = new DatabaseConnector();
     }
     
@@ -140,9 +141,9 @@ public class CategoryDBDAO implements CategoryFacade {
                 return updatedRows > 0;
 
             } catch (SQLServerException ex) {
-                throw new PmcDalException("culd not get all categories from database", ex);
+                throw new PmcDalException("culd not delete category from database", ex);
             } catch (SQLException ex) {
-                throw new PmcDalException("culd not get all categories from database", ex);
+                throw new PmcDalException("culd not delete category from database", ex);
             }
         }
 
@@ -181,9 +182,9 @@ public class CategoryDBDAO implements CategoryFacade {
             return movies;
 
         } catch (SQLServerException ex) {
-            throw new PmcDalException("culd not get all categories from database", ex);
+            throw new PmcDalException("culd not get all movies in category from database", ex);
         } catch (SQLException ex) {
-            throw new PmcDalException("culd not get all categories from database", ex);
+            throw new PmcDalException("culd not get all movies in category from database", ex);
         }
 
         //return null;
@@ -196,7 +197,7 @@ public class CategoryDBDAO implements CategoryFacade {
      * @param movie
      * @return boolean
      */
-    public boolean addToCategory(Category category, Movie movie) {
+    public boolean addToCategory(Category category, Movie movie) throws PmcDalException{
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO category_movie "
                     + "(movieid, categoryid) VALUES (?,?)");
@@ -206,12 +207,12 @@ public class CategoryDBDAO implements CategoryFacade {
             return ps.executeUpdate() > 0;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+             throw new PmcDalException("culd not add to category", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+             throw new PmcDalException("culd not add to category", ex);
         }
 
-        return false;
+       //return false;
     }
     
     /**
@@ -220,7 +221,7 @@ public class CategoryDBDAO implements CategoryFacade {
      * @param category
      * @return boolean
      */
-    public boolean clearCategory(Category category) {
+    public boolean clearCategory(Category category) throws PmcDalException{
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("DELETE FROM category_movie WHERE categoryid = ?");
             ps.setInt(1, category.getId());
@@ -237,12 +238,12 @@ public class CategoryDBDAO implements CategoryFacade {
             return true;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not clear category", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not clear category", ex);
         }
 
-        return false;
+        //return false;
     }
     
     /**
@@ -252,7 +253,7 @@ public class CategoryDBDAO implements CategoryFacade {
      * @param movie
      * @return boolean indicating if the deletion was successfull
      */
-    public boolean clearMovieFromCategory(Category category, Movie movie) {
+    public boolean clearMovieFromCategory(Category category, Movie movie) throws PmcDalException{
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "DELETE FROM category_movie WHERE categoryid = ? "
@@ -265,9 +266,9 @@ public class CategoryDBDAO implements CategoryFacade {
             if (updatedRows > 0) return true;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not clear movie from category", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not clear movie from category", ex);
         }
 
         return false;
@@ -276,7 +277,7 @@ public class CategoryDBDAO implements CategoryFacade {
     public static void main(String[] args) {
         ArrayList<Category> categories = new ArrayList<>();
         
-        CategoryDBDAO categoryDB = new CategoryDBDAO();
+        //CategoryDBDAO categoryDB = new CategoryDBDAO();
         // System.out.println(categoryDB.getAllCategories());
         //categoryDB.createCategory(new Category(0, "action") );
         //categoryDB.updateCategory(new Category(3, "action", 0));

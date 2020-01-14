@@ -27,15 +27,11 @@ public class DatabaseConnector {
      * DatabaseConnector constructor
      * the class takes the info from the DBSettings.txt file and establishes a connection to the database. 
      */
-    public DatabaseConnector() {
+    public DatabaseConnector() throws FileNotFoundException, IOException{
         Properties props = new Properties();
-        try {
+       
             props.load(new FileReader("DBSettings.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DatabaseConnector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DatabaseConnector.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         dataSource = new SQLServerDataSource();
         dataSource.setDatabaseName(props.getProperty("database"));
         dataSource.setUser(props.getProperty("user"));

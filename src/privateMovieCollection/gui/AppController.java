@@ -474,7 +474,7 @@ public class AppController implements Initializable {
             int ratingQuery = (int) Math.round(minimumRatingSlider.getValue());
             appModel.search(titleQuery, filterQuery, ratingQuery);
         }
-        catch (Exception ex)
+        catch (PmcDalException ex)
         {
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);

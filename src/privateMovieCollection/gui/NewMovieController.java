@@ -120,7 +120,7 @@ public class NewMovieController implements Initializable {
             intRaiting = 0;
             JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
         
         }
          try{
@@ -138,7 +138,7 @@ public class NewMovieController implements Initializable {
         catch(NullPointerException exeption){
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
         
         } catch (PmcDalException ex) {
              JFrame jf=new JFrame();
