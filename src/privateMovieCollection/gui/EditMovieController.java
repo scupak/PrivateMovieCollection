@@ -79,17 +79,16 @@ public class EditMovieController implements Initializable {
     /**
      * Set the AppModel
      *
-     * We need to make sure that the controller uses the same appmodel as the
-     * rest of the program otherwise it would be working with different datasets.
-     * We therefore have a method that we call when the fxml stage is set where
-     * the correct appmodel is passed to the controller.
-     *
      * @param app
      */
     public void setAppModel(AppModel app) {
         appModel = app;
     }
     
+    /**
+     * set the selcted movie
+     * @param movie 
+     */
     public void setMovie(Movie movie) {
         this.movie = movie;
 
@@ -99,6 +98,10 @@ public class EditMovieController implements Initializable {
         fileTextField.setText(movie.getPath());
     }
 
+    /**
+     * closes the window without doing anything else
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {
@@ -107,6 +110,10 @@ public class EditMovieController implements Initializable {
     }
     
 
+    /**
+     * applyes the changes to an already existing movie
+     * @param event 
+     */
     @FXML
     private void save(ActionEvent event)
     {
@@ -143,6 +150,10 @@ public class EditMovieController implements Initializable {
        }
     }
 
+    /**
+     * opens a window to find the movies file
+     * @param event 
+     */
     @FXML
     private void movieChoiceButton(ActionEvent event)
     {
