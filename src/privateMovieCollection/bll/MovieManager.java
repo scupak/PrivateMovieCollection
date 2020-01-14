@@ -5,6 +5,7 @@
  */
 package privateMovieCollection.bll;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +27,9 @@ public class MovieManager {
 
     /**
      * Movie Manager Constructor
+     * @throws java.io.IOException
      */
-    public MovieManager() {
+    public MovieManager() throws IOException {
         movieDBDAO = new MovieDBDAO();
     }
     
@@ -35,6 +37,7 @@ public class MovieManager {
      * Get the movies and assign their categories
      * 
      * @return list of movies
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public List<Movie>getAllMovies() throws PmcDalException{
         List<Movie> result = movieDBDAO.getAllMovies();
@@ -55,6 +58,7 @@ public class MovieManager {
      * @param filterQuery
      * @param ratingQuery
      * @return movies
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public List<Movie> search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery) throws PmcDalException {
         List<Movie> searchBase = getAllMovies();
@@ -143,6 +147,8 @@ public class MovieManager {
      * Pass a movie to be created.
      * 
      * @param movie 
+     * @return  
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public Movie createMovie(Movie movie) throws PmcDalException{
        return movieDBDAO.createMovie(movie) ;
@@ -152,6 +158,7 @@ public class MovieManager {
      * Delete a movie from the database
      * 
      * @param movie 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public void deleteMovie(Movie movie) throws PmcDalException{
         movieDBDAO.deleteMovie(movie);
@@ -162,6 +169,7 @@ public class MovieManager {
      * 
      * @param movie 
      * @return  
+     * @throws privateMovieCollection.dal.PmcDalException  
      */
     public boolean updateMovie(Movie movie) throws PmcDalException{
         return movieDBDAO.updateMovie(movie);
@@ -169,8 +177,8 @@ public class MovieManager {
     
     public static void main(String[] args) throws PmcDalException {
         
-        MovieFacade movieDBDAO = new MovieDBDAO();
-        MovieManager manager = new MovieManager();
+        //MovieFacade movieDBDAO = new MovieDBDAO();
+       // MovieManager manager = new MovieManager();
         /*
         ArrayList<Movie> movies = new ArrayList<>();
          
@@ -180,10 +188,11 @@ public class MovieManager {
             System.out.println(movy);
         }
         */
-        
+      /*  
         for (Movie movy : manager.moviesToDelete())  {
             System.out.println(movy +" "+ movy.getRating() +" "+ movy.getLastview());
         }
+*/
     }
     
 }

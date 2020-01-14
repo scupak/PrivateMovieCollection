@@ -17,6 +17,7 @@ public interface CategoryFacade {
     /**
      * List over all categories in database
      * @return list of categories
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public List<Category> getAllCategories() throws PmcDalException;
     
@@ -24,6 +25,7 @@ public interface CategoryFacade {
      * Create a new category in the database
      * @param category
      * @return boolean
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public Category createCategory(Category category) throws PmcDalException;
     
@@ -31,6 +33,7 @@ public interface CategoryFacade {
      * Updates the database
      * @param category
      * @return boolean
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public boolean updateCategory(Category category) throws PmcDalException;
     
@@ -38,6 +41,7 @@ public interface CategoryFacade {
      * Deletes a category from the database
      * @param category
      * @return boolean
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public boolean deleteCategory(Category category) throws PmcDalException;
     
@@ -45,6 +49,7 @@ public interface CategoryFacade {
      * 
      * @param category
      * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
      public List<Movie> getAllMoviesInCategory(Category category) throws PmcDalException;
      
@@ -53,6 +58,7 @@ public interface CategoryFacade {
       * @param category
       * @param movie
       * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
       */
      public boolean addToCategory(Category category, Movie movie) throws PmcDalException;
      
@@ -60,6 +66,7 @@ public interface CategoryFacade {
       * 
       * @param category
       * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
       */
       public boolean clearCategory(Category category) throws PmcDalException;
       
@@ -68,6 +75,7 @@ public interface CategoryFacade {
        * @param category
        * @param movie
        * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
        */
       public boolean clearMovieFromCategory(Category category, Movie movie) throws PmcDalException;
 }

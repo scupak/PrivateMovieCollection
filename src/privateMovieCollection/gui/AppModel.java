@@ -32,6 +32,7 @@ public class AppModel {
 
     /**
      * AppModel constructor
+     * @throws java.lang.Exception
      */
     public AppModel() throws Exception {
         videoPlayer = new VideoPlayer();
@@ -54,7 +55,8 @@ public class AppModel {
     
     /**
      * clears the list of movies then adds them all back by calling moviemanager.getAllMovies. 
-     * @return allMovies
+     * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public ObservableList<Movie> getAllMovies() throws PmcDalException{
         allMovies.clear();
@@ -73,7 +75,7 @@ public class AppModel {
     /**
      * Creates a new movie by calling moviemanager
      * @param movieToAdd 
-     * @return movie
+     * @return the created movie
      * @throws privateMovieCollection.dal.PmcDalException 
      */
     public Movie createMovie(Movie movieToAdd) throws PmcDalException
@@ -108,6 +110,7 @@ public class AppModel {
     }
     /**
      * Refreshes the list of movies by clearing it then adding all the movies from the database via movieManger. 
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public void movieClearAdd() throws PmcDalException {
         allMovies.clear();
@@ -115,6 +118,7 @@ public class AppModel {
     }
     /**
      * Refreshes the list of categories then adds movies back from the database. 
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     public void categoriesClearAdd() throws PmcDalException{
         allCategories.clear();
@@ -122,7 +126,8 @@ public class AppModel {
     }
     /**
      * Gives you acces to a list of all categories. 
-     * @return 
+     * @return  allCategories
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public ObservableList<Category> getAllCategories() throws PmcDalException{
     allCategories.clear();
@@ -134,6 +139,7 @@ public class AppModel {
      * Gives you acces to a list of movies that are in the specified category.
      * @param category
      * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public ObservableList<Movie>getAllMoviesInCategory(Category category) throws PmcDalException{
         moviesInCategoriesClearAdd(category);
@@ -162,6 +168,7 @@ public class AppModel {
     /**
      * Refreshes the list of movies in a speciefied category. 
      * @param category 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public void moviesInCategoriesClearAdd(Category category) throws PmcDalException{
         moviesInCategory.clear();
@@ -180,6 +187,7 @@ public class AppModel {
     /**
      * Updates a category.
      * @param category 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public void updateCategory(Category category) throws PmcDalException{
         categoryManager.updateCategory(category);
@@ -190,6 +198,7 @@ public class AppModel {
      * @param category
      * @param movie
      * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public boolean clearMovieFromCategory(Category category, Movie movie) throws PmcDalException{
         boolean result = categoryManager.clearMovieFromPlayList(category, movie);
@@ -201,11 +210,11 @@ public class AppModel {
     
     }
     /**
-     * Searches the list of all movies. 
-     * Checks if any input was given then calls the moviemanager.search function based on the input.  
+     * Searches the list of all movies.Checks if any input was given then calls the moviemanager.search function based on the input.  
      * @param titleQuery
      * @param filterQuery
      * @param ratingQuery 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery) throws PmcDalException
     {
@@ -226,6 +235,7 @@ public class AppModel {
     /**
      * Gives acces to a list of movies for deletion. 
      * @return 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public List<Movie> moviesToDelete() throws PmcDalException{
     
@@ -235,6 +245,7 @@ public class AppModel {
     /**
      * Deletes a category.
      * @param category 
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
     public void deleteCategory(Category category) throws PmcDalException{
         categoryManager.deleteCategory(category);

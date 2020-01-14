@@ -6,6 +6,7 @@
 package privateMovieCollection.dal.database;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import java.util.List;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.dal.MovieFacade;
 import privateMovieCollection.be.Movie;
+import privateMovieCollection.dal.PmcDalException;
 
 /**
  *
@@ -28,7 +30,7 @@ public class MovieDBDAO implements MovieFacade {
     /**
      * MovieDBDAO constructor
      */
-    public MovieDBDAO() {
+    public MovieDBDAO() throws IOException {
         dbCon = new DatabaseConnector();
     }
     
@@ -38,7 +40,7 @@ public class MovieDBDAO implements MovieFacade {
      * @return list of movies
      */
     @Override
-    public List<Movie> getAllMovies() {
+    public List<Movie> getAllMovies() throws PmcDalException{
         ArrayList<Movie> movies = new ArrayList<>();
 
         try ( Connection con = dbCon.getConnection()) {
@@ -58,12 +60,12 @@ public class MovieDBDAO implements MovieFacade {
             return movies;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not get all movies from database", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not get all movies from database", ex);
         }
 
-        return null;
+       // return null;
     }
 
     /**
@@ -73,7 +75,7 @@ public class MovieDBDAO implements MovieFacade {
      * @return boolean
      */
     @Override
-    public Movie createMovie(Movie movie) {
+    public Movie createMovie(Movie movie) throws PmcDalException{
         if(movieExist(movie)) return null;
         
         try ( Connection con = dbCon.getConnection()) {
@@ -100,12 +102,12 @@ public class MovieDBDAO implements MovieFacade {
             return movie;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not create movie in database", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not create movie in database", ex);
         }
 
-        return null;
+        //return null;
     }
 
     /**
@@ -115,7 +117,7 @@ public class MovieDBDAO implements MovieFacade {
      * @return boolean
      */
     @Override
-    public boolean updateMovie(Movie movie) {
+    public boolean updateMovie(Movie movie) throws PmcDalException {
         if(movieExist(movie)) return false;
         
         try ( Connection con = dbCon.getConnection()) {
@@ -129,12 +131,12 @@ public class MovieDBDAO implements MovieFacade {
             return updatedRows > 0;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not update movie in  database", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not update movie in database", ex);
         }
 
-        return false;
+        //return false;
     }
 
     /**
@@ -144,7 +146,7 @@ public class MovieDBDAO implements MovieFacade {
      * @return boolean
      */
     @Override
-    public boolean deleteMovie(Movie movie) {
+    public boolean deleteMovie(Movie movie) throws PmcDalException{
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("DELETE FROM movie WHERE id = ?");
             ps.setInt(1, movie.getId());
@@ -153,12 +155,12 @@ public class MovieDBDAO implements MovieFacade {
             return updatedRows > 0;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not delete movie from database", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           throw new PmcDalException("culd not delete movie from database", ex);
         }
 
-        return false;
+        //return false;
     }
     
     /**
@@ -168,7 +170,7 @@ public class MovieDBDAO implements MovieFacade {
      * @param movie
      * @return true if movie exist, false if not.
      */
-    public boolean movieExist(Movie movie) {
+    public boolean movieExist(Movie movie) throws PmcDalException{
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE title = ? AND id != ?");
             ps.setString(1, movie.getTitle());
@@ -182,16 +184,16 @@ public class MovieDBDAO implements MovieFacade {
             
             return false;
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not find if the movie exists", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not find if the movie exists", ex);
         }
         
-        return false;
+       // return false;
     }
     
     @Override
-    public List<Category> GetAllCategoriesWithMovie(Movie movie){
+    public List<Category> GetAllCategoriesWithMovie(Movie movie) throws PmcDalException{
         ArrayList<Category> categories = new ArrayList<>();
         
         try ( Connection con = dbCon.getConnection()) {
@@ -214,12 +216,12 @@ public class MovieDBDAO implements MovieFacade {
             return categories;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not get all categories with movie from database", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not get all categories with movie from database", ex);
         }
         
-        return null;
+        //return null;
     }
 
     public List<Movie> searchMovies(String searchQuery, List<Category> filter, int rating) {
@@ -233,7 +235,7 @@ public class MovieDBDAO implements MovieFacade {
     public static void main(String[] args) {
         ArrayList<Movie> movies = new ArrayList<>();
         ArrayList<Category> categories = new ArrayList<>();
-        MovieDBDAO movieDB = new MovieDBDAO();
+       // MovieDBDAO movieDB = new MovieDBDAO();
         
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
@@ -242,7 +244,7 @@ public class MovieDBDAO implements MovieFacade {
       
         //categories.addAll(movieDB.GetAllCategoriesWithMovie(new Movie(3, "title", 0, "path", new Date(), "")));
       
-        movies.addAll(movieDB.getAllMovies());
+       // movies.addAll(movieDB.getAllMovies());
       
         for (Movie movie : movies) {
             
