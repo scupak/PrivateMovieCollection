@@ -30,8 +30,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JFrame;
@@ -117,8 +115,7 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         movieCategoryCol.setCellValueFactory( 
-                new PropertyValueFactory<Movie, String>("categories")
-        
+            new PropertyValueFactory<Movie, String>("categories")
         );
         
         movieTitelCol.setCellValueFactory( 
@@ -151,11 +148,10 @@ public class AppController implements Initializable {
         try   
         {
             appModel = new AppModel();
-       
 
-        minimumRatingSlider.valueProperty().addListener(new InvalidationListener() {
-                    @Override
-                    public void invalidated(Observable observable) {
+            minimumRatingSlider.valueProperty().addListener(new InvalidationListener() {
+                @Override
+                public void invalidated(Observable observable) {
 
                         minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
                        
@@ -207,8 +203,7 @@ public class AppController implements Initializable {
      * @param event 
      */
     @FXML
-    private void clickedOnMovieInCategory(MouseEvent event)
-    {
+    private void clickedOnMovieInCategory(MouseEvent event) {
         listSelection = listSelection.MOVIESINCATEGORY;
     }
     
