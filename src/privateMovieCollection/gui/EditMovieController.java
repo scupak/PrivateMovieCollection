@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 
@@ -78,17 +79,16 @@ public class EditMovieController implements Initializable {
     /**
      * Set the AppModel
      *
-     * We need to make sure that the controller uses the same appmodel as the
-     * rest of the program otherwise it would be working with different datasets.
-     * We therefore have a method that we call when the fxml stage is set where
-     * the correct appmodel is passed to the controller.
-     *
      * @param app
      */
     public void setAppModel(AppModel app) {
         appModel = app;
     }
     
+    /**
+     * set the selcted movie
+     * @param movie 
+     */
     public void setMovie(Movie movie) {
         this.movie = movie;
 
@@ -98,6 +98,10 @@ public class EditMovieController implements Initializable {
         fileTextField.setText(movie.getPath());
     }
 
+    /**
+     * closes the window without doing anything else
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {
@@ -106,6 +110,10 @@ public class EditMovieController implements Initializable {
     }
     
 
+    /**
+     * applyes the changes to an already existing movie
+     * @param event 
+     */
     @FXML
     private void save(ActionEvent event)
     {
@@ -119,14 +127,33 @@ public class EditMovieController implements Initializable {
             intRaiting = Integer.parseInt(raiting);
         } catch(NumberFormatException e){
             intRaiting = 0;
+            JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+        
         }
         
-        Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview()); 
-        appModel.updateMovie(movieToUpdate);
-        
+        Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview());
+       try{ 
+        if(appModel.updateMovie(movieToUpdate) == false){
+
+            throw new NullPointerException();
+
+        } 
         cancel(event);
+       }
+       catch(NullPointerException exeption){
+       JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+
+       }
     }
 
+    /**
+     * opens a window to find the movies file
+     * @param event 
+     */
     @FXML
     private void movieChoiceButton(ActionEvent event)
     {

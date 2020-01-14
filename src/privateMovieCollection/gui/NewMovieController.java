@@ -115,6 +115,10 @@ public class NewMovieController implements Initializable {
                 
         } catch(NumberFormatException e){
             intRaiting = 0;
+            JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+        
         }
          try{
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 

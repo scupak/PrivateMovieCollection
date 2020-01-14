@@ -5,11 +5,16 @@
  */
 package privateMovieCollection.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
+import privateMovieCollection.dal.PmcDalException;
 
 /**
  *
@@ -26,25 +31,47 @@ public class DeleteCategoryController
     @FXML
     private Button no;
 
-    
+    /**
+     * set the appModel object
+     * @param app 
+     */
      public void setAppModel(AppModel app) {
         appModel = app;
     }
      
+     /**
+      * set the selcted playlist 
+      * @param category 
+      */
      public void setCategory(Category category){
          this.category = category;
      }
     
+     /**
+      * delete the chosen category
+      * @param event 
+      */
     @FXML
     private void yes(ActionEvent event)
     {
-        appModel.deleteCategory(category);
-        appModel.categoriesClearAdd();
-        appModel.movieClearAdd();
-        appModel.moviesInCategoriesClearAdd(category);
-        no(event);
+        try {
+            appModel.deleteCategory(category);
+            appModel.categoriesClearAdd();
+            appModel.movieClearAdd();
+            appModel.moviesInCategoriesClearAdd(category);
+            no(event);
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+        }
     }
 
+    /**
+     * close the window without doing anything else
+     * @param event 
+     */
     @FXML
     private void no(ActionEvent event)
     {

@@ -160,9 +160,10 @@ public class MovieManager {
      * Update a movie
      * 
      * @param movie 
+     * @return  
      */
-    public void updateMovie(Movie movie) {
-        movieDBDAO.updateMovie(movie);
+    public boolean updateMovie(Movie movie) {
+        return movieDBDAO.updateMovie(movie);
     }
     
     public static void main(String[] args) {
