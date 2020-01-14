@@ -53,7 +53,7 @@ public class AppModel {
         
     }
     /**
-     * 
+     * clears the list of movies then adds them all back by calling moviemanager.getAllMovies. 
      * @return 
      */
     public ObservableList<Movie> getAllMovies(){
@@ -62,7 +62,7 @@ public class AppModel {
     return allMovies;
     }
    /**
-    * 
+    * gives you acces to the videoplayer classes methods.
     * @return 
     */
     public VideoPlayer getVideoPlayer()
@@ -70,7 +70,7 @@ public class AppModel {
         return videoPlayer;
     }
     /**
-     * 
+     * Creates a new movie by calling moviemanager
      * @param movieToAdd 
      */
     public Movie createMovie(Movie movieToAdd)
@@ -82,7 +82,7 @@ public class AppModel {
         return movie;
     }
     /**
-     * 
+     * Deletes a movie by calling moviemanager
      * @param movie 
      */
     public void deleteMovie(Movie movie){
@@ -90,7 +90,7 @@ public class AppModel {
         movieClearAdd();
     }
     /**
-     * 
+     * Updates a movie by calling moviemanager. 
      * @param movie 
      * @return result
      */
@@ -102,21 +102,21 @@ public class AppModel {
         return result;
     }
     /**
-     * 
+     * Refreshes the list of movies by clearing it then adding all the movies from the database via movieManger. 
      */
     public void movieClearAdd() {
         allMovies.clear();
         allMovies.addAll(movieManager.getAllMovies());
     }
     /**
-     * 
+     * Refreshes the list of categories then adds movies back from the database. 
      */
     public void categoriesClearAdd() throws PmcDalException{
         allCategories.clear();
         allCategories.addAll(categoryManager.getAllCategories());
     }
     /**
-     * 
+     * Gives you acces to a list of all categories. 
      * @return 
      */
     public ObservableList<Category> getAllCategories() throws PmcDalException{
@@ -126,7 +126,7 @@ public class AppModel {
     
     }
     /**
-     * 
+     * Gives you acces to a list of movies that are in the specified category.
      * @param category
      * @return 
      */
@@ -136,7 +136,12 @@ public class AppModel {
         
     }
     
-    public void addToCategory(Category category, Movie movie) throws PmcDalException
+    /**
+     * Adds a specified movie to a specified category. 
+     * @param category
+     * @param movie 
+     */
+    public void addToCategory(Category category, Movie movie)
     {
         categoryManager.addToCategory(category, movie);
         moviesInCategoriesClearAdd(category);
@@ -146,7 +151,7 @@ public class AppModel {
             
             
     /**
-     * 
+     * Refreshes the list of movies in a speciefied category. 
      * @param category 
      */
     public void moviesInCategoriesClearAdd(Category category){
@@ -155,7 +160,7 @@ public class AppModel {
     
     }
     /**
-     * 
+     * Creates a category. 
      * @param category 
      */
     void createCategory(Category category) throws PmcDalException{
@@ -163,12 +168,16 @@ public class AppModel {
         categoriesClearAdd();
     }
     
-    public void updateCategory(Category category) throws PmcDalException{
+    /**
+     * Updates a category.
+     * @param category 
+     */
+    public void updateCategory(Category category){
         categoryManager.updateCategory(category);
         categoriesClearAdd();
     }
     /**
-     * 
+     * Deletes a movie from a category. 
      * @param category
      * @param movie
      * @return 
@@ -182,7 +191,13 @@ public class AppModel {
     
     
     }
-    
+    /**
+     * Searches the list of all movies. 
+     * Checks if any input was given then calls the moviemanager.search function based on the input.  
+     * @param titleQuery
+     * @param filterQuery
+     * @param ratingQuery 
+     */
     public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
     {
         if (filterQuery.get(0).isEmpty() && ratingQuery == 0 && titleQuery.isEmpty())
@@ -199,12 +214,20 @@ public class AppModel {
         }
     }
     
+    /**
+     * Gives acces to a list of movies for deletion. 
+     * @return 
+     */
     public List<Movie> moviesToDelete(){
     
         return movieManager.moviesToDelete();
     }
     
-    public void deleteCategory(Category category) throws PmcDalException{
+    /**
+     * Deletes a category.
+     * @param category 
+     */
+    public void deleteCategory(Category category){
         categoryManager.deleteCategory(category);
         categoriesClearAdd();
         movieClearAdd();

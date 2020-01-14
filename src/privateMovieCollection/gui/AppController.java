@@ -165,11 +165,6 @@ public class AppController implements Initializable {
         movieList.setItems(appModel.getAllMovies());
        categoryList.setItems(appModel.getAllCategories());
        moviesInCategory.setItems(appModel.getAllMovies());
-        
-       /* System.out.println("");
-        System.out.println(appModel.getAllMoviesInCategory(appModel.getAllCategories().get(0)));
-        System.out.println("");*/
-       
        } catch (Exception ex)
         {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,17 +186,40 @@ public class AppController implements Initializable {
         
         }
     }
-    
+   /**
+    * calls the search funtion
+    * @param event 
+    */ 
  @FXML
     private void clickedsearchButton(ActionEvent event) {
         search();
     }
+    
+    /**
+     * sets listselction to MOVIESINCATEGORY
+     * @param event 
+     */
     @FXML
     private void clickedOnMovieInCategory(MouseEvent event)
     {
         listSelection = listSelection.MOVIESINCATEGORY;
     }
+    
+    /**
+     * sets the listSelection to MOVIES
+     * @param event 
+     */
+    @FXML
+    private void clickedOnMoive(MouseEvent event)
+    {
+        listSelection = ListSelection.MOVIES;
+    }
 
+    /**
+     * play the selected movie and updates lastview
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void play(ActionEvent event) throws IOException
     {
@@ -223,6 +241,11 @@ public class AppController implements Initializable {
         }
     }
 
+    /**
+     * opens a new menu to create a new movie
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void newMovie(ActionEvent event) throws IOException
     {
@@ -238,6 +261,11 @@ public class AppController implements Initializable {
         stage.show();
     }
 
+    /**
+     * opens a new menu to edit a already exsting movie
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void editMoive(ActionEvent event) throws IOException
     {
@@ -255,6 +283,11 @@ public class AppController implements Initializable {
         
     }
 
+    /**
+     * gives the user a pop-up asking if they want to delete the selcted movie
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void deleteMovie(ActionEvent event) throws IOException
     {
@@ -271,6 +304,10 @@ public class AppController implements Initializable {
         stage.show();
     }
 
+    /**
+     * closes the program
+     * @param event 
+     */
     @FXML
     private void exit(ActionEvent event)
     {
@@ -278,16 +315,14 @@ public class AppController implements Initializable {
         stage.close();
     }
 
-    @FXML
-    private void clickedOnMoive(MouseEvent event)
-    {
-        listSelection = ListSelection.MOVIES;
-    }
 
+    /**
+     * shows the movies in a selected category in the moviesInCategory listview
+     * @param event 
+     */
     @FXML
     private void updateCategoryView(MouseEvent event)
     {
-        System.out.println("fuck fuck");
         if(categoryList.getSelectionModel().getSelectedItem() != null){
             currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
             listSelection  = ListSelection.CATEGORY;
@@ -296,6 +331,10 @@ public class AppController implements Initializable {
         }
     }
 
+    /**
+     * adds a chosen movie to a selcted category
+     * @param event 
+     */
     @FXML
     private void moveToCategory(ActionEvent event)
     {
@@ -314,6 +353,11 @@ public class AppController implements Initializable {
         }
     }
 
+    /**
+     * opens a new window to add a new category
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void newCategory(ActionEvent event) throws IOException
     {
@@ -330,6 +374,11 @@ public class AppController implements Initializable {
         
     }
 
+    /**
+     * opens a window to edit an exsiting category
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void editCategory(ActionEvent event) throws IOException
     {
@@ -346,6 +395,11 @@ public class AppController implements Initializable {
         stage.show();
     }
 
+    /**
+     * gives the user a pop-up asking if they want to delete a selcted category
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void deleteCategory(ActionEvent event) throws IOException
     {
@@ -363,7 +417,10 @@ public class AppController implements Initializable {
     }
 
    
-    
+    /**
+     * handels the search function for the program, making it poisblie
+     * to filter between titel, raiting and categories at the same time
+     */
     private void search()
     {
         try 
@@ -386,19 +443,10 @@ public class AppController implements Initializable {
         }
     }
     
-    public static void main(String[] args) throws Exception {
-         
-         AppModel am = new AppModel();
-        ArrayList<Category> categories = new ArrayList<>();
-        
-         //System.out.println(am.getAllCategories()); 
-        
-       System.out.println(am.getAllMoviesInCategory(am.getAllCategories().get(0)));
-        
-        
-        
-    }
-    
+    /**
+     * deletes a song from a category
+     * @param event 
+     */
     @FXML
     private void deleteFromCategory(ActionEvent event)
     {

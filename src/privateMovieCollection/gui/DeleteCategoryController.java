@@ -31,15 +31,26 @@ public class DeleteCategoryController
     @FXML
     private Button no;
 
-    
+    /**
+     * set the appModel object
+     * @param app 
+     */
      public void setAppModel(AppModel app) {
         appModel = app;
     }
      
+     /**
+      * set the selcted playlist 
+      * @param category 
+      */
      public void setCategory(Category category){
          this.category = category;
      }
     
+     /**
+      * delete the chosen category
+      * @param event 
+      */
     @FXML
     private void yes(ActionEvent event)
     {
@@ -57,6 +68,10 @@ public class DeleteCategoryController
         }
     }
 
+    /**
+     * close the window without doing anything else
+     * @param event 
+     */
     @FXML
     private void no(ActionEvent event)
     {
