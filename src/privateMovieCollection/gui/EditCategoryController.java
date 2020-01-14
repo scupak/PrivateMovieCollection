@@ -33,17 +33,28 @@ public class EditCategoryController
     @FXML
     private Button cancelButton;
 
-    
+    /**
+     * set the appModel object
+     * @param app 
+     */
      public void setAppModel(AppModel app) {
         appModel = app;
     }
      
+     /**
+      * set the selcted category
+      * @param category 
+      */
      public void setCategory(Category category){
          this.category = category;
          
          categoryName.setText(category.getName());
      }
 
+     /**
+      * applyes the changes to an already existing category
+      * @param event 
+      */
     @FXML
     private void save(ActionEvent event)
     {
@@ -61,6 +72,10 @@ public class EditCategoryController
         }
     }
 
+    /**
+     * closes the window without doing anything else
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {
