@@ -34,8 +34,8 @@ import javax.swing.JFrame;
  * @author lumby
  */
 /**
- * NewSongController is the class that controls the fxml page where the user can
- * create and add new songs to the app
+ * NewMovieController is the class that controls the fxml page where the user can
+ * create and add new movies to the app
  */
 public class NewMovieController implements Initializable {
     
@@ -74,8 +74,7 @@ public class NewMovieController implements Initializable {
     private Label raitingLabel;
 
     /**
-     * Initializes the controller class. Creates a list of categories and sets
-     * it to the choiceBox.
+     * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
