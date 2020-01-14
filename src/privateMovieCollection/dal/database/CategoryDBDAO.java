@@ -69,9 +69,10 @@ public class CategoryDBDAO implements CategoryFacade {
      *
      * @param category
      * @return boolean
+     * @throws privateMovieCollection.dal.PmcDalException
      */
     @Override
-    public Category createCategory(Category category) {
+    public Category createCategory(Category category) throws PmcDalException{
         try ( Connection con = dbCon.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO category "
                     + "(name) "
@@ -90,12 +91,12 @@ public class CategoryDBDAO implements CategoryFacade {
             return category;
 
         } catch (SQLServerException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not get all categories from database", ex);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw new PmcDalException("culd not get all categories from database", ex);
         }
 
-        return null;
+    
     }
 
     /**
