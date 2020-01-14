@@ -164,7 +164,7 @@ public class NewMovieController implements Initializable {
     {
         FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null);
         fd.setDirectory("C:\\");
-        fd.setFile("*.mp4;*.mpeg4");
+        fd.setFile("*.mp4;*.mpg");
         fd.setVisible(true);
         filename = fd.getFile();
         directory = fd.getDirectory();

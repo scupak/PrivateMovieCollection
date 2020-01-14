@@ -369,8 +369,11 @@ public class AppController implements Initializable {
         
         try {
             Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
-           
-            appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie);
+           if (appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie) == false){
+               
+               throw new NullPointerException();
+           }
+            
             appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
             appModel.categoriesClearAdd();
             appModel.movieClearAdd();
@@ -381,7 +384,13 @@ public class AppController implements Initializable {
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
             
+        }catch(NullPointerException exception){
+            JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "movie already exists in category");
+        
         }
+        
     }
 
     /**
