@@ -18,7 +18,7 @@ import privateMovieCollection.dal.PmcDalException;
 import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
- *Appmodel lets the GUI layer perform operations vi the bll layer. 
+ *Appmodel lets the GUI layer perform operations via the bll layer. 
  * @author andreasvillumsen
  */
 public class AppModel {
