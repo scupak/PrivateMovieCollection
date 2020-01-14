@@ -14,12 +14,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * Main class. starts program.
  * @author andreasvillumsen
  */
 public class privateMovieCollection extends Application {
    
 
+    /**
+     * Loads in the main stage
+     * @param stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("gui/App.fxml"));
@@ -31,6 +36,7 @@ public class privateMovieCollection extends Application {
     }
 
     /**
+     * Launches the program.
      * @param args the command line arguments
      */
     public static void main(String[] args){

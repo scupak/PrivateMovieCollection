@@ -7,17 +7,22 @@ package privateMovieCollection.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
+import privateMovieCollection.dal.PmcDalException;
 
 /**
  * FXML Controller class
- *
+ *This class lets the user make new categories
  * @author lumby
  */
 public class NewCategoryController implements Initializable
@@ -37,22 +42,41 @@ public class NewCategoryController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        
     }    
     
+    /**
+     * Allows the appControler to pass the appmodel to this class. 
+     * @param app 
+     */
     public void setAppModel(AppModel app) {
         appModel = app;
     }
 
+    /**
+     * Names the category based on input then creates a new category. 
+     * @param event 
+     */
     @FXML
     private void save(ActionEvent event)
     {
-        String title = categoryName.getText();
-        Category categoryToAdd = new Category(0, title, 0);
-        appModel.createCategory(categoryToAdd);
-        cancel(event);
+        try {
+            String title = categoryName.getText();
+            Category categoryToAdd = new Category(0, title, 0);
+            appModel.createCategory(categoryToAdd);
+            cancel(event);
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            ;
+        }
     }
 
+    /**
+     * Closes the stage.
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {

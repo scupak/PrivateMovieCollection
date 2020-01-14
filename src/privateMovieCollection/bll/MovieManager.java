@@ -6,10 +6,13 @@
 package privateMovieCollection.bll;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
 import privateMovieCollection.dal.MovieFacade;
+import privateMovieCollection.dal.PmcDalException;
 import privateMovieCollection.dal.database.MovieDBDAO;
 
 /**
@@ -33,7 +36,7 @@ public class MovieManager {
      * 
      * @return list of movies
      */
-    public List<Movie>getAllMovies(){
+    public List<Movie>getAllMovies() throws PmcDalException{
         List<Movie> result = movieDBDAO.getAllMovies();
         
         for (Movie movie : result) {
@@ -53,7 +56,7 @@ public class MovieManager {
      * @param ratingQuery
      * @return movies
      */
-    public List<Movie> search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery) {
+    public List<Movie> search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery) throws PmcDalException {
         List<Movie> searchBase = getAllMovies();
         List<Movie> titleResult = new ArrayList<>();
         List<Movie> filterResult = new ArrayList<>();
@@ -99,14 +102,50 @@ public class MovieManager {
         
         return finalResult;
     }
-    
+     public List<Movie> moviesToDelete() throws PmcDalException{
+           final int daysin2years = 730;
+           Date currentdate = new Date();
+           List<Movie> finalResult = new ArrayList<>();
+           
+            for (Movie movie : getAllMovies()) {
+                boolean fordeletion = false;
+                if (movie.getRating() < 60 ) {
+                    fordeletion = true;
+                }
+            
+            
+            
+                long diff = currentdate.getTime() - movie.getLastview().getTime();
+                System.out.println(currentdate);
+                System.out.println(movie.getLastview());
+                System.out.println(diff);
+                System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                
+                if(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) >= daysin2years){
+                    fordeletion = true;
+                
+                }
+                
+                if(fordeletion){
+                    finalResult.add(movie);
+                
+                }
+            
+            }
+            
+            
+            return finalResult;
+        }
+     
+     
+     
     /**
      * Pass a movie to be created.
      * 
      * @param movie 
      */
-    public Movie createMovie(Movie movie){
-       return movieDBDAO.createMovie(movie);
+    public Movie createMovie(Movie movie) throws PmcDalException{
+       return movieDBDAO.createMovie(movie) ;
     }
     
     /**
@@ -114,7 +153,7 @@ public class MovieManager {
      * 
      * @param movie 
      */
-    public void deleteMovie(Movie movie){
+    public void deleteMovie(Movie movie) throws PmcDalException{
         movieDBDAO.deleteMovie(movie);
     }
     
@@ -122,21 +161,28 @@ public class MovieManager {
      * Update a movie
      * 
      * @param movie 
+     * @return  
      */
-    public void updateMovie(Movie movie) {
-        movieDBDAO.updateMovie(movie);
+    public boolean updateMovie(Movie movie) throws PmcDalException{
+        return movieDBDAO.updateMovie(movie);
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PmcDalException {
+        
         MovieFacade movieDBDAO = new MovieDBDAO();
         MovieManager manager = new MovieManager();
-        
+        /*
         ArrayList<Movie> movies = new ArrayList<>();
          
         movies.addAll(manager.getAllMovies());
         
         for (Movie movy : movies) {
             System.out.println(movy);
+        }
+        */
+        
+        for (Movie movy : manager.moviesToDelete())  {
+            System.out.println(movy +" "+ movy.getRating() +" "+ movy.getLastview());
         }
     }
     

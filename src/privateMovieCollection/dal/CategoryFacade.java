@@ -18,35 +18,35 @@ public interface CategoryFacade {
      * List over all categories in database
      * @return list of categories
      */
-    public List<Category> getAllCategories();
+    public List<Category> getAllCategories() throws PmcDalException;
     
      /**
      * Create a new category in the database
      * @param category
      * @return boolean
      */
-    public Category createCategory(Category category);
+    public Category createCategory(Category category) throws PmcDalException;
     
     /**
      * Updates the database
      * @param category
      * @return boolean
      */
-    public boolean updateCategory(Category category);
+    public boolean updateCategory(Category category) throws PmcDalException;
     
     /**
      * Deletes a category from the database
      * @param category
      * @return boolean
      */
-    public boolean deleteCategory(Category category);
+    public boolean deleteCategory(Category category) throws PmcDalException;
     
     /**
      * 
      * @param category
      * @return 
      */
-     public List<Movie> getAllMoviesInCategory(Category category);
+     public List<Movie> getAllMoviesInCategory(Category category) throws PmcDalException;
      
      /**
       * 
@@ -54,14 +54,14 @@ public interface CategoryFacade {
       * @param movie
       * @return 
       */
-     public boolean addToCategory(Category category, Movie movie);
+     public boolean addToCategory(Category category, Movie movie) throws PmcDalException;
      
      /**
       * 
       * @param category
       * @return 
       */
-      public boolean clearCategory(Category category);
+      public boolean clearCategory(Category category) throws PmcDalException;
       
       /**
        * 
@@ -69,5 +69,5 @@ public interface CategoryFacade {
        * @param movie
        * @return 
        */
-      public boolean clearMovieFromCategory(Category category, Movie movie);
+      public boolean clearMovieFromCategory(Category category, Movie movie) throws PmcDalException;
 }

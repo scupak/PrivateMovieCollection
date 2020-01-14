@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +32,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
+import privateMovieCollection.dal.PmcDalException;
+import privateMovieCollection.gui.AppModel;
 
 /**
  *
@@ -148,35 +153,75 @@ public class AppController implements Initializable {
                 @Override
                 public void invalidated(Observable observable) {
 
-                    minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
-
-                }
-            });
+                        minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
+                       
+                    }
+                });
         
-            movieList.setItems(appModel.getAllMovies());
-            categoryList.setItems(appModel.getAllCategories());
-            moviesInCategory.setItems(appModel.getAllMovies());
-
-            /* System.out.println("");
-            System.out.println(appModel.getAllMoviesInCategory(appModel.getAllCategories().get(0)));
-            System.out.println("");*/
-       
-        } catch (Exception ex)
+        movieList.setItems(appModel.getAllMovies());
+       categoryList.setItems(appModel.getAllCategories());
+       moviesInCategory.setItems(appModel.getAllMovies());
+       } catch (Exception ex)
         {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+            if(!appModel.moviesToDelete().isEmpty()){
+                List<Movie> finalResult = new ArrayList<>();
+                finalResult.addAll(appModel.moviesToDelete());
+                
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "remember to delete movies, that have a personal rating under 6 "
+                        + "and have not been opened from the application in more than 2 years."
+                        + "\n movies pending deletion:"
+                        + "\n" + appModel.moviesToDelete());
+                
+                
+                
+                
+            }
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+        }
     }
-    
-    @FXML
+   /**
+    * calls the search funtion
+    * @param event 
+    */ 
+ @FXML
     private void clickedsearchButton(ActionEvent event) {
         search();
     }
     
+    /**
+     * sets listselction to MOVIESINCATEGORY
+     * @param event 
+     */
     @FXML
     private void clickedOnMovieInCategory(MouseEvent event) {
         listSelection = listSelection.MOVIESINCATEGORY;
     }
+    
+    /**
+     * sets the listSelection to MOVIES
+     * @param event 
+     */
+    @FXML
+    private void clickedOnMoive(MouseEvent event)
+    {
+        listSelection = ListSelection.MOVIES;
+    }
 
+    /**
+     * play the selected movie and updates lastview
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void play(ActionEvent event) throws IOException
     {
@@ -184,19 +229,39 @@ public class AppController implements Initializable {
         
         if(listSelection == listSelection.MOVIES)
         {
-            appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
-            movieList.getSelectionModel().getSelectedItem().setLastview(lastview);
-            appModel.updateMovie(movieList.getSelectionModel().getSelectedItem());
-        } else if (listSelection == listSelection.MOVIESINCATEGORY)
+            try {
+                appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
+                movieList.getSelectionModel().getSelectedItem().setLastview(lastview);
+                appModel.updateMovie(movieList.getSelectionModel().getSelectedItem());
+            } catch (PmcDalException ex) {
+                JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+            }
+        }
+        else if(listSelection == listSelection.MOVIESINCATEGORY)
         {
-            appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
-            Movie movieUpdate = moviesInCategory.getSelectionModel().getSelectedItem();
-            movieUpdate.setLastview(lastview);
-            appModel.updateMovie(movieUpdate);
+            try {
+                appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
+                Movie movieUpdate = moviesInCategory.getSelectionModel().getSelectedItem();
+                movieUpdate.setLastview(lastview);
+                appModel.updateMovie(movieUpdate);
+            } catch (PmcDalException ex) {
+                 JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+            }
             
         }
     }
 
+    /**
+     * opens a new menu to create a new movie
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void newMovie(ActionEvent event) throws IOException
     {
@@ -212,6 +277,11 @@ public class AppController implements Initializable {
         stage.show();
     }
 
+    /**
+     * opens a new menu to edit a already exsting movie
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void editMoive(ActionEvent event) throws IOException
     {
@@ -229,6 +299,11 @@ public class AppController implements Initializable {
         
     }
 
+    /**
+     * gives the user a pop-up asking if they want to delete the selcted movie
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void deleteMovie(ActionEvent event) throws IOException
     {
@@ -245,6 +320,10 @@ public class AppController implements Initializable {
         stage.show();
     }
 
+    /**
+     * closes the program
+     * @param event 
+     */
     @FXML
     private void exit(ActionEvent event)
     {
@@ -252,35 +331,68 @@ public class AppController implements Initializable {
         stage.close();
     }
 
-    @FXML
-    private void clickedOnMoive(MouseEvent event)
-    {
-        listSelection = ListSelection.MOVIES;
-    }
 
+    /**
+     * shows the movies in a selected category in the moviesInCategory listview
+     * @param event 
+     */
     @FXML
     private void updateCategoryView(MouseEvent event)
     {
-        System.out.println("fuck fuck");
         if(categoryList.getSelectionModel().getSelectedItem() != null){
-            currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
-            listSelection  = ListSelection.CATEGORY;
-            moviesInCategory.setItems(appModel.getAllMoviesInCategory(categoryList.getSelectionModel().getSelectedItem()));
+            try {
+                currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
+                listSelection  = ListSelection.CATEGORY;
+                moviesInCategory.setItems(appModel.getAllMoviesInCategory(categoryList.getSelectionModel().getSelectedItem()));
+            } catch (PmcDalException ex) {
+                 JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+            }
         
         }
     }
 
+    /**
+     * adds a chosen movie to a selcted category
+     * @param event 
+     */
     @FXML
     private void moveToCategory(ActionEvent event)
     {
         
-        Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
-        appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie);
-        appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
-        appModel.categoriesClearAdd();
-        appModel.movieClearAdd();
+        try {
+            Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
+           if (appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie) == false){
+               
+               throw new NullPointerException();
+           }
+            
+            appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
+            appModel.categoriesClearAdd();
+            appModel.movieClearAdd();
+           
+            
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+        }catch(NullPointerException exception){
+            JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "movie already exists in category");
+        
+        }
+        
     }
 
+    /**
+     * opens a new window to add a new category
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void newCategory(ActionEvent event) throws IOException
     {
@@ -297,6 +409,11 @@ public class AppController implements Initializable {
         
     }
 
+    /**
+     * opens a window to edit an exsiting category
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void editCategory(ActionEvent event) throws IOException
     {
@@ -313,6 +430,11 @@ public class AppController implements Initializable {
         stage.show();
     }
 
+    /**
+     * gives the user a pop-up asking if they want to delete a selcted category
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void deleteCategory(ActionEvent event) throws IOException
     {
@@ -330,7 +452,10 @@ public class AppController implements Initializable {
     }
 
    
-    
+    /**
+     * handels the search function for the program, making it poisblie
+     * to filter between titel, raiting and categories at the same time
+     */
     private void search()
     {
         try 
@@ -346,32 +471,35 @@ public class AppController implements Initializable {
         }
         catch (Exception ex)
         {
-          ex.printStackTrace();
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
         }
     }
     
-    public static void main(String[] args) throws Exception {
-         
-        AppModel am = new AppModel();
-        ArrayList<Category> categories = new ArrayList<>();
-        
-         //System.out.println(am.getAllCategories()); 
-        
-       System.out.println(am.getAllMoviesInCategory(am.getAllCategories().get(0)));
-        
-        
-        
-    }
-    
+    /**
+     * deletes a song from a category
+     * @param event 
+     */
     @FXML
     private void deleteFromCategory(ActionEvent event)
     {
-        Movie currentlySelectedMovieInCategory = moviesInCategory.getSelectionModel().getSelectedItem();
-        
-        appModel.clearMovieFromCategory(currentlySelectedCategory, currentlySelectedMovieInCategory);
-        appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
-        appModel.categoriesClearAdd();
-        appModel.movieClearAdd();
+        try {
+            Movie currentlySelectedMovieInCategory = moviesInCategory.getSelectionModel().getSelectedItem();
+            
+            appModel.clearMovieFromCategory(currentlySelectedCategory, currentlySelectedMovieInCategory);
+            appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
+            appModel.categoriesClearAdd();
+            appModel.movieClearAdd();
+        } catch (PmcDalException ex) {
+            
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+           
+        }
     }
 
 }

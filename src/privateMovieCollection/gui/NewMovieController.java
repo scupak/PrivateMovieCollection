@@ -27,15 +27,18 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 import java.lang.NullPointerException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import privateMovieCollection.dal.PmcDalException;
 /**
  * FXML Controller class
  *
  * @author lumby
  */
 /**
- * NewSongController is the class that controls the fxml page where the user can
- * create and add new songs to the app
+ * NewMovieController is the class that controls the fxml page where the user can
+ * create and add new movies to the app
  */
 public class NewMovieController implements Initializable {
     
@@ -74,8 +77,7 @@ public class NewMovieController implements Initializable {
     private Label raitingLabel;
 
     /**
-     * Initializes the controller class. Creates a list of categories and sets
-     * it to the choiceBox.
+     * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,17 +92,17 @@ public class NewMovieController implements Initializable {
     }
 
     /**
-     * we need to make sure that the controller uses the same appmodel as the
-     * rest of the program otherwise it would be wotking with diferent datasets.
-     * We therefore have a method that we call when the fxml stage is set where
-     * the correct appmodel is passed to the controller.
+     * set appModel object
      */
     public void setAppModel(AppModel app) {
         appModel = app;
     }
 
  
-
+/**
+ * takes the input from the user and creates the movie.
+ * @param event 
+ */
     @FXML
     private void Save(ActionEvent event)
     {
@@ -116,10 +118,14 @@ public class NewMovieController implements Initializable {
                 
         } catch(NumberFormatException e){
             intRaiting = 0;
+            JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
+        
         }
          try{
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
-        //System.out.println("closed");
+      
         
         if(appModel.createMovie(movieToAdd) == null){
 
@@ -130,23 +136,29 @@ public class NewMovieController implements Initializable {
            
         }
         catch(NullPointerException exeption){
-            System.out.println(event);
-            System.out.println("lololololol");
-             //exeption.printStackTrace();
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
         
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
         }
        
     }
 
+    /**
+     * Lets the user indicate the video file to to asigned. 
+     * @param event 
+     */
     @FXML
     private void movieChoiceButton(ActionEvent event)
     {
         FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null);
         fd.setDirectory("C:\\");
-        fd.setFile("*.mp4;*.mpeg4");
+        fd.setFile("*.mp4;*.mpg");
         fd.setVisible(true);
         filename = fd.getFile();
         directory = fd.getDirectory();
@@ -158,11 +170,14 @@ public class NewMovieController implements Initializable {
 
     }
 
+    /**
+     * Closes the stage.
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {
         Stage stage = (Stage) Cancel.getScene().getWindow();
-        //System.out.println(cancel);
         
         stage.close();
     }
