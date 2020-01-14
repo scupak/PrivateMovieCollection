@@ -74,8 +74,7 @@ public class NewMovieController implements Initializable {
     private Label raitingLabel;
 
     /**
-     * Initializes the controller class. Creates a list of categories and sets
-     * it to the choiceBox.
+     * Initialize
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,10 +89,7 @@ public class NewMovieController implements Initializable {
     }
 
     /**
-     * we need to make sure that the controller uses the same appmodel as the
-     * rest of the program otherwise it would be wotking with diferent datasets.
-     * We therefore have a method that we call when the fxml stage is set where
-     * the correct appmodel is passed to the controller.
+     * set appModel object
      */
     public void setAppModel(AppModel app) {
         appModel = app;
@@ -101,6 +97,10 @@ public class NewMovieController implements Initializable {
 
  
 
+    /**
+     * create a new movie 
+     * @param event 
+     */
     @FXML
     private void Save(ActionEvent event)
     {
@@ -123,7 +123,7 @@ public class NewMovieController implements Initializable {
         }
          try{
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
-        //System.out.println("closed");
+     
         
         if(appModel.createMovie(movieToAdd) == null){
 
@@ -134,9 +134,6 @@ public class NewMovieController implements Initializable {
            
         }
         catch(NullPointerException exeption){
-            System.out.println(event);
-            System.out.println("lololololol");
-             //exeption.printStackTrace();
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
@@ -145,6 +142,10 @@ public class NewMovieController implements Initializable {
        
     }
 
+    /**
+     * opens a window to find the movies file
+     * @param event 
+     */
     @FXML
     private void movieChoiceButton(ActionEvent event)
     {
@@ -162,11 +163,14 @@ public class NewMovieController implements Initializable {
 
     }
 
+    /**
+     * closes the window without doing anything else
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {
         Stage stage = (Stage) Cancel.getScene().getWindow();
-        //System.out.println(cancel);
         
         stage.close();
     }
