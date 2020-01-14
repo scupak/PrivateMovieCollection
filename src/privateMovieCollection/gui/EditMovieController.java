@@ -32,7 +32,7 @@ import privateMovieCollection.dal.PmcDalException;
  *
  * @author lumby
  */
-/* This class controls the fxml that lets the user edit songs*/
+/* This class controls the fxml that lets the user edit movies*/
 public class EditMovieController implements Initializable {
 
     private AppModel appModel;

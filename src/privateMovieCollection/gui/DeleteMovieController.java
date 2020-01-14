@@ -18,7 +18,7 @@ import privateMovieCollection.be.Movie;
 import privateMovieCollection.dal.PmcDalException;
 
 /**
- *
+ * This class lets the user delete movies.
  * @author kacpe
  */
 public class DeleteMovieController {

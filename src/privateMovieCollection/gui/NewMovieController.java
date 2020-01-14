@@ -102,7 +102,10 @@ public class NewMovieController implements Initializable {
     }
 
  
-
+/**
+ * takes the input from the user and creates the movie.
+ * @param event 
+ */
     @FXML
     private void Save(ActionEvent event)
     {
@@ -125,7 +128,7 @@ public class NewMovieController implements Initializable {
         }
          try{
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
-        //System.out.println("closed");
+      
         
         if(appModel.createMovie(movieToAdd) == null){
 
@@ -152,6 +155,10 @@ public class NewMovieController implements Initializable {
        
     }
 
+    /**
+     * Lets the user indicate the video file to to asigned. 
+     * @param event 
+     */
     @FXML
     private void movieChoiceButton(ActionEvent event)
     {
@@ -169,6 +176,10 @@ public class NewMovieController implements Initializable {
 
     }
 
+    /**
+     * Closes the stage.
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {

@@ -22,7 +22,7 @@ import privateMovieCollection.dal.PmcDalException;
 
 /**
  * FXML Controller class
- *
+ *This class lets the user make new categories
  * @author lumby
  */
 public class NewCategoryController implements Initializable
