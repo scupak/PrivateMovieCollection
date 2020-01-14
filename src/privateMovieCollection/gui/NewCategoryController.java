@@ -22,7 +22,7 @@ import privateMovieCollection.dal.PmcDalException;
 
 /**
  * FXML Controller class
- *
+ *This class lets the user make new categories
  * @author lumby
  */
 public class NewCategoryController implements Initializable
@@ -42,13 +42,21 @@ public class NewCategoryController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        
     }    
     
+    /**
+     * Allows the appControler to pass the appmodel to this class. 
+     * @param app 
+     */
     public void setAppModel(AppModel app) {
         appModel = app;
     }
 
+    /**
+     * Names the category based on input then creates a new category. 
+     * @param event 
+     */
     @FXML
     private void save(ActionEvent event)
     {
@@ -65,6 +73,10 @@ public class NewCategoryController implements Initializable
         }
     }
 
+    /**
+     * Closes the stage.
+     * @param event 
+     */
     @FXML
     private void cancel(ActionEvent event)
     {

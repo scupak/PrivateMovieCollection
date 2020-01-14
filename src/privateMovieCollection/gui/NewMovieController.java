@@ -27,15 +27,18 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 import java.lang.NullPointerException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import privateMovieCollection.dal.PmcDalException;
 /**
  * FXML Controller class
  *
  * @author lumby
  */
 /**
- * NewSongController is the class that controls the fxml page where the user can
- * create and add new songs to the app
+ * NewMovieController is the class that controls the fxml page where the user can
+ * create and add new movies to the app
  */
 public class NewMovieController implements Initializable {
     
@@ -74,7 +77,7 @@ public class NewMovieController implements Initializable {
     private Label raitingLabel;
 
     /**
-     * Initialize
+     * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -96,11 +99,10 @@ public class NewMovieController implements Initializable {
     }
 
  
-
-    /**
-     * create a new movie 
-     * @param event 
-     */
+/**
+ * takes the input from the user and creates the movie.
+ * @param event 
+ */
     @FXML
     private void Save(ActionEvent event)
     {
@@ -123,7 +125,7 @@ public class NewMovieController implements Initializable {
         }
          try{
         Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
-     
+      
         
         if(appModel.createMovie(movieToAdd) == null){
 
@@ -138,12 +140,17 @@ public class NewMovieController implements Initializable {
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
         
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
         }
        
     }
 
     /**
-     * opens a window to find the movies file
+     * Lets the user indicate the video file to to asigned. 
      * @param event 
      */
     @FXML
@@ -164,7 +171,7 @@ public class NewMovieController implements Initializable {
     }
 
     /**
-     * closes the window without doing anything else
+     * Closes the stage.
      * @param event 
      */
     @FXML

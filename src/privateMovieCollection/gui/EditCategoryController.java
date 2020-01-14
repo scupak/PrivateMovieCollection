@@ -18,7 +18,7 @@ import privateMovieCollection.be.Category;
 import privateMovieCollection.dal.PmcDalException;
 
 /**
- *
+ *This class lets the user edit categories.
  * @author lumby
  */
 public class EditCategoryController

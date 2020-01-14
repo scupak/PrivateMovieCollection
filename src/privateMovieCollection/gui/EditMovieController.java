@@ -9,6 +9,8 @@ import java.awt.FileDialog;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -23,13 +25,14 @@ import javafx.stage.Stage;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
+import privateMovieCollection.dal.PmcDalException;
 
 /**
  * FXML Controller class
  *
  * @author lumby
  */
-/* This class controls the fxml that lets the user edit songs*/
+/* This class controls the fxml that lets the user edit movies*/
 public class EditMovieController implements Initializable {
 
     private AppModel appModel;
@@ -147,7 +150,11 @@ public class EditMovieController implements Initializable {
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
 
-       }
+       } catch (PmcDalException ex) {
+            JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+        }
     }
 
     /**

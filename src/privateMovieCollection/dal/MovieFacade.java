@@ -17,34 +17,39 @@ public interface MovieFacade {
     /**
      * List over all movies in database
      * @return list of movies
+     * @throws privateMovieCollection.dal.PmcDalException
      */
-    public List<Movie> getAllMovies();
+    public List<Movie> getAllMovies() throws PmcDalException;
     
      /**
      * Create a new movie in the database
      * @param movie
      * @return boolean
+     * @throws privateMovieCollection.dal.PmcDalException
      */
-    public Movie createMovie(Movie movie);
+    public Movie createMovie(Movie movie) throws PmcDalException;
     
     /**
      * Updates the database
      * @param movie
      * @return boolean
+     * @throws privateMovieCollection.dal.PmcDalException
      */
-    public boolean updateMovie(Movie movie);
+    public boolean updateMovie(Movie movie) throws PmcDalException;
     
     /**
      * Deletes a movie from the database
      * @param movie
      * @return boolean
+     * @throws privateMovieCollection.dal.PmcDalException
      */
-   public boolean deleteMovie(Movie movie);
+   public boolean deleteMovie(Movie movie) throws PmcDalException;
    
    /**
     * 
     * @param movie
-    * @return 
+    * @return list of categories that include a specifc movie
+     * @throws privateMovieCollection.dal.PmcDalException 
     */
-    public List<Category>GetAllCategoriesWithMovie(Movie movie);
+    public List<Category>GetAllCategoriesWithMovie(Movie movie) throws PmcDalException;
 }

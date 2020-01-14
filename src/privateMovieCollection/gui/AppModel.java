@@ -18,7 +18,7 @@ import privateMovieCollection.dal.PmcDalException;
 import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
- *
+ *Appmodel lets the GUI layer perform operations via the bll layer. 
  * @author andreasvillumsen
  */
 public class AppModel {
@@ -53,16 +53,16 @@ public class AppModel {
         
     }
     /**
-     * 
+     * clears the list of movies then adds them all back by calling moviemanager.getAllMovies. 
      * @return 
      */
-    public ObservableList<Movie> getAllMovies(){
+    public ObservableList<Movie> getAllMovies() throws PmcDalException{
     allMovies.clear();
     allMovies.addAll(movieManager.getAllMovies());
     return allMovies;
     }
    /**
-    * 
+    * gives you acces to the videoplayer classes methods.
     * @return 
     */
     public VideoPlayer getVideoPlayer()
@@ -70,10 +70,10 @@ public class AppModel {
         return videoPlayer;
     }
     /**
-     * 
+     * Creates a new movie by calling moviemanager
      * @param movieToAdd 
      */
-    public Movie createMovie(Movie movieToAdd)
+    public Movie createMovie(Movie movieToAdd) throws PmcDalException
     {
         Movie movie;
         movie = movieManager.createMovie(movieToAdd);
@@ -82,19 +82,19 @@ public class AppModel {
         return movie;
     }
     /**
-     * 
+     * Deletes a movie by calling moviemanager
      * @param movie 
      */
-    public void deleteMovie(Movie movie){
+    public void deleteMovie(Movie movie) throws PmcDalException{
         movieManager.deleteMovie(movie);
         movieClearAdd();
     }
     /**
-     * 
+     * Updates a movie by calling moviemanager. 
      * @param movie 
      * @return result
      */
-    public boolean updateMovie(Movie movie){
+    public boolean updateMovie(Movie movie) throws PmcDalException{
         boolean result;
       result =  movieManager.updateMovie(movie);
         movieClearAdd();
@@ -102,21 +102,21 @@ public class AppModel {
         return result;
     }
     /**
-     * 
+     * Refreshes the list of movies by clearing it then adding all the movies from the database via movieManger. 
      */
-    public void movieClearAdd() {
+    public void movieClearAdd() throws PmcDalException {
         allMovies.clear();
         allMovies.addAll(movieManager.getAllMovies());
     }
     /**
-     * 
+     * Refreshes the list of categories then adds movies back from the database. 
      */
     public void categoriesClearAdd() throws PmcDalException{
         allCategories.clear();
         allCategories.addAll(categoryManager.getAllCategories());
     }
     /**
-     * 
+     * Gives you acces to a list of all categories. 
      * @return 
      */
     public ObservableList<Category> getAllCategories() throws PmcDalException{
@@ -126,36 +126,45 @@ public class AppModel {
     
     }
     /**
-     * 
+     * Gives you acces to a list of movies that are in the specified category.
      * @param category
      * @return 
      */
-    public ObservableList<Movie>getAllMoviesInCategory(Category category){
+    public ObservableList<Movie>getAllMoviesInCategory(Category category) throws PmcDalException{
         moviesInCategoriesClearAdd(category);
         return moviesInCategory;
         
     }
     
-    public void addToCategory(Category category, Movie movie) throws PmcDalException
+    /**
+     * Adds a specified movie to a specified category. 
+     * @param category
+     * @param movie 
+     * @return  
+     * @throws privateMovieCollection.dal.PmcDalException 
+     */
+    public boolean addToCategory(Category category, Movie movie)throws PmcDalException
     {
-        categoryManager.addToCategory(category, movie);
+        boolean result = categoryManager.addToCategory(category, movie);
         moviesInCategoriesClearAdd(category);
         allCategories.clear();
         allCategories.addAll(categoryManager.getAllCategories());
+        
+        return result;
     }
             
             
     /**
-     * 
+     * Refreshes the list of movies in a speciefied category. 
      * @param category 
      */
-    public void moviesInCategoriesClearAdd(Category category){
+    public void moviesInCategoriesClearAdd(Category category) throws PmcDalException{
         moviesInCategory.clear();
         moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(category));
     
     }
     /**
-     * 
+     * Creates a category. 
      * @param category 
      */
     void createCategory(Category category) throws PmcDalException{
@@ -163,12 +172,16 @@ public class AppModel {
         categoriesClearAdd();
     }
     
+    /**
+     * Updates a category.
+     * @param category 
+     */
     public void updateCategory(Category category) throws PmcDalException{
         categoryManager.updateCategory(category);
         categoriesClearAdd();
     }
     /**
-     * 
+     * Deletes a movie from a category. 
      * @param category
      * @param movie
      * @return 
@@ -182,8 +195,14 @@ public class AppModel {
     
     
     }
-    
-    public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
+    /**
+     * Searches the list of all movies. 
+     * Checks if any input was given then calls the moviemanager.search function based on the input.  
+     * @param titleQuery
+     * @param filterQuery
+     * @param ratingQuery 
+     */
+    public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery) throws PmcDalException
     {
         if (filterQuery.get(0).isEmpty() && ratingQuery == 0 && titleQuery.isEmpty())
         {
@@ -199,11 +218,19 @@ public class AppModel {
         }
     }
     
-    public List<Movie> moviesToDelete(){
+    /**
+     * Gives acces to a list of movies for deletion. 
+     * @return 
+     */
+    public List<Movie> moviesToDelete() throws PmcDalException{
     
         return movieManager.moviesToDelete();
     }
     
+    /**
+     * Deletes a category.
+     * @param category 
+     */
     public void deleteCategory(Category category) throws PmcDalException{
         categoryManager.deleteCategory(category);
         categoriesClearAdd();

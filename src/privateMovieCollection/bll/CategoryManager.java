@@ -47,7 +47,7 @@ public class CategoryManager {
      * 
      * @param category
      */
-    public void createCategory(Category category){
+    public void createCategory(Category category) throws PmcDalException{
         CategoryDBDAO.createCategory(category);
     }
     
@@ -56,7 +56,7 @@ public class CategoryManager {
      * 
      * @param category 
      */
-    public void deleteCategory(Category category){
+    public void deleteCategory(Category category)throws PmcDalException{
         CategoryDBDAO.deleteCategory(category);
     }
     
@@ -65,7 +65,7 @@ public class CategoryManager {
      * 
      * @param category 
      */
-    public void updateCategory(Category category)   {
+    public void updateCategory(Category category)throws PmcDalException   {
         CategoryDBDAO.updateCategory(category);
     }
     
@@ -75,7 +75,7 @@ public class CategoryManager {
      * @param category
      * @return movies
      */
-    public List<Movie> getAllMoviesinCategory(Category category){
+    public List<Movie> getAllMoviesinCategory(Category category) throws PmcDalException{
         return CategoryDBDAO.getAllMoviesInCategory(category);
     
     }
@@ -84,9 +84,20 @@ public class CategoryManager {
      * 
      * @param category
      * @param movie 
+     * @return  
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
-    public void addToCategory(Category category, Movie movie){
-        CategoryDBDAO.addToCategory(category, movie);
+    public boolean addToCategory(Category category, Movie movie)throws PmcDalException{
+        for (Movie movie1 : getAllMoviesinCategory(category)) {
+            
+            if(movie1.getTitle().equals(movie.getTitle())){
+                
+                return false;
+            
+            }
+        }
+        
+       return CategoryDBDAO.addToCategory(category, movie);
     }
     
     /**
@@ -94,7 +105,7 @@ public class CategoryManager {
      * 
      * @param category 
      */
-    public void clearCategory(Category category){
+    public void clearCategory(Category category)throws PmcDalException{
         CategoryDBDAO.clearCategory(category);
     }
     
@@ -105,7 +116,7 @@ public class CategoryManager {
      * @param movie
      * @return 
      */
-    public boolean clearMovieFromPlayList(Category category, Movie movie){
+    public boolean clearMovieFromPlayList(Category category, Movie movie)throws PmcDalException{
         return CategoryDBDAO.clearMovieFromCategory(category, movie);
     }
     
