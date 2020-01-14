@@ -27,7 +27,10 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 import java.lang.NullPointerException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import privateMovieCollection.dal.PmcDalException;
 /**
  * FXML Controller class
  *
@@ -140,6 +143,11 @@ public class NewMovieController implements Initializable {
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already");
         
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
         }
        
     }

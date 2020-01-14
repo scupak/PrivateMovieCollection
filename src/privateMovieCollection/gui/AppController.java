@@ -170,20 +170,27 @@ public class AppController implements Initializable {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(!appModel.moviesToDelete().isEmpty()){
-            List<Movie> finalResult = new ArrayList<>();
-            finalResult.addAll(appModel.moviesToDelete());
-            
-              JFrame jf=new JFrame();
+        try {
+            if(!appModel.moviesToDelete().isEmpty()){
+                List<Movie> finalResult = new ArrayList<>();
+                finalResult.addAll(appModel.moviesToDelete());
+                
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "remember to delete movies, that have a personal rating under 6 "
+                        + "and have not been opened from the application in more than 2 years."
+                        + "\n movies pending deletion:"
+                        + "\n" + appModel.moviesToDelete());
+                
+                
+                
+                
+            }
+        } catch (PmcDalException ex) {
+             JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "remember to delete movies, that have a personal rating under 6 "
-                                             + "and have not been opened from the application in more than 2 years."
-                                             + "\n movies pending deletion:"
-                                             + "\n" + appModel.moviesToDelete());
+             JOptionPane.showMessageDialog(jf, ex);
             
-        
-        
-        
         }
     }
    /**
@@ -227,16 +234,30 @@ public class AppController implements Initializable {
         
         if(listSelection == listSelection.MOVIES)
         {
-            appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
-            movieList.getSelectionModel().getSelectedItem().setLastview(lastview);
-            appModel.updateMovie(movieList.getSelectionModel().getSelectedItem());
+            try {
+                appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
+                movieList.getSelectionModel().getSelectedItem().setLastview(lastview);
+                appModel.updateMovie(movieList.getSelectionModel().getSelectedItem());
+            } catch (PmcDalException ex) {
+                JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+            }
         }
         else if(listSelection == listSelection.MOVIESINCATEGORY)
         {
-            appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
-            Movie movieUpdate = moviesInCategory.getSelectionModel().getSelectedItem();
-            movieUpdate.setLastview(lastview);
-            appModel.updateMovie(movieUpdate);
+            try {
+                appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
+                Movie movieUpdate = moviesInCategory.getSelectionModel().getSelectedItem();
+                movieUpdate.setLastview(lastview);
+                appModel.updateMovie(movieUpdate);
+            } catch (PmcDalException ex) {
+                 JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+            }
             
         }
     }
@@ -324,9 +345,16 @@ public class AppController implements Initializable {
     private void updateCategoryView(MouseEvent event)
     {
         if(categoryList.getSelectionModel().getSelectedItem() != null){
-            currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
-            listSelection  = ListSelection.CATEGORY;
-            moviesInCategory.setItems(appModel.getAllMoviesInCategory(categoryList.getSelectionModel().getSelectedItem()));
+            try {
+                currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
+                listSelection  = ListSelection.CATEGORY;
+                moviesInCategory.setItems(appModel.getAllMoviesInCategory(categoryList.getSelectionModel().getSelectedItem()));
+            } catch (PmcDalException ex) {
+                 JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf, ex);
+            
+            }
         
         }
     }
