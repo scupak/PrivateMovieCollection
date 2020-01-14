@@ -140,13 +140,17 @@ public class AppModel {
      * Adds a specified movie to a specified category. 
      * @param category
      * @param movie 
+     * @return  
+     * @throws privateMovieCollection.dal.PmcDalException 
      */
-    public void addToCategory(Category category, Movie movie)throws PmcDalException
+    public boolean addToCategory(Category category, Movie movie)throws PmcDalException
     {
-        categoryManager.addToCategory(category, movie);
+        boolean result = categoryManager.addToCategory(category, movie);
         moviesInCategoriesClearAdd(category);
         allCategories.clear();
         allCategories.addAll(categoryManager.getAllCategories());
+        
+        return result;
     }
             
             
