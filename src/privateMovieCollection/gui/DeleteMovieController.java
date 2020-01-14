@@ -31,7 +31,7 @@ public class DeleteMovieController {
     private Button no;
 
     /**
-     * Sets the appModel
+     * Set the appModel
      *
      * @param app
      */
@@ -39,11 +39,19 @@ public class DeleteMovieController {
         appModel = app;
     }
 
+    /**
+     * set the selcted moive
+     * @param movie 
+     */
     public void setMovie(Movie movie)
     {
         this.movie = movie;
     }
     
+    /**
+     * delete the selcted song
+     * @param event 
+     */
     @FXML
     private void yes(ActionEvent event)
     {
@@ -71,6 +79,10 @@ public class DeleteMovieController {
         }
     }
 
+    /**
+     * Closes the window without doing anything else
+     * @param event 
+     */
     @FXML
     private void no(ActionEvent event)
     {
