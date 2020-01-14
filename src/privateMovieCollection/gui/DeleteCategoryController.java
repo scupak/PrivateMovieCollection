@@ -17,7 +17,7 @@ import privateMovieCollection.be.Category;
 import privateMovieCollection.dal.PmcDalException;
 
 /**
- *
+ * This class lets the user delete categories.
  * @author lumby
  */
 public class DeleteCategoryController

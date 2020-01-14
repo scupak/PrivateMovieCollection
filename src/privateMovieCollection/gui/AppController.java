@@ -341,10 +341,20 @@ public class AppController implements Initializable {
         
         try {
             Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
+           if (appModel.getAllMoviesInCategory(currentlySelectedCategory).contains(currentlySelectedMovie))
+           {
+              JFrame jf=new JFrame();
+             jf.setAlwaysOnTop(true);
+             JOptionPane.showMessageDialog(jf,"This Category alredy contains this movie, try agian");
+           }
+           else
+           {
             appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie);
             appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
             appModel.categoriesClearAdd();
             appModel.movieClearAdd();
+           }
+            
         } catch (PmcDalException ex) {
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);

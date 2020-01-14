@@ -18,7 +18,7 @@ import privateMovieCollection.dal.PmcDalException;
 import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
- *
+ *Appmodel lets the GUI layer perform operations vi the bll layer. 
  * @author andreasvillumsen
  */
 public class AppModel {
@@ -56,7 +56,7 @@ public class AppModel {
      * clears the list of movies then adds them all back by calling moviemanager.getAllMovies. 
      * @return 
      */
-    public ObservableList<Movie> getAllMovies(){
+    public ObservableList<Movie> getAllMovies() throws PmcDalException{
     allMovies.clear();
     allMovies.addAll(movieManager.getAllMovies());
     return allMovies;
@@ -73,7 +73,7 @@ public class AppModel {
      * Creates a new movie by calling moviemanager
      * @param movieToAdd 
      */
-    public Movie createMovie(Movie movieToAdd)
+    public Movie createMovie(Movie movieToAdd) throws PmcDalException
     {
         Movie movie;
         movie = movieManager.createMovie(movieToAdd);
@@ -85,7 +85,7 @@ public class AppModel {
      * Deletes a movie by calling moviemanager
      * @param movie 
      */
-    public void deleteMovie(Movie movie){
+    public void deleteMovie(Movie movie) throws PmcDalException{
         movieManager.deleteMovie(movie);
         movieClearAdd();
     }
@@ -94,7 +94,7 @@ public class AppModel {
      * @param movie 
      * @return result
      */
-    public boolean updateMovie(Movie movie){
+    public boolean updateMovie(Movie movie) throws PmcDalException{
         boolean result;
       result =  movieManager.updateMovie(movie);
         movieClearAdd();
@@ -104,7 +104,7 @@ public class AppModel {
     /**
      * Refreshes the list of movies by clearing it then adding all the movies from the database via movieManger. 
      */
-    public void movieClearAdd() {
+    public void movieClearAdd() throws PmcDalException {
         allMovies.clear();
         allMovies.addAll(movieManager.getAllMovies());
     }
@@ -130,7 +130,7 @@ public class AppModel {
      * @param category
      * @return 
      */
-    public ObservableList<Movie>getAllMoviesInCategory(Category category){
+    public ObservableList<Movie>getAllMoviesInCategory(Category category) throws PmcDalException{
         moviesInCategoriesClearAdd(category);
         return moviesInCategory;
         
@@ -154,7 +154,7 @@ public class AppModel {
      * Refreshes the list of movies in a speciefied category. 
      * @param category 
      */
-    public void moviesInCategoriesClearAdd(Category category){
+    public void moviesInCategoriesClearAdd(Category category) throws PmcDalException{
         moviesInCategory.clear();
         moviesInCategory.addAll(categoryManager.getAllMoviesinCategory(category));
     
@@ -198,7 +198,7 @@ public class AppModel {
      * @param filterQuery
      * @param ratingQuery 
      */
-    public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery)
+    public void search(String titleQuery, ArrayList<String> filterQuery, int ratingQuery) throws PmcDalException
     {
         if (filterQuery.get(0).isEmpty() && ratingQuery == 0 && titleQuery.isEmpty())
         {
@@ -218,7 +218,7 @@ public class AppModel {
      * Gives acces to a list of movies for deletion. 
      * @return 
      */
-    public List<Movie> moviesToDelete(){
+    public List<Movie> moviesToDelete() throws PmcDalException{
     
         return movieManager.moviesToDelete();
     }
