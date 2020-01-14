@@ -92,10 +92,14 @@ public class AppModel {
     /**
      * 
      * @param movie 
+     * @return result
      */
-    public void updateMovie(Movie movie){
-        movieManager.updateMovie(movie);
+    public boolean updateMovie(Movie movie){
+        boolean result;
+      result =  movieManager.updateMovie(movie);
         movieClearAdd();
+        
+        return result;
     }
     /**
      * 
