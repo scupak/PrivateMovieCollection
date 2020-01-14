@@ -13,7 +13,6 @@ import privateMovieCollection.be.Movie;
 import privateMovieCollection.bll.CategoryManager;
 import privateMovieCollection.bll.VideoPlayer;
 import privateMovieCollection.bll.MovieManager;
-import privateMovieCollection.dal.database.CategoryDBDAO;
 
 /**
  *
@@ -54,10 +53,10 @@ public class AppModel {
      * 
      * @return 
      */
-    public ObservableList<Movie> getAllMovies(){
-    allMovies.clear();
-    allMovies.addAll(movieManager.getAllMovies());
-    return allMovies;
+    public ObservableList<Movie> getAllMovies() {
+        allMovies.clear();
+        allMovies.addAll(movieManager.getAllMovies());
+        return allMovies;
     }
    /**
     * 

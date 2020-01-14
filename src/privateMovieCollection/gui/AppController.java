@@ -29,13 +29,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import privateMovieCollection.be.Category;
 import privateMovieCollection.be.Movie;
-import privateMovieCollection.gui.AppModel;
 
 /**
  *
@@ -113,8 +110,7 @@ public class AppController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         movieCategoryCol.setCellValueFactory( 
-                new PropertyValueFactory<Movie, String>("categories")
-        
+            new PropertyValueFactory<Movie, String>("categories")
         );
         
         movieTitelCol.setCellValueFactory( 
@@ -147,38 +143,37 @@ public class AppController implements Initializable {
         try   
         {
             appModel = new AppModel();
-       
 
-        minimumRatingSlider.valueProperty().addListener(new InvalidationListener() {
-                    @Override
-                    public void invalidated(Observable observable) {
+            minimumRatingSlider.valueProperty().addListener(new InvalidationListener() {
+                @Override
+                public void invalidated(Observable observable) {
 
-                        minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
-                       
-                    }
-                });
+                    minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
+
+                }
+            });
         
-        movieList.setItems(appModel.getAllMovies());
-       categoryList.setItems(appModel.getAllCategories());
-       moviesInCategory.setItems(appModel.getAllMovies());
-        
-       /* System.out.println("");
-        System.out.println(appModel.getAllMoviesInCategory(appModel.getAllCategories().get(0)));
-        System.out.println("");*/
+            movieList.setItems(appModel.getAllMovies());
+            categoryList.setItems(appModel.getAllCategories());
+            moviesInCategory.setItems(appModel.getAllMovies());
+
+            /* System.out.println("");
+            System.out.println(appModel.getAllMoviesInCategory(appModel.getAllCategories().get(0)));
+            System.out.println("");*/
        
-       } catch (Exception ex)
+        } catch (Exception ex)
         {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
- @FXML
+    @FXML
     private void clickedsearchButton(ActionEvent event) {
         search();
     }
+    
     @FXML
-    private void clickedOnMovieInCategory(MouseEvent event)
-    {
+    private void clickedOnMovieInCategory(MouseEvent event) {
         listSelection = listSelection.MOVIESINCATEGORY;
     }
 
@@ -192,8 +187,7 @@ public class AppController implements Initializable {
             appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
             movieList.getSelectionModel().getSelectedItem().setLastview(lastview);
             appModel.updateMovie(movieList.getSelectionModel().getSelectedItem());
-        }
-        else if(listSelection == listSelection.MOVIESINCATEGORY)
+        } else if (listSelection == listSelection.MOVIESINCATEGORY)
         {
             appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
             Movie movieUpdate = moviesInCategory.getSelectionModel().getSelectedItem();
@@ -358,7 +352,7 @@ public class AppController implements Initializable {
     
     public static void main(String[] args) throws Exception {
          
-         AppModel am = new AppModel();
+        AppModel am = new AppModel();
         ArrayList<Category> categories = new ArrayList<>();
         
          //System.out.println(am.getAllCategories()); 
