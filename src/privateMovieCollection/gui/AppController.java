@@ -114,27 +114,27 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         movieCategoryCol.setCellValueFactory( 
-            new PropertyValueFactory<>("categories")
+            new PropertyValueFactory<Movie, String>("categories")
         );
         
         movieTitelCol.setCellValueFactory( 
-                new PropertyValueFactory<>("title")
+                new PropertyValueFactory<Movie, String>("title")
         );
         
         movieLastViewCol.setCellValueFactory( 
-                new PropertyValueFactory<>("lastviewText")
+                new PropertyValueFactory<Movie, String>("lastviewText")
         );
          
         movieRaitingCol.setCellValueFactory( 
-                new PropertyValueFactory<>("rating")
+                new PropertyValueFactory<Movie, String>("rating")
         );
          
         categoryNameCol.setCellValueFactory( 
-                new PropertyValueFactory<>("name")
+                new PropertyValueFactory<Category, String>("name")
         ); 
         
         moviesInCategoryCol.setCellValueFactory( 
-                new PropertyValueFactory<>("movies")
+                new PropertyValueFactory<Category, Integer>("movies")
         ); 
          
          
