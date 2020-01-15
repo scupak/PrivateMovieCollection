@@ -25,8 +25,7 @@ import privateMovieCollection.dal.PmcDalException;
  *This class lets the user make new categories
  * @author lumby
  */
-public class NewCategoryController implements Initializable
-{ 
+public class NewCategoryController implements Initializable { 
     private AppModel appModel;
 
     @FXML
@@ -40,8 +39,7 @@ public class NewCategoryController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         
     }    
     
@@ -58,8 +56,7 @@ public class NewCategoryController implements Initializable
      * @param event 
      */
     @FXML
-    private void save(ActionEvent event)
-    {
+    private void save(ActionEvent event) {
         try {
             String title = categoryName.getText();
             Category categoryToAdd = new Category(0, title, 0);
@@ -69,7 +66,6 @@ public class NewCategoryController implements Initializable
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
-            ;
         }
     }
 
@@ -78,8 +74,7 @@ public class NewCategoryController implements Initializable
      * @param event 
      */
     @FXML
-    private void cancel(ActionEvent event)
-    {
+    private void cancel(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }

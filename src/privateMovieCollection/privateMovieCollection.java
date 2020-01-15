@@ -22,6 +22,7 @@ public class privateMovieCollection extends Application {
 
     /**
      * Loads in the main stage
+     * 
      * @param stage
      * @throws Exception 
      */
@@ -37,6 +38,7 @@ public class privateMovieCollection extends Application {
 
     /**
      * Launches the program.
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args){

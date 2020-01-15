@@ -43,8 +43,7 @@ public class DeleteMovieController {
      * set the selcted moive
      * @param movie 
      */
-    public void setMovie(Movie movie)
-    {
+    public void setMovie(Movie movie) {
         this.movie = movie;
     }
     
@@ -53,17 +52,12 @@ public class DeleteMovieController {
      * @param event 
      */
     @FXML
-    private void yes(ActionEvent event)
-    {
+    private void yes(ActionEvent event) {
         try {
-            if ( movie.getCategoryArray().isEmpty() == false )
-            {
-                for (Category category : movie.getCategoryArray())
-                {
-                    
-                        appModel.clearMovieFromCategory(category,movie);
-                        appModel.moviesInCategoriesClearAdd(category);
-                    
+            if ( movie.getCategoryArray().isEmpty() == false ) {
+                for (Category category : movie.getCategoryArray()) {
+                    appModel.clearMovieFromCategory(category,movie);
+                    appModel.moviesInCategoriesClearAdd(category);
                 }
             }
             
@@ -72,10 +66,9 @@ public class DeleteMovieController {
             appModel.categoriesClearAdd();
             no(event);
         } catch (PmcDalException ex) {
-             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, ex);
-            
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, ex);
         }
     }
 
@@ -84,8 +77,7 @@ public class DeleteMovieController {
      * @param event 
      */
     @FXML
-    private void no(ActionEvent event)
-    {
+    private void no(ActionEvent event) {
         Stage stage = (Stage) no.getScene().getWindow();
         stage.close();
     }

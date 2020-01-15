@@ -55,15 +55,11 @@ public class CategoryDBDAO implements CategoryFacade {
             return categories;
 
         } catch (SQLServerException ex) {
-          
            throw new PmcDalException("culd not get all categories from database", ex);
-           
-           
         } catch (SQLException ex) {
             throw new PmcDalException("culd not get all categories from database", ex);
         }
 
-        
     }
 
     /**
@@ -88,7 +84,6 @@ public class CategoryDBDAO implements CategoryFacade {
             } else {
                 return null;
             }
-
             return category;
 
         } catch (SQLServerException ex) {
@@ -96,8 +91,6 @@ public class CategoryDBDAO implements CategoryFacade {
         } catch (SQLException ex) {
              throw new PmcDalException("culd not create categories", ex);
         }
-
-        //return null;
     }
 
     /**
@@ -120,8 +113,6 @@ public class CategoryDBDAO implements CategoryFacade {
         } catch (SQLException ex) {
            throw new PmcDalException("culd not update categories", ex);
         }
-
-        //return false;
     }
 
     /**
@@ -186,8 +177,6 @@ public class CategoryDBDAO implements CategoryFacade {
         } catch (SQLException ex) {
             throw new PmcDalException("culd not get all movies in category from database", ex);
         }
-
-        //return null;
     }
     
     /**
@@ -211,8 +200,6 @@ public class CategoryDBDAO implements CategoryFacade {
         } catch (SQLException ex) {
              throw new PmcDalException("culd not add to category", ex);
         }
-
-       //return false;
     }
     
     /**
@@ -242,8 +229,6 @@ public class CategoryDBDAO implements CategoryFacade {
         } catch (SQLException ex) {
             throw new PmcDalException("culd not clear category", ex);
         }
-
-        //return false;
     }
     
     /**
@@ -283,6 +268,6 @@ public class CategoryDBDAO implements CategoryFacade {
         //categoryDB.updateCategory(new Category(3, "action", 0));
         //categoryDB.deleteCategory(new Category(2, "name"));
         //categoryDB.addToCategory(new Category(4, "name",0), new Movie(7, "title", 0, "path", new java.util.Date(),""));
-       // System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name",0)));
+        // System.out.println(categoryDB.getAllMoviesInCategory(new Category(3, "name",0)));
     }
 }

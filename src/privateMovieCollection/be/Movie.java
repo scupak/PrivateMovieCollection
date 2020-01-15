@@ -110,32 +110,24 @@ public class Movie {
      * @return categories as string
      */
     public String getCategories() {
-        //System.out.println("privateMovieCollection.be.Movie.getCategories()");
         String text = "";
         
         if(!categoryArray.isEmpty()){
             int i = 1;
-             //System.out.println("ifstatment");
             for (Category category : categoryArray) {
-                
-                // System.out.println("looop");
-                 if(i == categoryArray.size()){
-                text = text + category.toString();
-                
-                 }
-                 else{
-                 text = text + category.toString() +",";
-                 i++;
-                 
-                 }
+                if (i == categoryArray.size()) {
+                   text = text + category.toString();
+                } else{
+                   text = text + category.toString() +",";
+                   i++;
+                }
             }
         
             setCategories(text);
-        }
-        else{
-            //System.out.println("else");
+        } else {
             setCategories("none");
         }
+        
         return categories.get();
     }
     
@@ -151,7 +143,7 @@ public class Movie {
     /**
      * Get lastview
      * 
-     * @param LastviewText 
+     * @return lastviewText
      */
     public String getLastviewText(){
        return lastviewText.get();
@@ -202,22 +194,24 @@ public class Movie {
         this.lastview = lastview;
         setLastviewText(sdf.format(lastview));
     }
+    
     /**
+     * Get category array
      * 
-     * @return 
+     * @return categoryArray
      */
     public ArrayList<Category> getCategoryArray() {
         return categoryArray;
     }
+    
     /**
+     * Set category array
      * 
      * @param categoryArray 
      */
     public void setCategoryArray(ArrayList<Category> categoryArray) {
         this.categoryArray = categoryArray;
     }
-    
-    
 
     /**
      * This class as a String

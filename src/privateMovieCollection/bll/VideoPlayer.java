@@ -13,8 +13,7 @@ import java.io.IOException;
  *
  * @author kacpe
  */
-public class VideoPlayer
-{
+public class VideoPlayer {
     /**
      * VideoPlayer Constructor
      * @throws Exception 

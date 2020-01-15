@@ -112,57 +112,47 @@ public class AppController implements Initializable {
      * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         movieCategoryCol.setCellValueFactory( 
-            new PropertyValueFactory<Movie, String>("categories")
+            new PropertyValueFactory<>("categories")
         );
         
         movieTitelCol.setCellValueFactory( 
-                new PropertyValueFactory<Movie, String>("title")
-        
+                new PropertyValueFactory<>("title")
         );
         
-        
-         movieLastViewCol.setCellValueFactory( 
-                new PropertyValueFactory<Movie, String>("lastviewText")
-        
+        movieLastViewCol.setCellValueFactory( 
+                new PropertyValueFactory<>("lastviewText")
         );
          
-         movieRaitingCol.setCellValueFactory( 
-                new PropertyValueFactory<Movie, String>("rating")
-        
+        movieRaitingCol.setCellValueFactory( 
+                new PropertyValueFactory<>("rating")
         );
          
         categoryNameCol.setCellValueFactory( 
-                new PropertyValueFactory<Category, String>("name")
-        
+                new PropertyValueFactory<>("name")
         ); 
         
         moviesInCategoryCol.setCellValueFactory( 
-                new PropertyValueFactory<Category, Integer>("movies")
-        
+                new PropertyValueFactory<>("movies")
         ); 
          
          
-        try   
-        {
+        try {
             appModel = new AppModel();
 
             minimumRatingSlider.valueProperty().addListener(new InvalidationListener() {
                 @Override
                 public void invalidated(Observable observable) {
-
-                        minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
-                       
-                    }
-                });
+                    minimumRatingLabel.setText(Math.round(minimumRatingSlider.getValue())+"");
+                }
+            });
         
-        movieList.setItems(appModel.getAllMovies());
-       categoryList.setItems(appModel.getAllCategories());
-       moviesInCategory.setItems(appModel.getAllMovies());
-       } catch (Exception ex)
-        {
+            movieList.setItems(appModel.getAllMovies());
+            categoryList.setItems(appModel.getAllCategories());
+            moviesInCategory.setItems(appModel.getAllMovies());
+            
+        } catch (Exception ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -177,18 +167,14 @@ public class AppController implements Initializable {
                         + "and have not been opened from the application in more than 2 years."
                         + "\n movies pending deletion:"
                         + "\n" + appModel.moviesToDelete());
-                
-                
-                
-                
             }
         } catch (PmcDalException ex) {
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
-            
         }
     }
+    
    /**
     * Calls the search funtion
     * @param event 
@@ -212,8 +198,7 @@ public class AppController implements Initializable {
      * @param event 
      */
     @FXML
-    private void clickedOnMoive(MouseEvent event)
-    {
+    private void clickedOnMoive(MouseEvent event) {
         listSelection = ListSelection.MOVIES;
     }
 
@@ -223,37 +208,30 @@ public class AppController implements Initializable {
      * @throws IOException 
      */
     @FXML
-    private void play(ActionEvent event) throws IOException
-    {
+    private void play(ActionEvent event) throws IOException {
         Date lastview = new Date();
         
-        if(listSelection == listSelection.MOVIES)
-        {
+        if(listSelection == listSelection.MOVIES) {
             try {
                 appModel.getVideoPlayer().playVideo(movieList.getSelectionModel().getSelectedItem().getPath());
                 movieList.getSelectionModel().getSelectedItem().setLastview(lastview);
                 appModel.updateMovie(movieList.getSelectionModel().getSelectedItem());
             } catch (PmcDalException ex) {
                 JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, ex);
-            
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, ex);
             }
-        }
-        else if(listSelection == listSelection.MOVIESINCATEGORY)
-        {
+        } else if(listSelection == listSelection.MOVIESINCATEGORY) {
             try {
                 appModel.getVideoPlayer().playVideo(moviesInCategory.getSelectionModel().getSelectedItem().getPath());
                 Movie movieUpdate = moviesInCategory.getSelectionModel().getSelectedItem();
                 movieUpdate.setLastview(lastview);
                 appModel.updateMovie(movieUpdate);
             } catch (PmcDalException ex) {
-                 JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, ex);
-            
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, ex);
             }
-            
         }
     }
 
@@ -263,8 +241,7 @@ public class AppController implements Initializable {
      * @throws IOException 
      */
     @FXML
-    private void newMovie(ActionEvent event) throws IOException
-    {
+    private void newMovie(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("NewMovie.fxml").openStream());
@@ -283,8 +260,7 @@ public class AppController implements Initializable {
      * @throws IOException 
      */
     @FXML
-    private void editMoive(ActionEvent event) throws IOException
-    {
+    private void editMoive(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditMovie.fxml").openStream());
@@ -305,8 +281,7 @@ public class AppController implements Initializable {
      * @throws IOException 
      */
     @FXML
-    private void deleteMovie(ActionEvent event) throws IOException
-    {
+    private void deleteMovie(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteMovie.fxml").openStream());
@@ -325,8 +300,7 @@ public class AppController implements Initializable {
      * @param event 
      */
     @FXML
-    private void exit(ActionEvent event)
-    {
+    private void exit(ActionEvent event) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
@@ -337,20 +311,17 @@ public class AppController implements Initializable {
      * @param event 
      */
     @FXML
-    private void updateCategoryView(MouseEvent event)
-    {
-        if(categoryList.getSelectionModel().getSelectedItem() != null){
+    private void updateCategoryView(MouseEvent event) {
+        if(categoryList.getSelectionModel().getSelectedItem() != null) {
             try {
                 currentlySelectedCategory = categoryList.getSelectionModel().getSelectedItem();
                 listSelection  = ListSelection.CATEGORY;
                 moviesInCategory.setItems(appModel.getAllMoviesInCategory(categoryList.getSelectionModel().getSelectedItem()));
             } catch (PmcDalException ex) {
-                 JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, ex);
-            
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, ex);
             }
-        
         }
     }
 
@@ -359,33 +330,27 @@ public class AppController implements Initializable {
      * @param event 
      */
     @FXML
-    private void moveToCategory(ActionEvent event)
-    {
-        
+    private void moveToCategory(ActionEvent event) {
         try {
             Movie currentlySelectedMovie = movieList.getSelectionModel().getSelectedItem();
-           if (appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie) == false){
-               
-               throw new NullPointerException();
-           }
+            if (appModel.addToCategory(currentlySelectedCategory, currentlySelectedMovie) == false){
+                throw new NullPointerException();
+            }
             
             appModel.moviesInCategoriesClearAdd(currentlySelectedCategory);
             appModel.categoriesClearAdd();
             appModel.movieClearAdd();
            
-            
         } catch (PmcDalException ex) {
-             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, ex);
-            
-        }catch(NullPointerException exception){
             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "movie already exists in category");
-        
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, ex); 
+             
+        } catch(NullPointerException exception){
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "movie already exists in category");
         }
-        
     }
 
     /**
@@ -394,8 +359,7 @@ public class AppController implements Initializable {
      * @throws IOException 
      */
     @FXML
-    private void newCategory(ActionEvent event) throws IOException
-    {
+    private void newCategory(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("NewCategory.fxml").openStream());
@@ -406,7 +370,6 @@ public class AppController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setAlwaysOnTop(true);
         stage.show();
-        
     }
 
     /**
@@ -415,9 +378,8 @@ public class AppController implements Initializable {
      * @throws IOException 
      */
     @FXML
-    private void editCategory(ActionEvent event) throws IOException
-    {
-         FXMLLoader fxmlLoader = new FXMLLoader();
+    private void editCategory(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("EditCategory.fxml").openStream());
         EditCategoryController cont = (EditCategoryController) fxmlLoader.getController();
@@ -436,8 +398,7 @@ public class AppController implements Initializable {
      * @throws IOException 
      */
     @FXML
-    private void deleteCategory(ActionEvent event) throws IOException
-    {
+    private void deleteCategory(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
 
         Parent root = (Parent) fxmlLoader.load(getClass().getResource("DeleteCategory.fxml").openStream());
@@ -456,10 +417,8 @@ public class AppController implements Initializable {
      * Handels the search function for the program, making it poisblie
      * to filter between titel, raiting and categories at the same time
      */
-    private void search()
-    {
-        try 
-        {
+    private void search() {
+        try {
             String titleQuery = searchField.getText().trim();
             String CSV = filterField.getText();
             String[] values = CSV.split(",");
@@ -468,13 +427,10 @@ public class AppController implements Initializable {
             System.out.println(filterQuery);
             int ratingQuery = (int) Math.round(minimumRatingSlider.getValue());
             appModel.search(titleQuery, filterQuery, ratingQuery);
-        }
-        catch (PmcDalException ex)
-        {
+        } catch (PmcDalException ex) {
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
-            
         }
     }
     
@@ -483,8 +439,7 @@ public class AppController implements Initializable {
      * @param event 
      */
     @FXML
-    private void deleteFromCategory(ActionEvent event)
-    {
+    private void deleteFromCategory(ActionEvent event) {
         try {
             Movie currentlySelectedMovieInCategory = moviesInCategory.getSelectionModel().getSelectedItem();
             
@@ -493,12 +448,9 @@ public class AppController implements Initializable {
             appModel.categoriesClearAdd();
             appModel.movieClearAdd();
         } catch (PmcDalException ex) {
-            
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
-            
-           
         }
     }
 

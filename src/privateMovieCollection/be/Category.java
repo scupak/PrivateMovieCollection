@@ -65,8 +65,9 @@ public class Category {
         this.name.set(name);
     }
     /**
+     * Get movies
      * 
-     * @return 
+     * @return movies
      */
      public int getMovies() {
         return movies.get();

@@ -64,8 +64,6 @@ public class MovieDBDAO implements MovieFacade {
         } catch (SQLException ex) {
             throw new PmcDalException("culd not get all movies from database", ex);
         }
-
-       // return null;
     }
 
     /**
@@ -87,7 +85,7 @@ public class MovieDBDAO implements MovieFacade {
             ps.setInt(2, movie.getRating());
             ps.setString(3, movie.getPath());
             
-           // SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            // SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             
             ps.setDate(4, new java.sql.Date(movie.getLastview().getTime()));
             ps.executeUpdate();
@@ -106,8 +104,6 @@ public class MovieDBDAO implements MovieFacade {
         } catch (SQLException ex) {
             throw new PmcDalException("culd not create movie in database", ex);
         }
-
-        //return null;
     }
 
     /**
@@ -135,8 +131,6 @@ public class MovieDBDAO implements MovieFacade {
         } catch (SQLException ex) {
             throw new PmcDalException("culd not update movie in database", ex);
         }
-
-        //return false;
     }
 
     /**
@@ -159,8 +153,6 @@ public class MovieDBDAO implements MovieFacade {
         } catch (SQLException ex) {
            throw new PmcDalException("culd not delete movie from database", ex);
         }
-
-        //return false;
     }
     
     /**
@@ -188,10 +180,15 @@ public class MovieDBDAO implements MovieFacade {
         } catch (SQLException ex) {
             throw new PmcDalException("culd not find if the movie exists", ex);
         }
-        
-       // return false;
     }
     
+    /**
+     * Get all categories with movies
+     * 
+     * @param movie
+     * @return categories with movies
+     * @throws PmcDalException 
+     */
     @Override
     public List<Category> GetAllCategoriesWithMovie(Movie movie) throws PmcDalException{
         ArrayList<Category> categories = new ArrayList<>();
@@ -220,10 +217,16 @@ public class MovieDBDAO implements MovieFacade {
         } catch (SQLException ex) {
             throw new PmcDalException("culd not get all categories with movie from database", ex);
         }
-        
-        //return null;
     }
 
+    /**
+     * Search for movies
+     * 
+     * @param searchQuery
+     * @param filter
+     * @param rating
+     * @return 
+     */
     public List<Movie> searchMovies(String searchQuery, List<Category> filter, int rating) {
         if(searchQuery == null) {
             searchQuery = "";
@@ -235,7 +238,7 @@ public class MovieDBDAO implements MovieFacade {
     public static void main(String[] args) {
         ArrayList<Movie> movies = new ArrayList<>();
         ArrayList<Category> categories = new ArrayList<>();
-       // MovieDBDAO movieDB = new MovieDBDAO();
+        // MovieDBDAO movieDB = new MovieDBDAO();
         
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
@@ -244,10 +247,9 @@ public class MovieDBDAO implements MovieFacade {
       
         //categories.addAll(movieDB.GetAllCategoriesWithMovie(new Movie(3, "title", 0, "path", new Date(), "")));
       
-       // movies.addAll(movieDB.getAllMovies());
+        // movies.addAll(movieDB.getAllMovies());
       
         for (Movie movie : movies) {
-            
             System.out.println(movie);
         }
     }

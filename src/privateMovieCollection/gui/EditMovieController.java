@@ -71,11 +71,10 @@ public class EditMovieController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         raitingSlider.valueProperty().addListener(new InvalidationListener() {
-                    @Override
-                    public void invalidated(Observable observable) {
-
-                        raitingLabel.setText(Math.round(raitingSlider.getValue())+"");
-                    }
+            @Override
+            public void invalidated(Observable observable) {
+                raitingLabel.setText(Math.round(raitingSlider.getValue())+"");
+            }
         });
     }
 
@@ -106,8 +105,7 @@ public class EditMovieController implements Initializable {
      * @param event 
      */
     @FXML
-    private void cancel(ActionEvent event)
-    {
+    private void cancel(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
@@ -118,42 +116,37 @@ public class EditMovieController implements Initializable {
      * @param event 
      */
     @FXML
-    private void save(ActionEvent event)
-    {
+    private void save(ActionEvent event) {
         String title = movieTitleTextField.getText(); 
         String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
         String raiting = raitingLabel.getText();
         int intRaiting;
         
-        try{
+        try {
             intRaiting = Integer.parseInt(raiting);
-        } catch(NumberFormatException e){
+        } catch(NumberFormatException e) {
             intRaiting = 0;
             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
-        
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
         }
         
         Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview());
-       try{ 
-        if(appModel.updateMovie(movieToUpdate) == false){
-
-            throw new NullPointerException();
-
-        } 
-        cancel(event);
-       }
-       catch(NullPointerException exeption){
-       JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
-
-       } catch (PmcDalException ex) {
+        try{ 
+            if(appModel.updateMovie(movieToUpdate) == false){
+                throw new NullPointerException();
+            } 
+            cancel(event);
+        }
+        catch(NullPointerException exeption){
             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, ex);
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
+        } catch (PmcDalException ex) {
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, ex);
         }
     }
 
@@ -162,9 +155,8 @@ public class EditMovieController implements Initializable {
      * @param event 
      */
     @FXML
-    private void movieChoiceButton(ActionEvent event)
-    {
-         FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null);
+    private void movieChoiceButton(ActionEvent event) {
+        FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null);
         fd.setDirectory("C:\\");
         fd.setFile("*.mp4;*.mpeg4");
         fd.setVisible(true);
@@ -175,8 +167,5 @@ public class EditMovieController implements Initializable {
         } else {
             fileTextField.setText("movies/" + filename);
         }
-    }
-    
-    
-       
+    } 
 }

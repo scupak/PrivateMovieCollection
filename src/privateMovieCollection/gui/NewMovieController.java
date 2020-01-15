@@ -42,7 +42,6 @@ import privateMovieCollection.dal.PmcDalException;
  */
 public class NewMovieController implements Initializable {
     
-    
     private AppModel appModel;
     private String filename = "";
     private String directory = "";
@@ -60,7 +59,6 @@ public class NewMovieController implements Initializable {
     private Button Save;
     @FXML
     private TextField fileTextField;
-    
     @FXML
     private TextField categoryTextField;
     @FXML
@@ -78,17 +76,17 @@ public class NewMovieController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         raitingSlider.valueProperty().addListener(new InvalidationListener() {
-                    @Override
-                    public void invalidated(Observable observable) {
-
-                        raitingLabel.setText(Math.round(raitingSlider.getValue())+"");
-                    }
-        });
-                       
+            @Override
+            public void invalidated(Observable observable) {
+                raitingLabel.setText(Math.round(raitingSlider.getValue())+"");
+            }
+        });            
     }
 
     /**
@@ -99,43 +97,35 @@ public class NewMovieController implements Initializable {
     }
 
  
-/**
- * takes the input from the user and creates the movie.
- * @param event 
- */
+    /**
+     * takes the input from the user and creates the movie.
+     * @param event 
+     */
     @FXML
-    private void Save(ActionEvent event)
-    {
+    private void Save(ActionEvent event) {
         String title = movieTitleTextField.getText(); 
         String moviePath = fileTextField.getText();
         String raiting = raitingLabel.getText();
         Date lastView = new Date();
         int intRaiting;
         
-        try{
+        try {
             intRaiting = Integer.parseInt(raiting);
-            
-                
-        } catch(NumberFormatException e){
+        } catch(NumberFormatException e) {
             intRaiting = 0;
             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
-        
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
         }
-         try{
-        Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
-      
         
-        if(appModel.createMovie(movieToAdd) == null){
-
-            throw new NullPointerException();
-
-        }  
-        cancel(event);
-           
-        }
-        catch(NullPointerException exeption){
+        try {
+            Movie movieToAdd = new Movie(1, title, intRaiting,"","", moviePath, lastView); 
+            if(appModel.createMovie(movieToAdd) == null){
+                throw new NullPointerException();
+            }  
+            cancel(event);
+            
+        } catch(NullPointerException exeption) {
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
@@ -144,7 +134,6 @@ public class NewMovieController implements Initializable {
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
-            
         }
        
     }
@@ -154,8 +143,7 @@ public class NewMovieController implements Initializable {
      * @param event 
      */
     @FXML
-    private void movieChoiceButton(ActionEvent event)
-    {
+    private void movieChoiceButton(ActionEvent event) {
         FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null);
         fd.setDirectory("C:\\");
         fd.setFile("*.mp4;*.mpg");
@@ -167,7 +155,6 @@ public class NewMovieController implements Initializable {
         } else {
             fileTextField.setText("movies/" + filename);
         }
-
     }
 
     /**
@@ -175,10 +162,8 @@ public class NewMovieController implements Initializable {
      * @param event 
      */
     @FXML
-    private void cancel(ActionEvent event)
-    {
+    private void cancel(ActionEvent event) {
         Stage stage = (Stage) Cancel.getScene().getWindow();
-        
         stage.close();
     }
     

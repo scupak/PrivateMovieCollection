@@ -20,9 +20,8 @@ import privateMovieCollection.dal.PmcDalException;
  * This class lets the user delete categories.
  * @author lumby
  */
-public class DeleteCategoryController
-{
-
+public class DeleteCategoryController {
+    
     private AppModel appModel;
     private Category category;
     
@@ -35,25 +34,24 @@ public class DeleteCategoryController
      * set the appModel object
      * @param app 
      */
-     public void setAppModel(AppModel app) {
+    public void setAppModel(AppModel app) {
         appModel = app;
     }
      
-     /**
-      * set the selcted playlist 
-      * @param category 
-      */
-     public void setCategory(Category category){
-         this.category = category;
-     }
+    /**
+     * set the selcted playlist 
+     * @param category 
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+    }
     
-     /**
-      * delete the chosen category
-      * @param event 
-      */
+    /**
+     * delete the chosen category
+     * @param event 
+     */
     @FXML
-    private void yes(ActionEvent event)
-    {
+    private void yes(ActionEvent event) {
         try {
             appModel.deleteCategory(category);
             appModel.categoriesClearAdd();
@@ -64,7 +62,6 @@ public class DeleteCategoryController
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
-            
         }
     }
 
@@ -73,8 +70,7 @@ public class DeleteCategoryController
      * @param event 
      */
     @FXML
-    private void no(ActionEvent event)
-    {
+    private void no(ActionEvent event) {
         Stage stage = (Stage) no.getScene().getWindow();
         stage.close();
     }

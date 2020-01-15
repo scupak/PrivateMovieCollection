@@ -11,23 +11,19 @@ package privateMovieCollection.dal;
  */
 public class PmcDalException extends Exception{
     
-   public PmcDalException()
-    {
+    public PmcDalException() {
         super();
     }
 
-    public PmcDalException(String message)
-    {
+    public PmcDalException(String message) {
         super(message);
     }
 
-    public PmcDalException(String message, Throwable cause)
-    {
+    public PmcDalException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public PmcDalException(String message, Exception ex)
-    {
+    public PmcDalException(String message, Exception ex) {
         super(message, ex);
     }
 }

@@ -21,8 +21,7 @@ import privateMovieCollection.dal.PmcDalException;
  *This class lets the user edit categories.
  * @author lumby
  */
-public class EditCategoryController
-{
+public class EditCategoryController {
     private AppModel appModel;
     private Category category;
 
@@ -37,27 +36,25 @@ public class EditCategoryController
      * set the appModel object
      * @param app 
      */
-     public void setAppModel(AppModel app) {
+    public void setAppModel(AppModel app) {
         appModel = app;
     }
      
-     /**
-      * set the selcted category
-      * @param category 
-      */
-     public void setCategory(Category category){
-         this.category = category;
-         
-         categoryName.setText(category.getName());
-     }
+    /**
+     * set the selcted category
+     * @param category 
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+        categoryName.setText(category.getName());
+    }
 
-     /**
-      * applyes the changes to an already existing category
-      * @param event 
-      */
+    /**
+     * applyes the changes to an already existing category
+     * @param event 
+     */
     @FXML
-    private void save(ActionEvent event)
-    {
+    private void save(ActionEvent event) {
         try {
             String name = categoryName.getText();
             
@@ -68,7 +65,6 @@ public class EditCategoryController
              JFrame jf=new JFrame();
              jf.setAlwaysOnTop(true);
              JOptionPane.showMessageDialog(jf, ex);
-            
         }
     }
 
@@ -77,8 +73,7 @@ public class EditCategoryController
      * @param event 
      */
     @FXML
-    private void cancel(ActionEvent event)
-    {
+    private void cancel(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }

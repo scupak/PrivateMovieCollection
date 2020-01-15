@@ -84,7 +84,6 @@ public class CategoryManager {
      */
     public List<Movie> getAllMoviesinCategory(Category category) throws PmcDalException{
         return CategoryDBDAO.getAllMoviesInCategory(category);
-    
     }
     /**
      * Add a movie to a category
@@ -96,11 +95,8 @@ public class CategoryManager {
      */
     public boolean addToCategory(Category category, Movie movie)throws PmcDalException{
         for (Movie movie1 : getAllMoviesinCategory(category)) {
-            
             if(movie1.getTitle().equals(movie.getTitle())){
-                
                 return false;
-            
             }
         }
         

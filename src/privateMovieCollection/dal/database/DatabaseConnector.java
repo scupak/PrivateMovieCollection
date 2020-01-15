@@ -30,7 +30,7 @@ public class DatabaseConnector {
     public DatabaseConnector() throws FileNotFoundException, IOException{
         Properties props = new Properties();
        
-            props.load(new FileReader("DBSettings.txt"));
+        props.load(new FileReader("DBSettings.txt"));
         
         dataSource = new SQLServerDataSource();
         dataSource.setDatabaseName(props.getProperty("database"));

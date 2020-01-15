@@ -39,11 +39,11 @@ public class MovieManager {
      * @return list of movies
      * @throws privateMovieCollection.dal.PmcDalException
      */
-    public List<Movie>getAllMovies() throws PmcDalException{
+    public List<Movie>getAllMovies() throws PmcDalException {
         List<Movie> result = movieDBDAO.getAllMovies();
         
         for (Movie movie : result) {
-            if(!movieDBDAO.GetAllCategoriesWithMovie(movie).isEmpty()){
+            if(!movieDBDAO.GetAllCategoriesWithMovie(movie).isEmpty()) {
                 movie.getCategoryArray().addAll(movieDBDAO.GetAllCategoriesWithMovie(movie));
             }
         }
@@ -106,40 +106,36 @@ public class MovieManager {
         
         return finalResult;
     }
-     public List<Movie> moviesToDelete() throws PmcDalException{
-           final int daysin2years = 730;
-           Date currentdate = new Date();
-           List<Movie> finalResult = new ArrayList<>();
-           
-            for (Movie movie : getAllMovies()) {
-                boolean fordeletion = false;
-                if (movie.getRating() < 60 ) {
-                    fordeletion = true;
-                }
-            
-            
-            
-                long diff = currentdate.getTime() - movie.getLastview().getTime();
-                System.out.println(currentdate);
-                System.out.println(movie.getLastview());
-                System.out.println(diff);
-                System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
-                
-                if(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) >= daysin2years){
-                    fordeletion = true;
-                
-                }
-                
-                if(fordeletion){
-                    finalResult.add(movie);
-                
-                }
-            
-            }
-            
-            
-            return finalResult;
-        }
+    public List<Movie> moviesToDelete() throws PmcDalException{
+        final int daysin2years = 730;
+        Date currentdate = new Date();
+        List<Movie> finalResult = new ArrayList<>();
+
+         for (Movie movie : getAllMovies()) {
+             boolean fordeletion = false;
+             
+             if (movie.getRating() < 60 ) {
+                 fordeletion = true;
+             }
+
+             long diff = currentdate.getTime() - movie.getLastview().getTime();
+             System.out.println(currentdate);
+             System.out.println(movie.getLastview());
+             System.out.println(diff);
+             System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+
+             if(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) >= daysin2years){
+                 fordeletion = true;
+             }
+
+             if(fordeletion){
+                 finalResult.add(movie);
+             }
+
+         }
+         
+        return finalResult;
+    }
      
      
      
@@ -150,7 +146,7 @@ public class MovieManager {
      * @return  
      * @throws privateMovieCollection.dal.PmcDalException 
      */
-    public Movie createMovie(Movie movie) throws PmcDalException{
+    public Movie createMovie(Movie movie) throws PmcDalException {
        return movieDBDAO.createMovie(movie) ;
     }
     
@@ -160,7 +156,7 @@ public class MovieManager {
      * @param movie 
      * @throws privateMovieCollection.dal.PmcDalException 
      */
-    public void deleteMovie(Movie movie) throws PmcDalException{
+    public void deleteMovie(Movie movie) throws PmcDalException {
         movieDBDAO.deleteMovie(movie);
     }
     
@@ -171,14 +167,14 @@ public class MovieManager {
      * @return  
      * @throws privateMovieCollection.dal.PmcDalException  
      */
-    public boolean updateMovie(Movie movie) throws PmcDalException{
+    public boolean updateMovie(Movie movie) throws PmcDalException {
         return movieDBDAO.updateMovie(movie);
     }
     
     public static void main(String[] args) throws PmcDalException {
         
         //MovieFacade movieDBDAO = new MovieDBDAO();
-       // MovieManager manager = new MovieManager();
+        // MovieManager manager = new MovieManager();
         /*
         ArrayList<Movie> movies = new ArrayList<>();
          
@@ -188,11 +184,11 @@ public class MovieManager {
             System.out.println(movy);
         }
         */
-      /*  
+        /*  
         for (Movie movy : manager.moviesToDelete())  {
             System.out.println(movy +" "+ movy.getRating() +" "+ movy.getLastview());
         }
-*/
+        */
     }
     
 }
