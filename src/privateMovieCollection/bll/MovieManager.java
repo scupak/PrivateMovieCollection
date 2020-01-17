@@ -27,9 +27,9 @@ public class MovieManager {
 
     /**
      * Movie Manager Constructor
-     * @throws java.io.IOException
+     * @throws privateMovieCollection.dal.PmcDalException
      */
-    public MovieManager() throws IOException {
+    public MovieManager() throws PmcDalException {
         movieDBDAO = new MovieDBDAO();
     }
     
@@ -119,10 +119,7 @@ public class MovieManager {
              }
 
              long diff = currentdate.getTime() - movie.getLastview().getTime();
-             System.out.println(currentdate);
-             System.out.println(movie.getLastview());
-             System.out.println(diff);
-             System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+             
 
              if(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) >= daysin2years){
                  fordeletion = true;
@@ -171,24 +168,6 @@ public class MovieManager {
         return movieDBDAO.updateMovie(movie);
     }
     
-    public static void main(String[] args) throws PmcDalException {
-        
-        //MovieFacade movieDBDAO = new MovieDBDAO();
-        // MovieManager manager = new MovieManager();
-        /*
-        ArrayList<Movie> movies = new ArrayList<>();
-         
-        movies.addAll(manager.getAllMovies());
-        
-        for (Movie movy : movies) {
-            System.out.println(movy);
-        }
-        */
-        /*  
-        for (Movie movy : manager.moviesToDelete())  {
-            System.out.println(movy +" "+ movy.getRating() +" "+ movy.getLastview());
-        }
-        */
-    }
+  
     
 }

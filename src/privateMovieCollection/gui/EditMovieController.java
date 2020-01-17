@@ -7,23 +7,19 @@ package privateMovieCollection.gui;
 
 import java.awt.FileDialog;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 import privateMovieCollection.dal.PmcDalException;
 
@@ -41,8 +37,6 @@ public class EditMovieController implements Initializable {
     private String directory = "";
     
     @FXML
-    private Label CategoryLabel;
-    @FXML
     private Label TimeLabel;
     @FXML
     private Label fileLabel;
@@ -56,8 +50,7 @@ public class EditMovieController implements Initializable {
     private Button movieChoiceButton;
     @FXML
     private TextField fileTextField;
-    @FXML
-    private TextField categoryTextField;
+ 
     @FXML
     private Slider raitingSlider;
     @FXML
@@ -95,7 +88,6 @@ public class EditMovieController implements Initializable {
         this.movie = movie;
 
         movieTitleTextField.setText(movie.getTitle());
-        categoryTextField.setText(movie.getCategories());
         raitingSlider.setValue(movie.getRating());
         fileTextField.setText(movie.getPath());
     }
@@ -118,7 +110,6 @@ public class EditMovieController implements Initializable {
     @FXML
     private void save(ActionEvent event) {
         String title = movieTitleTextField.getText(); 
-        String category = categoryTextField.getText();
         String moviePath = fileTextField.getText();
         String raiting = raitingLabel.getText();
         int intRaiting;
@@ -127,9 +118,12 @@ public class EditMovieController implements Initializable {
             intRaiting = Integer.parseInt(raiting);
         } catch(NumberFormatException e) {
             intRaiting = 0;
-            JFrame jf=new JFrame();
-            jf.setAlwaysOnTop(true);
-            JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
+             Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText(e.toString() + "or movie with same name already today");
+
+                alert.showAndWait();
         }
         
         Movie movieToUpdate = new Movie(movie.getId(), title, intRaiting,"","", moviePath, movie.getLastview());
@@ -140,13 +134,19 @@ public class EditMovieController implements Initializable {
             cancel(event);
         }
         catch(NullPointerException exeption){
-            JFrame jf=new JFrame();
-            jf.setAlwaysOnTop(true);
-            JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
+            Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText(exeption.toString());
+
+                alert.showAndWait();
         } catch (PmcDalException ex) {
-            JFrame jf=new JFrame();
-            jf.setAlwaysOnTop(true);
-            JOptionPane.showMessageDialog(jf, ex);
+            Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText(ex.toString());
+
+                alert.showAndWait();
         }
     }
 
@@ -163,7 +163,12 @@ public class EditMovieController implements Initializable {
         filename = fd.getFile();
         directory = fd.getDirectory();
         if (filename == null) {
-            JOptionPane.showMessageDialog(null, "Add song canceled");
+            Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText("add movie canceled");
+
+                alert.showAndWait();
         } else {
             fileTextField.setText("movies/" + filename);
         }

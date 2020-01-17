@@ -9,7 +9,6 @@ package privateMovieCollection.gui;
 /*All the imports are defined here,the class needs to know witch other classes, packages or libraries it has acces to,
 this also defines how the class fits into the programs design structure.*/
 import java.awt.FileDialog;
-import java.io.File;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -19,17 +18,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import privateMovieCollection.be.Movie;
 import java.lang.NullPointerException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
+import javafx.scene.control.Alert;
 import privateMovieCollection.dal.PmcDalException;
 /**
  * FXML Controller class
@@ -47,8 +42,6 @@ public class NewMovieController implements Initializable {
     private String directory = "";
     
     @FXML
-    private Label CategoryLabel;
-    @FXML
     private Label TimeLabel;
     @FXML
     private Label fileLabel;
@@ -59,8 +52,6 @@ public class NewMovieController implements Initializable {
     private Button Save;
     @FXML
     private TextField fileTextField;
-    @FXML
-    private TextField categoryTextField;
     @FXML
     private Button movieChoiceButton;
     @FXML
@@ -113,9 +104,11 @@ public class NewMovieController implements Initializable {
             intRaiting = Integer.parseInt(raiting);
         } catch(NumberFormatException e) {
             intRaiting = 0;
-            JFrame jf=new JFrame();
-            jf.setAlwaysOnTop(true);
-            JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText(e.toString() + "invalid input or movie with same name already exists");
+                alert.showAndWait();
         }
         
         try {
@@ -126,14 +119,19 @@ public class NewMovieController implements Initializable {
             cancel(event);
             
         } catch(NullPointerException exeption) {
-             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, "invalid input or movie with same name already exists");
+            System.out.println("samme titel");
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText(exeption.toString() + "invalid input or movie with same name already exists");
+                alert.showAndWait();
         
         } catch (PmcDalException ex) {
-             JFrame jf=new JFrame();
-             jf.setAlwaysOnTop(true);
-             JOptionPane.showMessageDialog(jf, ex);
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText(ex.toString() + "invalid input or movie with same name already exists");
+                alert.showAndWait();
         }
        
     }
@@ -151,7 +149,11 @@ public class NewMovieController implements Initializable {
         filename = fd.getFile();
         directory = fd.getDirectory();
         if (filename == null) {
-            JOptionPane.showMessageDialog(null, "Add song canceled");
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("error");
+                alert.setHeaderText("error");
+                alert.setContentText( "add movie canceled");
+                alert.showAndWait();
         } else {
             fileTextField.setText("movies/" + filename);
         }
